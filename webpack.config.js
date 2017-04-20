@@ -5,7 +5,7 @@ module.exports = {
     entry: "./main.js",
 
     output: {
-        filename: 'bundle.js',
+        filename: './public/bundle.js',
     },
 
     module: {
@@ -19,7 +19,7 @@ module.exports = {
         }]
     },
     plugins: [
-        new ExtractTextPlugin('bundle.css')
+        new ExtractTextPlugin('./public/bundle.css')
     ]
 
 

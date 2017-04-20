@@ -1,10 +1,6 @@
-import './css/main.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import D from './src/Day';
+import Header from './src/header/headerJS';
 
-    /*ReactDOM.render(
-        <D name = 'k'/>,
-        document.getElementById('root')
-    );*/
+    ReactDOM.render(<Header/>, document.getElementById('siteName'));
