@@ -1,10 +1,10 @@
-import './main.css';
+import './css/main.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Day from './src/Day';
+import D from './src/Day';
 
-    ReactDOM.render(
-        <Day name = 'k'/>,
+    /*ReactDOM.render(
+        <D name = 'k'/>,
         document.getElementById('root')
-    );
+    );*/

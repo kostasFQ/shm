@@ -1,7 +1,8 @@
-import '../css/dayStyle.css';
+import '../css/central.css';
 import React, {Component} from 'react';
 
 
+/*
 export default class Day extends Component {
 
     render() {
@@ -9,4 +10,4 @@ export default class Day extends Component {
             <div className="d">My name is : {this.props.name}</div>
         );
     }
-}
+}*/
