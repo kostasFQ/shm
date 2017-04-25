@@ -2,35 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css?family=News+Cycle|Stint+Ultra+Expanded" rel="stylesheet">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>SHM</title>
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href="./public/bundle.css" type="text/css" rel='stylesheet'>
+    <link href="./public/main.css" type="text/css" rel='stylesheet'>
 </head>
 <body>
-<header>
-    <div id="siteName"></div>
-</header>
-<nav>
-    <select id="selectBar">
-        <option>Центр</option>
-        <option>Восток</option>
-    </select>
-</nav>
+    <header id="siteName"></header>
 
-<aside>
-    <div id="leftPanel">
-        <div>
-            <button>Добавить магазин</button>
+    <div id = 'content' style="background-color: aqua">
+        <div id="districts"></div>
+
+        <div id="menu">
+            <a href="#tab1" >Список магазинов</a>
+            <a href="#tab2" >карта</a>
+            <div id= 'shopList'>вкладка 1</div>
+            <div id='shopMap'>вкладка 2</div>
         </div>
     </div>
-</aside>
-<nav>
 
-</nav>
-
-
-    <div id="root">EMPTY!!</div>
 
 <script src="./public/bundle.js"></script>
 </body>

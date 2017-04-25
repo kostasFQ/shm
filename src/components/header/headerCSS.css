@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Oxygen);.headerStyle {
+@import url('https://fonts.googleapis.com/css?family=Oxygen');
+
+.headerStyle {
     box-sizing: border-box;
     width: 100%;
     color: #706075;
@@ -8,12 +10,4 @@
     background-color: lightgray;
     display: inline-flex;
 
-}
-.mainSelector {
-    padding: 0;
-    margin: 0;
-    width: 315px;
-    height: 50px;
-    background-color: lightgray;
-    color: #706075;
 }

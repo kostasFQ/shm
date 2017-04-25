@@ -8,9 +8,9 @@ export default class Header extends Component {
 
     render() {
         return (
-            <div>
-                <img src="./src/header/img/map.png"/>
-                <div className="headerStyle">ppap</div>
+            <div className="headerStyle">
+                <img src="./src/components/header/img/map.png"/>
+                <div className="headerSpan">{this.props.title}</div>
             </div>
         )
     }
