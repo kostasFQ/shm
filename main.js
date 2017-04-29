@@ -5,7 +5,7 @@ import Header from './src/components/header/headerJS';
 import Districts from './src/components/districs/districsJS';
 import ShopsList from './src/components/shopsList/shopsList';
 import Footer from './src/components/footer/footerJS'
-import Map from './src/components/map/mapJS'
+import YandexMap from './src/components/map/mapJS'
 
 ReactDOM.render(
     <Header title = 'Second map'/>,
@@ -21,5 +21,5 @@ ReactDOM.render(
     <Footer/>,
     document.getElementById('footer'));
 ReactDOM.render(
-    <Map/>,
+    <YandexMap/>,
     document.getElementById('map'));

@@ -18,7 +18,7 @@
     color: #706075;
 }.listField{
     width: 315px;
-    height: 500px;
+    height: 530px;
     background-color: lightblue;
 }
 .listItem {
@@ -31,7 +31,6 @@
     color: white;
     position: fixed;
     width: 100%;
-    height: 15%;
 
     display: flex;
     flex-flow: column wrap;
