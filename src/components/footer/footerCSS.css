@@ -1,0 +1,11 @@
+.footerText {
+    background-color: black;
+    color: white;
+    position: fixed;
+    width: 100%;
+    height: 15%;
+
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}

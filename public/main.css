@@ -6,4 +6,6 @@ body{
 #content {
     padding: 0;
     margin-top: -4px;
+    display: flex;
+
 }

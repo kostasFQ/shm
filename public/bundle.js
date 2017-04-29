@@ -9593,12 +9593,22 @@ var _shopsList = __webpack_require__(195);
 
 var _shopsList2 = _interopRequireDefault(_shopsList);
 
+var _footerJS = __webpack_require__(198);
+
+var _footerJS2 = _interopRequireDefault(_footerJS);
+
+var _mapJS = __webpack_require__(201);
+
+var _mapJS2 = _interopRequireDefault(_mapJS);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _reactDom2.default.render(_react2.default.createElement(_headerJS2.default, { title: 'Second map' }), document.getElementById('siteName'));
 
 _reactDom2.default.render(_react2.default.createElement(_districsJS2.default, null), document.getElementById('districts'));
 _reactDom2.default.render(_react2.default.createElement(_shopsList2.default, null), document.getElementById('menu'));
+_reactDom2.default.render(_react2.default.createElement(_footerJS2.default, null), document.getElementById('footer'));
+_reactDom2.default.render(_react2.default.createElement(_mapJS2.default, null), document.getElementById('map'));
 
 /***/ }),
 /* 85 */
@@ -21946,33 +21956,163 @@ var Item = function (_Component) {
     return Item;
 }(_react.Component);
 
-var ChoiseView = function (_Component2) {
-    _inherits(ChoiseView, _Component2);
+var ShopsList = function (_Component2) {
+    _inherits(ShopsList, _Component2);
 
-    function ChoiseView() {
-        _classCallCheck(this, ChoiseView);
+    function ShopsList() {
+        _classCallCheck(this, ShopsList);
 
-        return _possibleConstructorReturn(this, (ChoiseView.__proto__ || Object.getPrototypeOf(ChoiseView)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (ShopsList.__proto__ || Object.getPrototypeOf(ShopsList)).apply(this, arguments));
     }
 
-    _createClass(ChoiseView, [{
+    _createClass(ShopsList, [{
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
                 'div',
                 { className: 'listField' },
+                _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' }),
+                _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' }),
+                _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' }),
                 _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' })
             );
         }
     }]);
 
-    return ChoiseView;
+    return ShopsList;
 }(_react.Component);
 
-exports.default = ChoiseView;
+exports.default = ShopsList;
 
 /***/ }),
 /* 196 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 197 */,
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(199);
+
+var _react = __webpack_require__(25);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Footer = function (_Component) {
+    _inherits(Footer, _Component);
+
+    function Footer() {
+        _classCallCheck(this, Footer);
+
+        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+    }
+
+    _createClass(Footer, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: 'footerText' },
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    'production by KST'
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    '2017'
+                )
+            );
+        }
+    }]);
+
+    return Footer;
+}(_react.Component);
+
+exports.default = Footer;
+
+/***/ }),
+/* 199 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 200 */,
+/* 201 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(202);
+
+var _react = __webpack_require__(25);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Map = function (_Component) {
+    _inherits(Map, _Component);
+
+    function Map() {
+        _classCallCheck(this, Map);
+
+        return _possibleConstructorReturn(this, (Map.__proto__ || Object.getPrototypeOf(Map)).apply(this, arguments));
+    }
+
+    _createClass(Map, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                { className: 'mapBackground' },
+                'map!'
+            );
+        }
+    }]);
+
+    return Map;
+}(_react.Component);
+
+exports.default = Map;
+
+/***/ }),
+/* 202 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
