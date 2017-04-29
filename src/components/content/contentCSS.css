@@ -1,14 +1,25 @@
+@import "leftBar/leftBarCSS.css";
+@import "map/mapCSS.css";
+
 .contentStyle {
     padding: 0;
     margin-top: -4px;
     display: flex;
     flex-flow: row nowrap;
     width: 100%;
+    background-color: rosybrown;
 }
-@media screen and (max-width: 700px){
+@media screen and (max-width: 600px){
     .contentStyle {
         flex-flow: row wrap;
         justify-content: flex-end;
         align-items: stretch;
+    }
+    .leftBar {
+        width: 100%;
+        margin-left: 10% ;
+    }
+    .yMap {
+        width: 90%;
     }
 }
