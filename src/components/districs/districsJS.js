@@ -9,7 +9,7 @@ export default class Districts extends Component{
         return (
             <select className="mainSelector">
                 Районы
-                <option>1</option>
+                <option>Выбор района</option>
 
             </select>
         )

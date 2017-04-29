@@ -16,4 +16,12 @@
     height: 50px;
     background-color: lightgray;
     color: #706075;
+}.listField{
+    width: 315px;
+    height: 500px;
+    background-color: lightblue;
+}
+.listItem {
+    border : solid 1px black;
+    border-radius: 5px;
 }
