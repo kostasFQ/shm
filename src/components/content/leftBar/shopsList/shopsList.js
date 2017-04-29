@@ -25,6 +25,14 @@ export default class ShopsList extends Component {
                 <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
                 <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
                 <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
+                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
+                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
+                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
+                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
+                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
+                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
+                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
+
             </div>
         )
     }
