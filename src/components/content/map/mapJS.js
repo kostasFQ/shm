@@ -18,6 +18,7 @@ export default class YandexMap extends Component {
             <div className="yMap">
                 <Map
                     width = '100%'
+                    height = '100%'
                     state = {mapControls}
                     center={[52.104125, 23.755530]}
                     zoom={16}
