@@ -1,11 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Philosopher');
+
+
 .listField{
     height: 515px;
+    width: 105%;
     overflow-y: scroll;
 }
 .listItem {
     padding-left: 5px;
-    margin: 1px;
+    margin: 1% 2% 1% 1%;
     border : solid 1px black;
     border-radius: 5px;
     background-color: white;
+}
+.shopTitle{
+    font-size: x-large;
+    font-family: 'Philosopher';
+
 }

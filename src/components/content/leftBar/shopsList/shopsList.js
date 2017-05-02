@@ -5,12 +5,20 @@ import React, {Component} from 'react';
 
 class Item extends Component {
 
+    static defaultProps = {
+            shopName : 'Название магазина',
+            address : 'адрес',
+            workTime : 'время работы',
+            workDays : 'рабочие дни'
+    };
+
     render() {
         return(
             <div className="listItem">
-                <div>{this.props.name}</div>
-                <div>{this.props.adress}</div>
-                <div>{this.props.time}</div>
+                <div className="shopTitle">{this.props.shopName}</div>
+                <div>{this.props.address}</div>
+                <div>{this.props.workTime}</div>
+                <div>{this.props.workDays}</div>
             </div>
         )
     }
@@ -20,20 +28,18 @@ export default class ShopsList extends Component {
 
     render() {
         return (
-            <div className="listField">
-                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
-                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
-                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
-                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
-                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
-                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
-                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
-                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
-                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
-                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
-                <Item name = 'second' adress = 'street 1' time = '10:00 - 18:00'/>
-
+            <div className="cut">
+                <div className="listField">
+                    <Item/>
+                    <Item/>
+                    <Item/>
+                    <Item/>
+                    <Item/>
+                    <Item/>
+                    <Item/>
+                </div>
             </div>
+
         )
     }
 }

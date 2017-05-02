@@ -1,5 +1,6 @@
 @import "leftBar/leftBarCSS.css";
 @import "map/mapCSS.css";
+@import "leftBar/shopsList/shopsList.css";
 
 .contentStyle {
     padding: 0;
@@ -7,7 +8,6 @@
     display: flex;
     flex-flow: row nowrap;
     width: 100%;
-    background-color: rosybrown;
 }
 @media screen and (max-width: 600px){
     .contentStyle {
@@ -16,10 +16,20 @@
         align-items: stretch;
     }
     .leftBar {
-        width: 100%;
-        margin-left: 10% ;
+        width: 90%;
+        margin-right: 10% ;
     }
     .yMap {
         width: 90%;
+        height: 300px;
+        margin-right: 10%;
     }
+    .listField {
+        border-bottom: black 2px solid;
+    }
+    .cut {
+        width: 100%;
+        overflow: hidden;
+    }
+
 }

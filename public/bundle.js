@@ -9992,18 +9992,23 @@ var Item = function (_Component) {
                 { className: 'listItem' },
                 _react2.default.createElement(
                     'div',
-                    null,
-                    this.props.name
+                    { className: 'shopTitle' },
+                    this.props.shopName
                 ),
                 _react2.default.createElement(
                     'div',
                     null,
-                    this.props.adress
+                    this.props.address
                 ),
                 _react2.default.createElement(
                     'div',
                     null,
-                    this.props.time
+                    this.props.workTime
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    this.props.workDays
                 )
             );
         }
@@ -10011,6 +10016,13 @@ var Item = function (_Component) {
 
     return Item;
 }(_react.Component);
+
+Item.defaultProps = {
+    shopName: 'Название магазина',
+    address: 'адрес',
+    workTime: 'время работы',
+    workDays: 'рабочие дни'
+};
 
 var ShopsList = function (_Component2) {
     _inherits(ShopsList, _Component2);
@@ -10026,18 +10038,18 @@ var ShopsList = function (_Component2) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                { className: 'listField' },
-                _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' }),
-                _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' }),
-                _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' }),
-                _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' }),
-                _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' }),
-                _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' }),
-                _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' }),
-                _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' }),
-                _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' }),
-                _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' }),
-                _react2.default.createElement(Item, { name: 'second', adress: 'street 1', time: '10:00 - 18:00' })
+                { className: 'cut' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'listField' },
+                    _react2.default.createElement(Item, null),
+                    _react2.default.createElement(Item, null),
+                    _react2.default.createElement(Item, null),
+                    _react2.default.createElement(Item, null),
+                    _react2.default.createElement(Item, null),
+                    _react2.default.createElement(Item, null),
+                    _react2.default.createElement(Item, null)
+                )
             );
         }
     }]);
