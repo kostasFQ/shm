@@ -1,6 +1,7 @@
 @import "leftBar/leftBarCSS.css";
 @import "map/mapCSS.css";
 @import "leftBar/shopsList/shopsList.css";
+@import "leftBar/districs/districsCSS.css";
 
 .contentStyle {
     padding: 0;
@@ -8,12 +9,15 @@
     display: flex;
     flex-flow: row nowrap;
     width: 100%;
+    background-color: lightgray;
+
 }
 @media screen and (max-width: 600px){
     .contentStyle {
         flex-flow: row wrap;
         justify-content: flex-end;
         align-items: stretch;
+
     }
     .leftBar {
         width: 90%;
@@ -30,6 +34,9 @@
     .cut {
         width: 100%;
         overflow: hidden;
+    }
+    .mainSelector {
+        width: 99%;
     }
 
 }

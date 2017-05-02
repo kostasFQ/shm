@@ -17,8 +17,12 @@ class Item extends Component {
             <div className="listItem">
                 <div className="shopTitle">{this.props.shopName}</div>
                 <div>{this.props.address}</div>
-                <div>{this.props.workTime}</div>
-                <div>{this.props.workDays}</div>
+                <div>
+                    <div>{this.props.workTime}</div>
+                    <div>{this.props.workDays}</div>
+                </div>
+
+
             </div>
         )
     }

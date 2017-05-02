@@ -12,6 +12,9 @@
     border : solid 1px black;
     border-radius: 5px;
     background-color: white;
+
+    display: flex;
+    flex-flow: column nowrap;
 }
 .shopTitle{
     font-size: x-large;

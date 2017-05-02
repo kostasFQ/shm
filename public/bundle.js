@@ -10003,12 +10003,16 @@ var Item = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     null,
-                    this.props.workTime
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    this.props.workDays
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        this.props.workTime
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        this.props.workDays
+                    )
                 )
             );
         }

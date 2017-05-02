@@ -1,8 +1,13 @@
 .mainSelector {
     padding: 0;
-    margin: 0;
-    width: 100%;
+    margin: 5px 0 0 5px;
+    width: 96%;
     height: 50px;
     background-color: lightgray;
     color: #706075;
+    border-radius: 5px;
+    border: 1px black solid;
+
+    text-align-last: center;
+    text-align: center;/*FF*/
 }
