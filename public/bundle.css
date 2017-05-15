@@ -17,6 +17,7 @@
 .yMap {
     display: flex;
     width: 70%;
+    margin-right: 1%;
 }.listField{
     height: 515px;
     width: 105%;
