@@ -1,7 +1,7 @@
 @import "leftBar/leftBarCSS.css";
-@import "map/mapCSS.css";
-@import "leftBar/shopsList/shopsList.css";
-@import "leftBar/districs/districsCSS.css";
+@import "../map/mapCSS.css";
+@import "shopsList/shopsList.css";
+@import "districs/districsCSS.css";
 
 .contentStyle {
     padding: 0;

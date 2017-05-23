@@ -16,10 +16,7 @@ class Item extends Component {
             workDays : ' '
     };
 
-
-
     render() {
-
         return(
             <div className="listItem">
                 <div className="shopTitle">{this.props.shopName}</div>
@@ -36,9 +33,7 @@ export default class ShopsList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-        shops:[],
-        }
+        this.state = {shops:[]}
     }
 
     componentDidMount() {

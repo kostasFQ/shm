@@ -10471,7 +10471,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-__webpack_require__(126);
+__webpack_require__(125);
 
 var _react = __webpack_require__(7);
 
@@ -11548,7 +11548,6 @@ var Item = function (_Component) {
     _createClass(Item, [{
         key: 'render',
         value: function render() {
-
             return _react2.default.createElement(
                 'div',
                 { className: 'listItem' },
@@ -11605,9 +11604,7 @@ var ShopsList = function (_Component2) {
 
         var _this2 = _possibleConstructorReturn(this, (ShopsList.__proto__ || Object.getPrototypeOf(ShopsList)).call(this, props));
 
-        _this2.state = {
-            shops: []
-        };
+        _this2.state = { shops: [] };
         return _this2;
     }
 
@@ -11665,7 +11662,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-__webpack_require__(125);
+__webpack_require__(126);
+
+var _axios = __webpack_require__(96);
+
+var _axios2 = _interopRequireDefault(_axios);
 
 var _react = __webpack_require__(7);
 
@@ -11688,25 +11689,45 @@ var mapControls = {
 var YandexMap = function (_Component) {
     _inherits(YandexMap, _Component);
 
-    function YandexMap() {
+    function YandexMap(props) {
         _classCallCheck(this, YandexMap);
 
-        return _possibleConstructorReturn(this, (YandexMap.__proto__ || Object.getPrototypeOf(YandexMap)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (YandexMap.__proto__ || Object.getPrototypeOf(YandexMap)).call(this, props));
+
+        _this.state = { shops: [] };
+        return _this;
     }
 
     _createClass(YandexMap, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            _axios2.default.get('http://localhost:8080/shops').then(function (response) {
+                _this2.setState({ shops: response.data });
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
                 'div',
                 { className: 'yMap' },
-                _react2.default.createElement(_yandexMapReact.Map, {
-                    width: '100%',
-                    height: '100%',
-                    state: mapControls,
-                    center: [52.104125, 23.755530],
-                    zoom: 16
-                })
+                _react2.default.createElement(
+                    _yandexMapReact.Map,
+                    { width: '100%', height: '100%', state: mapControls, center: [52.104125, 23.755530], zoom: 12 },
+                    _react2.default.createElement(
+                        _yandexMapReact.Marker,
+                        { key: '11', lat: 52.104398, lon: 23.755016 },
+                        _react2.default.createElement(
+                            _yandexMapReact.MarkerLayout,
+                            null,
+                            _react2.default.createElement('div', { className: 'markerPoint' })
+                        )
+                    )
+                )
             );
         }
     }]);
