@@ -1,5 +1,3 @@
-@import "../leftBar/leftBarCSS.css";
-@import "../map/mapCSS.css";
 @import "../shopsList/shopsList.css";
 @import "../districts/districtsCSS.css";
 
@@ -10,33 +8,32 @@
     flex-flow: row nowrap;
     width: 100%;
     background-color: lightgray;
-
 }
+.leftBar {
+    display: flex;
+    flex-flow: column wrap;
+    width: 30%;
+    overflow: hidden;
+    min-width: 250px;
+}
+
+
 @media screen and (max-width: 600px){
     .contentStyle {
         flex-flow: row wrap;
-        justify-content: flex-end;
+        justify-content: flex-start;
         align-items: stretch;
 
     }
     .leftBar {
         width: 90%;
-        margin-right: 10% ;
-    }
-    .yMap {
-        width: 90%;
-        height: 300px;
         margin-right: 10%;
+    }
+    .map {
+        height: 350px;
     }
     .listField {
         border-bottom: black 2px solid;
-    }
-    .cut {
-        width: 100%;
-        overflow: hidden;
-    }
-    .mainSelector {
-        width: 98%;
     }
 
 }

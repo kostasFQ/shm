@@ -48,7 +48,6 @@ export default class ShopsList extends Component {
 
     render() {
         return (
-            <div className="cut">
                 <div className="listField">
                     {this.state.shops.map( (shop) =>
                         <Item
@@ -61,10 +60,7 @@ export default class ShopsList extends Component {
                             dayOff={shop.dayOff}
                         />
                     )}
-
                 </div>
-            </div>
-
         )
     }
 }

@@ -1,4 +1,4 @@
-import './mapCSS.css'
+import './markerStyle.css'
 import axios from 'axios';
 
 import React, {Component} from 'react';
@@ -34,12 +34,12 @@ export default class YandexMap extends Component {
 
     render() {
         return (
-            <div className="yMap">
+            <div className="map">
                 <Map width='100%' height='100%' state={mapControls} center={[52.104125, 23.755530]} zoom={12}>
 
                     <Marker key="11" lat={52.104398} lon={23.755016}>
                         <MarkerLayout>
-                            <div className="markerPoint">
+                            <div className="markerPoint">jksd;f
                             </div>
                         </MarkerLayout>
                     </Marker>
