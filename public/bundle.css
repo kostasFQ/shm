@@ -36,14 +36,27 @@
     width: 98%;
     height: 50px;
     background-color: lightgray;
-    color: #706075;
     border-radius: 5px;
     border: 1px black solid;
     font-size: large;
     color: black;
+    cursor: pointer;
 
     text-align-last: center;
     text-align: center;/*FF*/
+    z-index: 1;
+}
+.mainSelector:hover {
+    background-color: white;
+}
+.field{
+    background-color: green;
+}
+.Dropdown-placeholder {
+    color: pink;
+}
+.Dropdown-root{
+    background-color: black;
 }.contentStyle {
     padding: 0;
     margin-top: -4px;
@@ -85,7 +98,6 @@
     width: 90%;
     margin-right: 1%;
 }
-
 .markerPoint {
     position: absolute;
     left: 50%;
