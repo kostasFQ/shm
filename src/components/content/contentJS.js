@@ -44,12 +44,11 @@ export default class Content extends Component {
                         )
                     }
                 </div>
-                <YandexMap
-                    lat={52.104398} lon={23.755016}
-                />
+                <YandexMap/>
             </div>
         )
     }
+
 
 }
 

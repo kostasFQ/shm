@@ -1,36 +1,28 @@
 import './markerStyle.css'
 
 import React, {Component} from 'react';
-import {Map, Marker, MarkerLayout} from 'yandex-map-react';
-
-
-
-const mapControls = {
-    controls: [
-        'routeEditor',
-        'geolocationControl',
-        'zoomControl'
-    ]
-};
-
+import {YMaps, Map, Placemark} from 'react-yandex-maps';
 
 export default class YandexMap extends Component {
+
     render() {
+        const mapState = { center: [55.76, 37.64], zoom: 10 };
         return (
             <div className="map">
-                <Map width='100%'
-                     height='100%'
-                     state={mapControls}
-                     center={[52.104125, 23.755530]}
-                     zoom={12}>
+                <YMaps>
+                    <Map state={mapState}>
+                        <Placemark
+                            geometry={{
+                                coordinates: [55.751574, 37.573856]
+                            }}
+                            properties={{
+                                hintContent: 'Собственный значок метки',
+                                balloonContent: 'Это красивая метка'
+                            }}
+                        />
 
-                    <Marker lat={this.props.lat} lon={this.props.lon}>
-                        <MarkerLayout>
-                            <div className="markerPoint">XXX
-                            </div>
-                        </MarkerLayout>
-                    </Marker>
-                </Map>
+                    </Map>
+                </YMaps>
             </div>
         )
     }
