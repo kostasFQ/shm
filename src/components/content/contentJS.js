@@ -22,34 +22,40 @@ export default class Content extends Component {
             .catch(function (error) {
                 console.log(error);
             });
-
     };
 
-    render() {
 
+    render() {
         return(
             <div className = 'contentStyle'>
                 <div className="leftBar">
-                    {
-                        this.state.shops.map( (shop)=>
-                            <Item
-                                key={shop._id}
-                                shopName={shop.shopName}
-                                street={shop.street}
-                                building={shop.building}
-                                workTimeStart={shop.workTimeStart}
-                                workTimeEnd={shop.workTimeEnd}
-                                dayOff={shop.dayOff}
-                            />,
-                        )
-                    }
+                    <div className="cut">
+                        {
+                            this.state.shops
+                                .sort( (a, b) => {
+                                    if(a.shopName === b.shopName) return 0;
+                                    return a.shopName < b.shopName ? -1 : 1;
+                                })
+                                .map( (shop)=>
+                                <Item
+                                    key={shop._id}
+                                    shopName={shop.shopName}
+                                    street={shop.street}
+                                    building={shop.building}
+                                    workTimeStart={shop.workTimeStart}
+                                    workTimeEnd={shop.workTimeEnd}
+                                    dayOff={shop.dayOff}
+                                />,
+                            )
+                        }
+                    </div>
                 </div>
-                <YandexMap/>
+                <YandexMap
+                    shops={this.state.shops}
+                />
             </div>
         )
     }
-
-
 }
 
 

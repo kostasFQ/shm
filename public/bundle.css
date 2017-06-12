@@ -71,6 +71,15 @@
     width: 30%;
     overflow: hidden;
     min-width: 250px;
+    height: 550px;
+    border-top: 1px black solid;
+    border-bottom: 1px black solid;
+}
+.cut {
+    padding: 1px;
+    width: 110%;
+    overflow-y: scroll;
+
 }
 
 
@@ -82,14 +91,14 @@
 
     }
     .leftBar {
+        height: 248px;
         width: 90%;
         margin-right: 10%;
+        border-bottom: 2px black solid;
     }
     .map {
+        padding-top: 3px;
         height: 350px;
-    }
-    .listField {
-        border-bottom: black 2px solid;
     }
 
 }
@@ -98,23 +107,4 @@
     width: 90%;
     margin-right: 1%;
 }
-.markerPoint {
-    position: absolute;
-    left: 50%;
-    bottom: 30%;
-    height : 30px;
-    background-color : rgba(255, 255, 255, 0.7);
-    cursor: pointer;
-    border-radius: 10px 10px 10px 0;
-    padding: 3px;
-    border: 1px black solid;
-}
-.markerPoint::before {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: -1px;
-    border: 10px solid transparent;
-    border-bottom: 10px solid black;
-    border-left: 10px solid black;
-}
+

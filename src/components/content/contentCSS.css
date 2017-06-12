@@ -15,6 +15,15 @@
     width: 30%;
     overflow: hidden;
     min-width: 250px;
+    height: 550px;
+    border-top: 1px black solid;
+    border-bottom: 1px black solid;
+}
+.cut {
+    padding: 1px;
+    width: 110%;
+    overflow-y: scroll;
+
 }
 
 
@@ -26,14 +35,14 @@
 
     }
     .leftBar {
+        height: 248px;
         width: 90%;
         margin-right: 10%;
+        border-bottom: 2px black solid;
     }
     .map {
+        padding-top: 3px;
         height: 350px;
-    }
-    .listField {
-        border-bottom: black 2px solid;
     }
 
 }
