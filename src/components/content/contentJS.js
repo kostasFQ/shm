@@ -6,6 +6,7 @@ import Item from '../itemOfList/itemOfList';
 
 
 import React, {Component} from 'react';
+import Districts from "../districts/districtsJS";
 
 export default class Content extends Component {
 
@@ -28,6 +29,9 @@ export default class Content extends Component {
     render() {
         return(
             <div className = 'contentStyle'>
+                <div className="filter">
+                    <Districts/>
+                </div>
                 <div className="leftBar">
                     <div className="cut">
                         {

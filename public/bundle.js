@@ -10852,6 +10852,10 @@ var _react = __webpack_require__(8);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _districtsJS = __webpack_require__(239);
+
+var _districtsJS2 = _interopRequireDefault(_districtsJS);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10889,6 +10893,11 @@ var Content = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'contentStyle' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'filter' },
+                    _react2.default.createElement(_districtsJS2.default, null)
+                ),
                 _react2.default.createElement(
                     'div',
                     { className: 'leftBar' },
@@ -27184,6 +27193,85 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Districts = function (_Component) {
+    _inherits(Districts, _Component);
+
+    function Districts(props) {
+        _classCallCheck(this, Districts);
+
+        var _this = _possibleConstructorReturn(this, (Districts.__proto__ || Object.getPrototypeOf(Districts)).call(this, props));
+
+        _this.state = { value: '1' };
+
+        _this.handleChange = _this.handleChange.bind(_this);
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        return _this;
+    }
+
+    _createClass(Districts, [{
+        key: 'handleChange',
+        value: function handleChange(event) {
+            alert(event); //example todo !!! make dropin window
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(event) {
+            console.log(this.state.value);
+            event.preventDefault();
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+
+            return _react2.default.createElement(
+                'div',
+                { onClick: this.handleChange },
+                '\u0420\u0430\u0439\u043E\u043D\u044B'
+            );
+        }
+    }]);
+
+    return Districts;
+}(_react.Component);
+
+exports.default = Districts;
 
 /***/ })
 /******/ ]);

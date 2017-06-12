@@ -1,5 +1,4 @@
 @import "../itemOfList/itemOfList.css";
-@import "../districts/districtsCSS.css";
 
 .contentStyle {
     padding: 0;
@@ -9,7 +8,13 @@
     width: 100%;
     background-color: lightgray;
 }
+.mainField{
+    background-color: white;
+    width: 100%;
+    height: 30px;
+}
 .leftBar {
+    margin-top: 50px;
     display: flex;
     flex-flow: column wrap;
     width: 30%;
@@ -23,6 +28,19 @@
     padding: 1px;
     width: 110%;
     overflow-y: scroll;
+
+}
+.filter{
+    width: 23.5%;
+    height: 40px;
+    min-width: 240px;
+    margin:5px;
+    position:absolute;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px black solid;
+
+    text-align: center;
 
 }
 
@@ -43,6 +61,10 @@
     .map {
         padding-top: 3px;
         height: 350px;
+    }
+    .filter {
+        width: 87%;
+        min-width: 285px;
     }
 
 }

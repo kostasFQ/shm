@@ -1,5 +1,3 @@
-import './districtsCSS.css';
-
 import React, {Component} from 'react';
 
 
@@ -15,8 +13,8 @@ export default class Districts extends Component{
     
 
     handleChange(event) {
-        this.setState({value: event.target.value});
-        event.preventDefault();
+        alert(event);//example todo !!! make dropin window
+
     };
 
     handleSubmit(event) {
@@ -27,14 +25,7 @@ export default class Districts extends Component{
     render() {
 
         return (
-            <form onSubmit={this.handleSubmit}>
-                <select value={this.state.value} onChange={this.handleChange}>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-                <input type="submit" value="submit"/>
-            </form>
+            <div onClick={this.handleChange}>Районы</div>
         )
     }
 }
