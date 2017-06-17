@@ -1,0 +1,19 @@
+.opened {
+    margin-left: 4px;
+    border-radius:5px;
+    border: 1px solid black;
+    height: 30%;
+    position: absolute;
+    z-index: 100;
+    background:white;
+    width:239px;
+}
+
+.closed {
+    margin-left: 2%;
+    border-radius:5px;
+    height:50px;
+    background:white;
+    width:95%;
+    border: 1px solid black;
+}

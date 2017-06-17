@@ -8,7 +8,7 @@ export default class YandexMap extends Component {
     render() {
         const mapState = { center: [52.104125, 23.755530], zoom: 13};
 
-        let shops = this.props.shops;
+        const shops = this.props.shops;
 
         return (
             <div className="map">
