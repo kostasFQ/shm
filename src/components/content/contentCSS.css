@@ -1,4 +1,5 @@
 @import "../itemOfList/itemOfList.css";
+@import "../districts/districtsCSS.css";
 
 .contentStyle {
     padding: 0;
@@ -14,13 +15,13 @@
     height: 30px;
 }
 .leftBar {
+    margin-top: 60px;
     display: flex;
     flex-flow: column wrap;
     width: 30%;
     overflow: hidden;
     min-width: 250px;
     height: 550px;
-    border-top: 1px black solid;
     border-bottom: 1px black solid;
 }
 .cut {
@@ -46,7 +47,7 @@
     }
     .leftBar {
         height: 248px;
-        width: 90%;
+        width: 105%;
         margin-right: 10%;
         border-bottom: 2px black solid;
     }
@@ -56,7 +57,10 @@
     }
     .filter {
         width: 87%;
-        min-width: 285px;
+    }
+    .filterField{
+        width: 89%;
+        min-width: 290px;
     }
 
 }

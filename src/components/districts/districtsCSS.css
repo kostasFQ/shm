@@ -1,0 +1,27 @@
+.filterField {
+    text-align: center;
+    position: absolute;
+    background-color: white;
+    height: 400px;
+    width: 239px;
+    margin-left: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+.closed {
+    height:60px;
+
+}
+.opened {
+    height: 250px;
+}
+
+.lSide {
+    display: flex;
+    border: 1px solid red;
+}
+.rSide {
+    display: flex;
+    border:1px solid green;
+}

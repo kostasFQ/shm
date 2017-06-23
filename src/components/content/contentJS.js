@@ -29,7 +29,7 @@ export default class Content extends Component {
     render() {
         return(
             <div className = 'contentStyle'>
-                <div>
+                <div className="filter">
                     <Districts/>
                     <div className="leftBar">
                         <div className="cut">
