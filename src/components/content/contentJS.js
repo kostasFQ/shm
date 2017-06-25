@@ -7,6 +7,7 @@ import Item from '../itemOfList/itemOfList';
 
 import React, {Component} from 'react';
 import Districts from "../districts/districtsJS";
+import MainFilter from "../mainFilter/mainFilterJS";
 
 export default class Content extends Component {
 
@@ -29,8 +30,17 @@ export default class Content extends Component {
     render() {
         return(
             <div className = 'contentStyle'>
-                <div className="filter">
-                    <Districts/>
+                <div className="leftBar">
+                    <MainFilter shops={this.state.shops}/>
+                </div>
+
+
+
+
+
+
+                    {/*<Districts/>
+                    shops list
                     <div className="leftBar">
                         <div className="cut">
                             {
@@ -57,7 +67,7 @@ export default class Content extends Component {
 
                 <YandexMap
                     shops={this.state.shops}
-                />
+                />*/}
             </div>
         )
     }

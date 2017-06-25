@@ -32,30 +32,18 @@
 
 }.filterField {
     text-align: center;
-    position: absolute;
     background-color: white;
-    height: 400px;
-    width: 239px;
     margin-left: 5px;
     border-radius: 5px;
     border: 1px solid black;
     overflow: hidden;
 }
-.closed {
-    height:60px;
-
-}
-.opened {
-    height: 250px;
-}
-
-.lSide {
+.listOrder{
+    margin-top: 50px;
     display: flex;
-    border: 1px solid red;
-}
-.rSide {
-    display: flex;
-    border:1px solid green;
+    flex-flow: row nowrap;
+    border:1px solid red;
+    z-index: 10;
 }.contentStyle {
     padding: 0;
     margin-top: -4px;
@@ -63,6 +51,7 @@
     flex-flow: row nowrap;
     width: 100%;
     background-color: lightgray;
+    border: 1px solid black;
 }
 .mainField{
     background-color: white;
@@ -88,8 +77,10 @@
 .shopsList {
     margin-left: -100px;
     display: flex;
-
-
+}
+.filter {
+    width: 30%;
+    border: 1px solid red;
 }
 
 

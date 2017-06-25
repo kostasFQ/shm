@@ -8,6 +8,7 @@
     flex-flow: row nowrap;
     width: 100%;
     background-color: lightgray;
+    border: 1px solid black;
 }
 .mainField{
     background-color: white;
@@ -33,8 +34,10 @@
 .shopsList {
     margin-left: -100px;
     display: flex;
-
-
+}
+.filter {
+    width: 30%;
+    border: 1px solid red;
 }
 
 

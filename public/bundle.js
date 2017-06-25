@@ -10856,6 +10856,10 @@ var _districtsJS = __webpack_require__(116);
 
 var _districtsJS2 = _interopRequireDefault(_districtsJS);
 
+var _mainFilterJS = __webpack_require__(239);
+
+var _mainFilterJS2 = _interopRequireDefault(_mainFilterJS);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10895,34 +10899,9 @@ var Content = function (_Component) {
                 { className: 'contentStyle' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'filter' },
-                    _react2.default.createElement(_districtsJS2.default, null),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'leftBar' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'cut' },
-                            this.state.shops.sort(function (a, b) {
-                                if (a.shopName === b.shopName) return 0;
-                                return a.shopName < b.shopName ? -1 : 1;
-                            }).map(function (shop) {
-                                return _react2.default.createElement(_itemOfList2.default, {
-                                    key: shop._id,
-                                    shopName: shop.shopName,
-                                    street: shop.street,
-                                    building: shop.building,
-                                    workTimeStart: shop.workTimeStart,
-                                    workTimeEnd: shop.workTimeEnd,
-                                    dayOff: shop.dayOff
-                                });
-                            })
-                        )
-                    )
-                ),
-                _react2.default.createElement(_mapJS2.default, {
-                    shops: this.state.shops
-                })
+                    { className: 'leftBar' },
+                    _react2.default.createElement(_mainFilterJS2.default, { shops: this.state.shops })
+                )
             );
         }
     }]);
@@ -12110,7 +12089,9 @@ var YandexMap = function (_Component) {
     _createClass(YandexMap, [{
         key: 'render',
         value: function render() {
-            var mapState = { center: [52.104125, 23.755530], zoom: 13 };
+            var _this2 = this;
+
+            var mapState = { center: [52.104125, 23.755530], zoom: 10 };
 
             var shops = this.props.shops;
 
@@ -12124,18 +12105,20 @@ var YandexMap = function (_Component) {
                         _reactYandexMaps.Map,
                         { state: mapState, width: '100%', height: '100%' },
                         shops.map(function (shop) {
-                            return _react2.default.createElement(_reactYandexMaps.Placemark, {
-                                key: 'placemark_' + shop._id,
-                                geometry: {
-                                    coordinates: [shop.latitude, shop.longitude]
-                                },
-                                properties: {
-                                    iconContent: shop.shopName
-                                },
-                                options: {
-                                    preset: 'islands#blackStretchyIcon'
-                                }
-                            });
+                            if (shop.district === _this2.props.districtsFilter) {
+                                return _react2.default.createElement(_reactYandexMaps.Placemark, {
+                                    key: 'placemark_' + shop._id,
+                                    geometry: {
+                                        coordinates: [shop.latitude, shop.longitude]
+                                    },
+                                    properties: {
+                                        iconContent: shop.shopName
+                                    },
+                                    options: {
+                                        preset: 'islands#blackStretchyIcon'
+                                    }
+                                });
+                            }
                         })
                     )
                 )
@@ -27318,6 +27301,130 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _itemOfList = __webpack_require__(117);
+
+var _itemOfList2 = _interopRequireDefault(_itemOfList);
+
+var _mapJS = __webpack_require__(118);
+
+var _mapJS2 = _interopRequireDefault(_mapJS);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MainFilter = function (_Component) {
+    _inherits(MainFilter, _Component);
+
+    function MainFilter(props) {
+        _classCallCheck(this, MainFilter);
+
+        var _this = _possibleConstructorReturn(this, (MainFilter.__proto__ || Object.getPrototypeOf(MainFilter)).call(this, props));
+
+        _this.state = {
+            districtsFilter: 'Ковалево'
+        };
+        _this.handleCenter = _this.handleCenter.bind(_this);
+        _this.handleKvl = _this.handleKvl.bind(_this);
+        return _this;
+    }
+
+    _createClass(MainFilter, [{
+        key: "handleCenter",
+        value: function handleCenter() {
+            this.setState({ districtsFilter: 'центр' });
+        }
+    }, {
+        key: "handleKvl",
+        value: function handleKvl() {
+            this.setState({ districtsFilter: 'Ковалево' });
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "div",
+                    { className: "filterField" },
+                    "filter field"
+                ),
+                _react2.default.createElement(
+                    "button",
+                    { onClick: this.handleCenter },
+                    "\u0446\u0435\u043D\u0442\u0440"
+                ),
+                _react2.default.createElement(
+                    "button",
+                    { onClick: this.handleKvl },
+                    "\u043A\u0432\u043B"
+                ),
+                this.props.shops.sort(function (a, b) {
+                    if (a.shopName === b.shopName) return 0;
+                    return a.shopName < b.shopName ? -1 : 1;
+                }).map(function (shop) {
+                    if (shop.district === _this2.state.districtsFilter) {
+                        return _react2.default.createElement(_itemOfList2.default, {
+                            key: shop._id,
+                            shopName: shop.shopName,
+                            street: shop.street,
+                            building: shop.building,
+                            workTimeStart: shop.workTimeStart,
+                            workTimeEnd: shop.workTimeEnd,
+                            dayOff: shop.dayOff
+                        });
+                    }
+                }),
+                _react2.default.createElement(
+                    "div",
+                    null,
+                    _react2.default.createElement(_mapJS2.default, {
+                        districtsFilter: this.state.districtsFilter,
+                        shops: this.props.shops
+                    })
+                )
+            );
+        }
+    }]);
+
+    return MainFilter;
+}(_react.Component);
+
+exports.default = MainFilter;
 
 /***/ })
 /******/ ]);
