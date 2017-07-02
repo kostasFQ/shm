@@ -9,46 +9,48 @@ export default class MainFilter extends Component{
         this.state = {
             districtsFilter:'Ковалево'
         };
-        this.handleCenter = this.handleCenter.bind(this);
-        this.handleKvl = this.handleKvl.bind(this);
+        const allDistr = [];
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleCenter() {
-        this.setState({districtsFilter:'центр'})
-    }
-    handleKvl() {
-        this.setState({districtsFilter:'Ковалево'})
+    handleChange(ev) {
+        this.setState({districtsFilter: ev.target.value});
+        ev.preventDefault()
     }
 
 
     render(){
         return(
-            <div>
-                <div className="filterField">
-                    filter field
+            <div className="leftBar">
+                <select onChange={this.handleChange} className="select">
+                    <option value="адамково">Адамково</option>
+                    <option value="аркадия">Аркадия</option>
+                    <option value="центр">Центр</option>
+                    <option value="Ковалево">Ковалево</option>
+                </select>
+                <div className="listField">
+                    {
+                        this.props.shops
+                            .sort( (a, b) => {
+                                if(a.shopName === b.shopName) return 0;
+                                return a.shopName < b.shopName ? -1 : 1;
+                            })
+                            .map( (shop)=> {
+                                if(shop.district === this.state.districtsFilter){
+                                    return <Item
+                                        key={shop._id}
+                                        shopName={shop.shopName}
+                                        street={shop.street}
+                                        building={shop.building}
+                                        workTimeStart={shop.workTimeStart}
+                                        workTimeEnd={shop.workTimeEnd}
+                                        dayOff={shop.dayOff}
+                                    />
+                                }
+                            },)
+                    }
                 </div>
-                <button onClick={this.handleCenter}>центр</button>
-                <button onClick={this.handleKvl}>квл</button>
-                {
-                    this.props.shops
-                        .sort( (a, b) => {
-                            if(a.shopName === b.shopName) return 0;
-                            return a.shopName < b.shopName ? -1 : 1;
-                        })
-                        .map( (shop)=> {
-                            if(shop.district === this.state.districtsFilter){
-                                return <Item
-                                    key={shop._id}
-                                    shopName={shop.shopName}
-                                    street={shop.street}
-                                    building={shop.building}
-                                    workTimeStart={shop.workTimeStart}
-                                    workTimeEnd={shop.workTimeEnd}
-                                    dayOff={shop.dayOff}
-                                />
-                            }
-                        },)
-                }
                 <div>
                     <YandexMap
                         districtsFilter={this.state.districtsFilter}

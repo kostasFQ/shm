@@ -1,4 +1,3 @@
-import './districtsCSS.css';
 import React, {Component} from 'react';
 
 
