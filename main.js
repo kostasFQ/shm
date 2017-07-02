@@ -6,7 +6,7 @@ import Content from "./src/components/content/contentJS";
 import Footer from './src/components/footer/footerJS';
 
 ReactDOM.render(
-    <Header title = 'Second hands map'/>,
+    <Header/>,
     document.getElementById('siteName'));
 
 ReactDOM.render(

@@ -10,7 +10,7 @@ export default class Header extends Component {
         return (
             <div className="headerStyle">
                 <img src="./img/map.png"/>
-                <div className="headerSpan">{this.props.title}</div>
+                <div>Second hands map</div>
             </div>
         )
     }
