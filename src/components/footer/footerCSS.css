@@ -29,4 +29,11 @@
     border: 1px solid black;
     border-radius: 5px;
     cursor: pointer;
+    color: white;
+}
+.green {
+    background-color: darkgreen;
+}
+.red{
+    background-color: red;
 }

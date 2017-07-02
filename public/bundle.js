@@ -27424,7 +27424,7 @@ var Footer = function (_Component) {
                 { className: 'footer' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'btn', onClick: this.showForm },
+                    { className: this.state.openForm ? 'btn red' : 'btn green', onClick: this.showForm },
                     this.state.openForm ? 'Закрыть форму' : 'Добавить магазин'
                 ),
                 this.state.openForm ? _react2.default.createElement(_formJS2.default, null) : null
