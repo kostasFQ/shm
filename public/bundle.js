@@ -7687,8 +7687,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-__webpack_require__(126);
-
 var _react = __webpack_require__(7);
 
 var _react2 = _interopRequireDefault(_react);
@@ -7731,7 +7729,21 @@ var YandexMap = function (_Component) {
                         _reactYandexMaps.Map,
                         { state: mapState, width: '100%', height: '100%' },
                         shops.map(function (shop) {
-                            if (shop.district === _this2.props.districtsFilter) {
+                            if (_this2.props.districtsFilter === shop.district) {
+                                return _react2.default.createElement(_reactYandexMaps.Placemark, {
+                                    key: 'placemark_' + shop._id,
+                                    geometry: {
+                                        coordinates: [shop.latitude, shop.longitude]
+                                    },
+                                    properties: {
+                                        iconContent: shop.shopName
+                                    },
+                                    options: {
+                                        preset: 'islands#blackStretchyIcon'
+                                    }
+                                });
+                            }
+                            if (_this2.props.districtsFilter === 'all') {
                                 return _react2.default.createElement(_reactYandexMaps.Placemark, {
                                     key: 'placemark_' + shop._id,
                                     geometry: {
@@ -11046,7 +11058,7 @@ var Content = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                { className: 'contentStyle' },
+                null,
                 _react2.default.createElement(_mainFilterJS2.default, { shops: this.state.shops })
             );
         }
@@ -11990,11 +12002,17 @@ var _contentJS = __webpack_require__(96);
 
 var _contentJS2 = _interopRequireDefault(_contentJS);
 
+var _footerJS = __webpack_require__(239);
+
+var _footerJS2 = _interopRequireDefault(_footerJS);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom2.default.render(_react2.default.createElement(_headerJS2.default, { title: 'Second map' }), document.getElementById('siteName'));
+_reactDom2.default.render(_react2.default.createElement(_headerJS2.default, { title: 'Second hands map' }), document.getElementById('siteName'));
 
 _reactDom2.default.render(_react2.default.createElement(_contentJS2.default, null), document.getElementById('content'));
+
+_reactDom2.default.render(_react2.default.createElement(_footerJS2.default, null), document.getElementById('footer'));
 
 /***/ }),
 /* 118 */,
@@ -12039,9 +12057,8 @@ var MainFilter = function (_Component) {
         var _this = _possibleConstructorReturn(this, (MainFilter.__proto__ || Object.getPrototypeOf(MainFilter)).call(this, props));
 
         _this.state = {
-            districtsFilter: 'Ковалево'
+            districtsFilter: 'all'
         };
-        var allDistr = [];
 
         _this.handleChange = _this.handleChange.bind(_this);
         return _this;
@@ -12060,59 +12077,114 @@ var MainFilter = function (_Component) {
 
             return _react2.default.createElement(
                 "div",
-                { className: "leftBar" },
+                { className: "contentStyle" },
                 _react2.default.createElement(
-                    "select",
-                    { onChange: this.handleChange, className: "select" },
+                    "div",
+                    { className: "leftBar" },
                     _react2.default.createElement(
-                        "option",
-                        { value: "\u0430\u0434\u0430\u043C\u043A\u043E\u0432\u043E" },
-                        "\u0410\u0434\u0430\u043C\u043A\u043E\u0432\u043E"
+                        "select",
+                        { onChange: this.handleChange, className: "select" },
+                        _react2.default.createElement(
+                            "option",
+                            { value: "all" },
+                            "\u0412\u0441\u0435 \u0440\u0430\u0439\u043E\u043D\u044B"
+                        ),
+                        _react2.default.createElement(
+                            "option",
+                            { value: "\u0432\u0443\u043B\u044C\u043A\u0430" },
+                            "\u0412\u0443\u043B\u044C\u043A\u0430"
+                        ),
+                        _react2.default.createElement(
+                            "option",
+                            { value: "\u0432\u043E\u0441\u0442\u043E\u043A" },
+                            "\u0412\u043E\u0441\u0442\u043E\u043A"
+                        ),
+                        _react2.default.createElement(
+                            "option",
+                            { value: "\u043A\u0438\u0435\u0432\u043A\u0430" },
+                            "\u041A\u0438\u0435\u0432\u043A\u0430"
+                        ),
+                        _react2.default.createElement(
+                            "option",
+                            { value: "\u044E\u0436\u043D\u044B\u0439" },
+                            "\u042E\u0436\u043D\u044B\u0439"
+                        ),
+                        _react2.default.createElement(
+                            "option",
+                            { value: "\u0446\u0435\u043D\u0442\u0440" },
+                            "\u0426\u0435\u043D\u0442\u0440"
+                        ),
+                        _react2.default.createElement(
+                            "option",
+                            { value: "\u043A\u043E\u0432\u0430\u043B\u0435\u0432\u043E" },
+                            "\u041A\u043E\u0432\u0430\u043B\u0435\u0432\u043E"
+                        ),
+                        _react2.default.createElement(
+                            "option",
+                            { value: "\u0440\u0435\u0447\u0438\u0446\u0430" },
+                            "\u0420\u0435\u0447\u0438\u0446\u0430"
+                        ),
+                        _react2.default.createElement(
+                            "option",
+                            { value: "\u0434\u0443\u0431\u0440\u043E\u0432\u043A\u0430" },
+                            "\u0414\u0443\u0431\u0440\u043E\u0432\u043A\u0430"
+                        ),
+                        _react2.default.createElement(
+                            "option",
+                            { value: "\u0433\u0440\u0430\u0435\u0432\u043A\u0430" },
+                            "\u0413\u0440\u0430\u0435\u0432\u043A\u0430"
+                        ),
+                        _react2.default.createElement(
+                            "option",
+                            { value: "\u0431\u0435\u0440\u0435\u0437\u043E\u0432\u043A\u0430" },
+                            "\u0411\u0435\u0440\u0435\u0437\u043E\u0432\u043A\u0430"
+                        ),
+                        _react2.default.createElement(
+                            "option",
+                            { value: "\u044E\u0433\u043E-\u0437\u0430\u043F\u0430\u0434" },
+                            "\u042E\u0433\u043E-\u0417\u0430\u043F\u0430\u0434"
+                        ),
+                        _react2.default.createElement(
+                            "option",
+                            { value: "\u0433\u043E\u0431\u043A" },
+                            "\u0413\u041E\u0411\u041A"
+                        )
                     ),
                     _react2.default.createElement(
-                        "option",
-                        { value: "\u0430\u0440\u043A\u0430\u0434\u0438\u044F" },
-                        "\u0410\u0440\u043A\u0430\u0434\u0438\u044F"
-                    ),
-                    _react2.default.createElement(
-                        "option",
-                        { value: "\u0446\u0435\u043D\u0442\u0440" },
-                        "\u0426\u0435\u043D\u0442\u0440"
-                    ),
-                    _react2.default.createElement(
-                        "option",
-                        { value: "\u041A\u043E\u0432\u0430\u043B\u0435\u0432\u043E" },
-                        "\u041A\u043E\u0432\u0430\u043B\u0435\u0432\u043E"
+                        "div",
+                        { className: "listField" },
+                        this.props.shops.sort(function (a, b) {
+                            if (a.shopName === b.shopName) return 0;
+                            return a.shopName < b.shopName ? -1 : 1;
+                        }).map(function (shop) {
+                            if (_this2.state.districtsFilter === shop.district) {
+                                return _react2.default.createElement(_itemOfList2.default, {
+                                    key: shop._id,
+                                    shopName: shop.shopName,
+                                    street: shop.street,
+                                    building: shop.building,
+                                    workTimeStart: shop.workTimeStart,
+                                    workTimeEnd: shop.workTimeEnd,
+                                    dayOff: shop.dayOff
+                                });
+                            }if (_this2.state.districtsFilter === 'all') {
+                                return _react2.default.createElement(_itemOfList2.default, {
+                                    key: shop._id,
+                                    shopName: shop.shopName,
+                                    street: shop.street,
+                                    building: shop.building,
+                                    workTimeStart: shop.workTimeStart,
+                                    workTimeEnd: shop.workTimeEnd,
+                                    dayOff: shop.dayOff
+                                });
+                            }
+                        })
                     )
                 ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "listField" },
-                    this.props.shops.sort(function (a, b) {
-                        if (a.shopName === b.shopName) return 0;
-                        return a.shopName < b.shopName ? -1 : 1;
-                    }).map(function (shop) {
-                        if (shop.district === _this2.state.districtsFilter) {
-                            return _react2.default.createElement(_itemOfList2.default, {
-                                key: shop._id,
-                                shopName: shop.shopName,
-                                street: shop.street,
-                                building: shop.building,
-                                workTimeStart: shop.workTimeStart,
-                                workTimeEnd: shop.workTimeEnd,
-                                dayOff: shop.dayOff
-                            });
-                        }
-                    })
-                ),
-                _react2.default.createElement(
-                    "div",
-                    null,
-                    _react2.default.createElement(_mapJS2.default, {
-                        districtsFilter: this.state.districtsFilter,
-                        shops: this.props.shops
-                    })
-                )
+                _react2.default.createElement(_mapJS2.default, {
+                    districtsFilter: this.state.districtsFilter,
+                    shops: this.props.shops
+                })
             );
         }
     }]);
@@ -14060,12 +14132,7 @@ function isnan (val) {
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 126 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
+/* 126 */,
 /* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -27287,6 +27354,64 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Footer = function (_Component) {
+    _inherits(Footer, _Component);
+
+    function Footer() {
+        _classCallCheck(this, Footer);
+
+        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+    }
+
+    _createClass(Footer, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                'footer'
+            );
+        }
+    }]);
+
+    return Footer;
+}(_react.Component);
+
+exports.default = Footer;
 
 /***/ })
 /******/ ]);

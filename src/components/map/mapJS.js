@@ -1,4 +1,3 @@
-import './markerStyle.css'
 
 import React, {Component} from 'react';
 import {YMaps, Map, Placemark} from 'react-yandex-maps';
@@ -11,12 +10,26 @@ export default class YandexMap extends Component {
         const shops = this.props.shops;
 
         return (
-            <div className="map">
+            <div  className="map">
                 <YMaps>
                     <Map state={mapState} width={'100%'} height={'100%'}>
                         {
                             shops.map( (shop)=> {
-                                if(shop.district === this.props.districtsFilter){
+                                if(this.props.districtsFilter === shop.district){
+                                    return <Placemark
+                                        key={'placemark_' + shop._id}
+                                        geometry={{
+                                            coordinates: [shop.latitude, shop.longitude]
+                                        }}
+                                        properties={{
+                                            iconContent: shop.shopName
+                                        }}
+                                        options={{
+                                            preset: 'islands#blackStretchyIcon',
+                                        }}
+                                    />
+                                }
+                                if(this.props.districtsFilter === 'all') {
                                     return <Placemark
                                         key={'placemark_' + shop._id}
                                         geometry={{

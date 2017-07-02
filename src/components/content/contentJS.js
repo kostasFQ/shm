@@ -24,7 +24,7 @@ export default class Content extends Component {
 
     render() {
         return(
-            <div className = 'contentStyle'>
+            <div>
                 <MainFilter shops={this.state.shops}/>
             </div>
         )
