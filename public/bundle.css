@@ -46,6 +46,11 @@
 }
 .red{
     background-color: red;
+}
+.label{
+    border: 1px solid black;
+    padding: 1%;
+    width: 96%;
 }.contentStyle {
     padding: 0;
     display: flex;

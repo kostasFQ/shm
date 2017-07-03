@@ -27425,7 +27425,7 @@ var Footer = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     { className: this.state.openForm ? 'btn red' : 'btn green', onClick: this.showForm },
-                    this.state.openForm ? 'Закрыть форму' : 'Добавить магазин'
+                    this.state.openForm ? 'Закрыть' : 'Добавить магазин'
                 ),
                 this.state.openForm ? _react2.default.createElement(_formJS2.default, null) : null
             );
@@ -27481,9 +27481,283 @@ var Form = function (_Component) {
                     "form",
                     { action: "" },
                     _react2.default.createElement(
-                        "h3",
+                        "h2",
                         null,
                         "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043C\u0430\u0433\u0430\u0437\u0438\u043D"
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "label" },
+                        _react2.default.createElement(
+                            "label",
+                            null,
+                            "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430: ",
+                            _react2.default.createElement("input", { type: "text", required: true })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "label" },
+                        _react2.default.createElement(
+                            "label",
+                            null,
+                            "\u0410\u0434\u0440\u0435\u0441: ",
+                            _react2.default.createElement("br", null),
+                            "\u0420\u0430\u0439\u043E\u043D:",
+                            _react2.default.createElement(
+                                "select",
+                                { style: { width: 100 }, required: true },
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "\u0432\u0443\u043B\u044C\u043A\u0430" },
+                                    "\u0412\u0443\u043B\u044C\u043A\u0430"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "\u0432\u043E\u0441\u0442\u043E\u043A" },
+                                    "\u0412\u043E\u0441\u0442\u043E\u043A"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "\u043A\u0438\u0435\u0432\u043A\u0430" },
+                                    "\u041A\u0438\u0435\u0432\u043A\u0430"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "\u044E\u0436\u043D\u044B\u0439" },
+                                    "\u042E\u0436\u043D\u044B\u0439"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "\u0446\u0435\u043D\u0442\u0440" },
+                                    "\u0426\u0435\u043D\u0442\u0440"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "\u043A\u043E\u0432\u0430\u043B\u0435\u0432\u043E" },
+                                    "\u041A\u043E\u0432\u0430\u043B\u0435\u0432\u043E"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "\u0440\u0435\u0447\u0438\u0446\u0430" },
+                                    "\u0420\u0435\u0447\u0438\u0446\u0430"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "\u0434\u0443\u0431\u0440\u043E\u0432\u043A\u0430" },
+                                    "\u0414\u0443\u0431\u0440\u043E\u0432\u043A\u0430"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "\u0433\u0440\u0430\u0435\u0432\u043A\u0430" },
+                                    "\u0413\u0440\u0430\u0435\u0432\u043A\u0430"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "\u0431\u0435\u0440\u0435\u0437\u043E\u0432\u043A\u0430" },
+                                    "\u0411\u0435\u0440\u0435\u0437\u043E\u0432\u043A\u0430"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "\u044E\u0433\u043E-\u0437\u0430\u043F\u0430\u0434" },
+                                    "\u042E\u0433\u043E-\u0417\u0430\u043F\u0430\u0434"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "\u0433\u043E\u0431\u043A" },
+                                    "\u0413\u041E\u0411\u041A"
+                                )
+                            ),
+                            " \xA0 \u0443\u043B\u0438\u0446\u0430: ",
+                            _react2.default.createElement("input", { type: "text", required: true }),
+                            "\xA0 \u0434\u043E\u043C: ",
+                            _react2.default.createElement("input", { type: "text", required: true, style: { width: 50 } })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "label" },
+                        _react2.default.createElement(
+                            "label",
+                            null,
+                            "\u0412\u0440\u0435\u043C\u044F \u0440\u0430\u0431\u043E\u0442\u044B",
+                            _react2.default.createElement("br", null),
+                            "\u0431\u0443\u0434\u043D\u0438\u0435 \u0434\u043D\u0438:",
+                            _react2.default.createElement("br", null),
+                            "\u043D\u0430\u0447\u0430\u043B\u043E:\xA0",
+                            _react2.default.createElement(
+                                "select",
+                                null,
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "08:00" },
+                                    "08:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "09:00" },
+                                    "09:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "10:00" },
+                                    "10:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "11:00" },
+                                    "11:00"
+                                )
+                            ),
+                            "\xA0 \u043E\u043A\u043E\u043D\u0447\u0430\u043D\u0438\u0435: \xA0",
+                            _react2.default.createElement(
+                                "select",
+                                null,
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "018:00" },
+                                    "18:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "19:00" },
+                                    "19:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "20:00" },
+                                    "20:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "21:00" },
+                                    "21:00"
+                                )
+                            ),
+                            _react2.default.createElement("br", null),
+                            "\u0421\u0443\u0431\u0431\u043E\u0442\u0430: ",
+                            _react2.default.createElement("br", null),
+                            "\u043D\u0430\u0447\u0430\u043B\u043E:\xA0",
+                            _react2.default.createElement(
+                                "select",
+                                null,
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "08:00" },
+                                    "08:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "09:00" },
+                                    "09:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "10:00" },
+                                    "10:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "11:00" },
+                                    "11:00"
+                                )
+                            ),
+                            "\xA0 \u043E\u043A\u043E\u043D\u0447\u0430\u043D\u0438\u0435: \xA0",
+                            _react2.default.createElement(
+                                "select",
+                                null,
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "18:00" },
+                                    "18:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "19:00" },
+                                    "19:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "20:00" },
+                                    "20:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "21:00" },
+                                    "21:00"
+                                )
+                            ),
+                            _react2.default.createElement("br", null),
+                            "\u0412\u043E\u0441\u043A\u0440\u0435\u0441\u0435\u043D\u0438\u0435: ",
+                            _react2.default.createElement("br", null),
+                            "\u043D\u0430\u0447\u0430\u043B\u043E:\xA0",
+                            _react2.default.createElement(
+                                "select",
+                                null,
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "08:00" },
+                                    "08:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "09:00" },
+                                    "09:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "10:00" },
+                                    "10:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "11:00" },
+                                    "11:00"
+                                )
+                            ),
+                            "\xA0 \u043E\u043A\u043E\u043D\u0447\u0430\u043D\u0438\u0435: \xA0",
+                            _react2.default.createElement(
+                                "select",
+                                null,
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "18:00" },
+                                    "18:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "19:00" },
+                                    "19:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "20:00" },
+                                    "20:00"
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "21:00" },
+                                    "21:00"
+                                )
+                            ),
+                            _react2.default.createElement("br", null)
+                        )
+                    ),
+                    _react2.default.createElement("label", null),
+                    _react2.default.createElement("br", null),
+                    _react2.default.createElement("br", null),
+                    _react2.default.createElement(
+                        "label",
+                        null,
+                        "\u0423\u041D\u041F: ",
+                        _react2.default.createElement("input", { type: "text" })
+                    ),
+                    _react2.default.createElement("br", null),
+                    _react2.default.createElement("label", null),
+                    _react2.default.createElement(
+                        "p",
+                        null,
+                        _react2.default.createElement("input", { type: "submit" })
                     )
                 )
             );

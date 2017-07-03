@@ -21,7 +21,7 @@ export default class Footer extends Component{
         return(
             <div className="footer">
                 <div className={this.state.openForm? 'btn red': 'btn green'} onClick={this.showForm}>
-                    {this.state.openForm? 'Закрыть форму': 'Добавить магазин'}
+                    {this.state.openForm? 'Закрыть': 'Добавить магазин'}
                 </div>
                 {this.state.openForm ? <Form/> : null}
             </div>
