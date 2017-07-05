@@ -1,37 +1,12 @@
 import React, {Component} from 'react';
+import FormShopTitle from "./formShopTitle";
 
 export default class Form extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            title:'',
-            validTitle:''
-        };
-        this.onTitleChange = this.onTitleChange.bind(this);
-        this.validateTitle = this.validateTitle.bind(this);
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    onTitleChange(e){
-        let val = e.target.value;
-        console.log(val);
-        this.setState({title: val});
-    };
-
-    validateTitle(){
-        const lowerTitle = this.state.title.toLowerCase();
-        let reg = /\d/g;
-        console.log(lowerTitle.indexOf(reg) === lowerTitle.length);//todo make this shit
-        if(
-            lowerTitle.length < 2){
-            this.setState({validTitle: false});
-        } else {
-            this.setState({validTitle: true});
-        }
-    };
-
-
 
     handleSubmit(e){
         e.preventDefault();
@@ -43,17 +18,10 @@ export default class Form extends Component{
             <div className="form">
                 <form onSubmit={this.handleSubmit}>
                     <h2 className="formHeader">Добавить магазин</h2>
-                    <div className="label">
-                        <label>Название магазина:</label>
-                        <input
-                            type="text"
-                            value={this.state.title}
-                            onChange={this.onTitleChange}
-                            onBlur={this.validateTitle}
-                        /> {this.state.validTitle === false ? <span>wrong!</span> : null}
+                    <FormShopTitle/>
+                    <hr color="black"/>
 
-                    </div>
-                    <input type="submit" value='Добавить'/>
+                    <input type="submit" value='Добавить' disabled={true}/>
 
 
 

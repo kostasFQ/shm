@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Form from './formJS';
+import Form from '../forms/MainFormFieldJS';
 import './footerCSS.css';
 
 export default class Footer extends Component{
