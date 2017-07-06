@@ -43,7 +43,11 @@ export default class Form extends Component{
         this.setState({address : e.target.value})
     };
     validateAddress(){
+        let reg = /[a-zA-z]/;
         if(this.state.address.length < 3){
+            this.setState({validAddress: false});
+        }
+        else if(this.state.address.search(reg) !== -1){
             this.setState({validAddress: false});
         }
         else {
@@ -99,7 +103,7 @@ export default class Form extends Component{
                                 <span style={{color:'red'}}>
                                 <img src="./img/cross.png" className="validationImg"/>
                                 <br/>
-                                <sup>(поле должно)</sup>
+                                <sup>(поле не может содержать английские символы)</sup>
                             </span> : this.state.validAddress === true ?
                                 <img src="./img/check.png" className="validationImg"/> :
                                 null

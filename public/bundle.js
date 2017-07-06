@@ -27518,7 +27518,10 @@ var Form = function (_Component) {
     }, {
         key: 'validateAddress',
         value: function validateAddress() {
+            var reg = /[a-zA-z]/;
             if (this.state.address.length < 3) {
+                this.setState({ validAddress: false });
+            } else if (this.state.address.search(reg) !== -1) {
                 this.setState({ validAddress: false });
             } else {
                 this.setState({ validAddress: true });
@@ -27595,7 +27598,7 @@ var Form = function (_Component) {
                             _react2.default.createElement(
                                 'sup',
                                 null,
-                                '(\u043F\u043E\u043B\u0435 \u0434\u043E\u043B\u0436\u043D\u043E)'
+                                '(\u043F\u043E\u043B\u0435 \u043D\u0435 \u043C\u043E\u0436\u0435\u0442 \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u0430\u043D\u0433\u043B\u0438\u0439\u0441\u043A\u0438\u0435 \u0441\u0438\u043C\u0432\u043E\u043B\u044B)'
                             )
                         ) : this.state.validAddress === true ? _react2.default.createElement('img', { src: './img/check.png', className: 'validationImg' }) : null
                     ),
