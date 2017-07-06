@@ -27475,11 +27475,22 @@ var Form = function (_Component) {
 
         _this.state = {
             title: '',
-            validTitle: ''
+            validTitle: '',
+
+            address: '',
+            validAddress: '',
+
+            unp: '',
+            validUnp: '',
+
+            submitDisable: true
         };
 
         _this.onChangeTitle = _this.onChangeTitle.bind(_this);
         _this.validateTitle = _this.validateTitle.bind(_this);
+
+        _this.onChangeAddress = _this.onChangeAddress.bind(_this);
+        _this.validateAddress = _this.validateAddress.bind(_this);
 
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         return _this;
@@ -27497,6 +27508,20 @@ var Form = function (_Component) {
                 this.setState({ validTitle: false });
             } else {
                 this.setState({ validTitle: true });
+            }
+        }
+    }, {
+        key: 'onChangeAddress',
+        value: function onChangeAddress(e) {
+            this.setState({ address: e.target.value });
+        }
+    }, {
+        key: 'validateAddress',
+        value: function validateAddress() {
+            if (this.state.address.length < 3) {
+                this.setState({ validAddress: false });
+            } else {
+                this.setState({ validAddress: true });
             }
         }
     }, {
@@ -27544,6 +27569,35 @@ var Form = function (_Component) {
                                 '(\u043F\u043E\u043B\u0435 \u0434\u043E\u043B\u0436\u043D\u043E \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u043D\u0435 \u043C\u0435\u043D\u0435\u0435 3\u0445 \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432)'
                             )
                         ) : this.state.validTitle === true ? _react2.default.createElement('img', { src: './img/check.png', className: 'validationImg' }) : null
+                    ),
+                    ' ',
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'label', style: { height: '35px' } },
+                        ' ',
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            '\u0410\u0434\u0440\u0435\u0441:'
+                        ),
+                        '\xA0',
+                        _react2.default.createElement('input', {
+                            type: 'text',
+                            value: this.state.street,
+                            onChange: this.onChangeAddress,
+                            onBlur: this.validateAddress
+                        }),
+                        this.state.validAddress === false ? _react2.default.createElement(
+                            'span',
+                            { style: { color: 'red' } },
+                            _react2.default.createElement('img', { src: './img/cross.png', className: 'validationImg' }),
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement(
+                                'sup',
+                                null,
+                                '(\u043F\u043E\u043B\u0435 \u0434\u043E\u043B\u0436\u043D\u043E)'
+                            )
+                        ) : this.state.validAddress === true ? _react2.default.createElement('img', { src: './img/check.png', className: 'validationImg' }) : null
                     ),
                     _react2.default.createElement(
                         'div',
@@ -27649,7 +27703,25 @@ var Form = function (_Component) {
                             '\u0412\u043E\u0441\u043A\u0440\u0435\u0441\u0435\u043D\u044C\u0435'
                         )
                     ),
-                    _react2.default.createElement('input', { type: 'submit', value: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C', disabled: true })
+                    ' ',
+                    'todo make logic',
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'label' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            '\u0423\u041D\u041F:'
+                        ),
+                        _react2.default.createElement('input', {
+                            type: 'text'
+                        })
+                    ),
+                    _react2.default.createElement('input', {
+                        type: 'submit',
+                        value: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C',
+                        disabled: this.state.submitDisable
+                    })
                 )
             );
         }

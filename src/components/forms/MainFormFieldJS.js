@@ -5,16 +5,29 @@ export default class Form extends Component{
         super(props);
         this.state = {
             title: '',
-            validTitle:''
+            validTitle:'',
+
+            address:'',
+            validAddress : '',
+
+
+            unp:'',
+            validUnp:'',
+
+
+            submitDisable: true
         };
 
         this.onChangeTitle = this.onChangeTitle.bind(this);
         this.validateTitle = this.validateTitle.bind(this);
 
+        this.onChangeAddress = this.onChangeAddress.bind(this);
+        this.validateAddress = this.validateAddress.bind(this);
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     onChangeTitle(e){
-        this.setState({title: e.target.value});
+        this.setState({title: e.target.value})
     };
     validateTitle(){
         if(this.state.title.length < 3){
@@ -24,6 +37,22 @@ export default class Form extends Component{
             this.setState({validTitle: true});
         }
     };
+
+
+    onChangeAddress(e){
+        this.setState({address : e.target.value})
+    };
+    validateAddress(){
+        if(this.state.address.length < 3){
+            this.setState({validAddress: false});
+        }
+        else {
+            this.setState({validAddress: true});
+        }
+    };
+
+
+
 
     handleSubmit(e){
         e.preventDefault();
@@ -55,6 +84,26 @@ export default class Form extends Component{
                                 <img src="./img/check.png" className="validationImg"/> :
                                 null
                         }
+                    </div> {/*название магазина*/}
+
+                    <div className="label" style={{height:'35px'}}> {/*адрес*/}
+                        <label>Адрес:</label>&nbsp;
+                        <input
+                            type="text"
+                            value={this.state.street}
+                            onChange={this.onChangeAddress}
+                            onBlur={this.validateAddress}
+                        />
+                        {
+                            this.state.validAddress === false ?
+                                <span style={{color:'red'}}>
+                                <img src="./img/cross.png" className="validationImg"/>
+                                <br/>
+                                <sup>(поле должно)</sup>
+                            </span> : this.state.validAddress === true ?
+                                <img src="./img/check.png" className="validationImg"/> :
+                                null
+                        }
                     </div>
 
                     <div className="label">
@@ -83,114 +132,21 @@ export default class Form extends Component{
                         <span className="checkbox"><input type="checkbox" value='Пятница'/>Пятница</span>
                         <span className="checkbox"><input type="checkbox" value='Суббота'/>Суббота</span>
                         <span className="checkbox"><input type="checkbox" value='Воскресенье'/>Воскресенье</span>
-                    </div>
-
-
-
-                    <input type="submit" value='Добавить' disabled={true}/>
-
-
-
-
-
-
-
-
-                    {/*<div className="label">
-                        <label>
-                            Адрес: <br/>
-                            Район:&nbsp;
-                            <select style={{width:100}} required={true}>
-                                <option value="вулька">Вулька</option>
-                                <option value="восток">Восток</option>
-                                <option value="киевка">Киевка</option>
-                                <option value="южный">Южный</option>
-                                <option value="центр">Центр</option>
-                                <option value="ковалево">Ковалево</option>
-                                <option value="речица">Речица</option>
-                                <option value="дубровка">Дубровка</option>
-                                <option value="граевка">Граевка</option>
-                                <option value="березовка">Березовка</option>
-                                <option value="юго-запад">Юго-Запад</option>
-                                <option value="гобк">ГОБК</option>
-                            </select> &nbsp;
-                            улица: <input type="text" required={true}/>&nbsp;
-                            дом: <input type="text" required={true} style={{width:50}}/>
-                        </label>
-                    </div>
-
+                    </div> {/*время работы*/}todo make logic
                     <div className="label">
-                        <label>
-                            Время работы
-                            <br/>
-                            будние дни:
-                            <br/>
-                            начало:&nbsp;
-                            <select>
-                                <option value="08:00">08:00</option>
-                                <option value="09:00">09:00</option>
-                                <option value="10:00">10:00</option>
-                                <option value="11:00">11:00</option>
-                            </select>&nbsp;
-                            окончание: &nbsp;
-                            <select>
-                                <option value="018:00">18:00</option>
-                                <option value="19:00">19:00</option>
-                                <option value="20:00">20:00</option>
-                                <option value="21:00">21:00</option>
-                            </select>
-                            <br/>
-                            Суббота: <br/>
-                            начало:&nbsp;
-                            <select>
-                                <option value="08:00">08:00</option>
-                                <option value="09:00">09:00</option>
-                                <option value="10:00">10:00</option>
-                                <option value="11:00">11:00</option>
-                            </select>&nbsp;
-                            окончание: &nbsp;
-                            <select>
-                                <option value="18:00">18:00</option>
-                                <option value="19:00">19:00</option>
-                                <option value="20:00">20:00</option>
-                                <option value="21:00">21:00</option>
-                            </select>
-                            <br/>
-                            Воскресение: <br/>
-                            начало:&nbsp;
-                            <select>
-                                <option value="08:00">08:00</option>
-                                <option value="09:00">09:00</option>
-                                <option value="10:00">10:00</option>
-                                <option value="11:00">11:00</option>
-                            </select>&nbsp;
-                            окончание: &nbsp;
-                            <select>
-                                <option value="18:00">18:00</option>
-                                <option value="19:00">19:00</option>
-                                <option value="20:00">20:00</option>
-                                <option value="21:00">21:00</option>
-                            </select>
-                            <br/>
-                        </label>
+                        <label>УНП:</label>
+                        <input
+                            type="text"
+                        />
                     </div>
 
-                    <label>
 
 
-                    </label>
-                    <br/>
-                    <br/>
-                    <label>
-                        УНП: <input type="text"/>
-                    </label>
-                    <br/>
-                    <label>
-
-                    </label>
-
-
-                    <p><input type="submit"/></p>*/}
+                    <input
+                        type="submit"
+                        value='Добавить'
+                        disabled={this.state.submitDisable}
+                    />
 
                 </form>
             </div>
