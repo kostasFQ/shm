@@ -42,6 +42,15 @@
     padding: 1%;
     width: 96%;
 }
+.checkbox{
+    display: inline-block;
+    width: 120px;
+}
 .formHeader{
     text-align: center;
+}
+.validationImg {
+    width: 20px;
+    height: 20px;
+    margin-bottom: -6px;
 }
