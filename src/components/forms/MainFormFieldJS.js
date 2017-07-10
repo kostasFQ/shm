@@ -10,9 +10,15 @@ export default class Form extends Component{
             address:'',
             validAddress : '',
 
-
-            unp:'',
-            validUnp:'',
+            days: {
+                sunday: null,
+                monday: null,
+                tuesday: null,
+                wednesday: null,
+                thursday: null,
+                friday: null,
+                saturday: null
+            },
 
 
             submitDisable: true
@@ -64,6 +70,10 @@ export default class Form extends Component{
 
 
     render(){
+        let hoursArr= ['выходной'];
+        for(let i = 8; i <= 20; i++) {
+            hoursArr.push(i + ':00');
+        }
 
         return(
             <div className="form">
@@ -90,7 +100,7 @@ export default class Form extends Component{
                         }
                     </div> {/*название магазина*/}
 
-                    <div className="label" style={{height:'35px'}}> {/*адрес*/}
+                    <div className="label" style={{height:'35px'}}>
                         <label>Адрес:</label>&nbsp;
                         <input
                             type="text"
@@ -101,47 +111,40 @@ export default class Form extends Component{
                         {
                             this.state.validAddress === false ?
                                 <span style={{color:'red'}}>
-                                <img src="./img/cross.png" className="validationImg"/>
-                                <br/>
-                                <sup>(поле не может содержать английские символы)</sup>
-                            </span> : this.state.validAddress === true ?
+                                    <img src="./img/cross.png" className="validationImg"/>
+                                    <br/>
+                                    <sup>(поле не может быть пустым или содержать английские символы)</sup>
+                                </span> : this.state.validAddress === true ?
                                 <img src="./img/check.png" className="validationImg"/> :
                                 null
                         }
-                    </div>
+                    </div>{/*адрес*/}
 
                     <div className="label">
-                        <label>Время работы:&nbsp;</label>
-                        с&nbsp;
-                        <select>
-                            <option value="08:00">08:00</option>
-                            <option value="09:00">09:00</option>
-                            <option value="10:00">10:00</option>
-                            <option value="11:00">11:00</option>
-                            <option value="12:00">12:00</option>
-                        </select>&nbsp;
-                        по&nbsp;
-                        <select>
-                            <option value="18:00">18:00</option>
-                            <option value="19:00">19:00</option>
-                            <option value="20:00">20:00</option>
-                        </select>
+                        <label>Режим работы:</label>
                         <br/>
-                        Выходные дни:
-                        <br/>
-                        <span className="checkbox"><input type="checkbox" value='Понедельник'/>Понедельник</span>
-                        <span className="checkbox"><input type="checkbox" value='Вторник'/>Вторник</span>
-                        <span className="checkbox"><input type="checkbox" value='Среда'/>Среда</span>
-                        <span className="checkbox"><input type="checkbox" value='Четверг'/>Четверг</span>
-                        <span className="checkbox"><input type="checkbox" value='Пятница'/>Пятница</span>
-                        <span className="checkbox"><input type="checkbox" value='Суббота'/>Суббота</span>
-                        <span className="checkbox"><input type="checkbox" value='Воскресенье'/>Воскресенье</span>
-                    </div> {/*время работы*/}todo make logic
-                    <div className="label">
-                        <label>УНП:</label>
-                        <input
-                            type="text"
-                        />
+                        <div style={{border:'solid 1px black', width:'14.28%', textAlign:'center'}}>
+                            <div style={{background:"red"}}>Пн</div>
+                            <div>с
+                                <select>
+                                    {
+                                        hoursArr.map( (item, index)=>{
+                                            return <option value={item} key={index}>{item}</option>
+                                        })
+                                    }
+                                </select>
+                                <br/>
+                                до
+                                <select>
+                                    {
+                                        hoursArr.map( (item, index)=>{
+                                            return <option value={item} key={index}>{item}</option>
+                                        })
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
                     </div>
 
 

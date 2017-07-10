@@ -10912,7 +10912,7 @@ var _react = __webpack_require__(7);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _MainFormFieldJS = __webpack_require__(238);
+var _MainFormFieldJS = __webpack_require__(117);
 
 var _MainFormFieldJS2 = _interopRequireDefault(_MainFormFieldJS);
 
@@ -10935,7 +10935,7 @@ var Footer = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, props));
 
         _this.state = {
-            openForm: false
+            openForm: true // todo false!!
         };
 
         _this.showForm = _this.showForm.bind(_this);
@@ -11915,7 +11915,241 @@ _reactDom2.default.render(_react2.default.createElement(_contentJS2.default, nul
 _reactDom2.default.render(_react2.default.createElement(_footerJS2.default, null), document.getElementById('footer'));
 
 /***/ }),
-/* 117 */,
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Form = function (_Component) {
+    _inherits(Form, _Component);
+
+    function Form(props) {
+        _classCallCheck(this, Form);
+
+        var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
+
+        _this.state = {
+            title: '',
+            validTitle: '',
+
+            address: '',
+            validAddress: '',
+
+            days: {
+                sunday: null,
+                monday: null,
+                tuesday: null,
+                wednesday: null,
+                thursday: null,
+                friday: null,
+                saturday: null
+            },
+
+            submitDisable: true
+        };
+
+        _this.onChangeTitle = _this.onChangeTitle.bind(_this);
+        _this.validateTitle = _this.validateTitle.bind(_this);
+
+        _this.onChangeAddress = _this.onChangeAddress.bind(_this);
+        _this.validateAddress = _this.validateAddress.bind(_this);
+
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        return _this;
+    }
+
+    _createClass(Form, [{
+        key: 'onChangeTitle',
+        value: function onChangeTitle(e) {
+            this.setState({ title: e.target.value });
+        }
+    }, {
+        key: 'validateTitle',
+        value: function validateTitle() {
+            if (this.state.title.length < 3) {
+                this.setState({ validTitle: false });
+            } else {
+                this.setState({ validTitle: true });
+            }
+        }
+    }, {
+        key: 'onChangeAddress',
+        value: function onChangeAddress(e) {
+            this.setState({ address: e.target.value });
+        }
+    }, {
+        key: 'validateAddress',
+        value: function validateAddress() {
+            var reg = /[a-zA-z]/;
+            if (this.state.address.length < 3) {
+                this.setState({ validAddress: false });
+            } else if (this.state.address.search(reg) !== -1) {
+                this.setState({ validAddress: false });
+            } else {
+                this.setState({ validAddress: true });
+            }
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(e) {
+            e.preventDefault();
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var hoursArr = ['выходной'];
+            for (var i = 8; i <= 20; i++) {
+                hoursArr.push(i + ':00');
+            }
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'form' },
+                _react2.default.createElement(
+                    'form',
+                    { onSubmit: this.handleSubmit },
+                    _react2.default.createElement(
+                        'h2',
+                        { className: 'formHeader' },
+                        '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043C\u0430\u0433\u0430\u0437\u0438\u043D'
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'label', style: { height: '35px' } },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430:\xA0'
+                        ),
+                        _react2.default.createElement('input', {
+                            type: 'text',
+                            value: this.state.title,
+                            onChange: this.onChangeTitle,
+                            onBlur: this.validateTitle
+                        }),
+                        this.state.validTitle === false ? _react2.default.createElement(
+                            'span',
+                            { style: { color: 'red' } },
+                            _react2.default.createElement('img', { src: './img/cross.png', className: 'validationImg' }),
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement(
+                                'sup',
+                                null,
+                                '(\u043F\u043E\u043B\u0435 \u0434\u043E\u043B\u0436\u043D\u043E \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u043D\u0435 \u043C\u0435\u043D\u0435\u0435 3\u0445 \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432)'
+                            )
+                        ) : this.state.validTitle === true ? _react2.default.createElement('img', { src: './img/check.png', className: 'validationImg' }) : null
+                    ),
+                    ' ',
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'label', style: { height: '35px' } },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            '\u0410\u0434\u0440\u0435\u0441:'
+                        ),
+                        '\xA0',
+                        _react2.default.createElement('input', {
+                            type: 'text',
+                            value: this.state.street,
+                            onChange: this.onChangeAddress,
+                            onBlur: this.validateAddress
+                        }),
+                        this.state.validAddress === false ? _react2.default.createElement(
+                            'span',
+                            { style: { color: 'red' } },
+                            _react2.default.createElement('img', { src: './img/cross.png', className: 'validationImg' }),
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement(
+                                'sup',
+                                null,
+                                '(\u043F\u043E\u043B\u0435 \u043D\u0435 \u043C\u043E\u0436\u0435\u0442 \u0431\u044B\u0442\u044C \u043F\u0443\u0441\u0442\u044B\u043C \u0438\u043B\u0438 \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u0430\u043D\u0433\u043B\u0438\u0439\u0441\u043A\u0438\u0435 \u0441\u0438\u043C\u0432\u043E\u043B\u044B)'
+                            )
+                        ) : this.state.validAddress === true ? _react2.default.createElement('img', { src: './img/check.png', className: 'validationImg' }) : null
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'label' },
+                        _react2.default.createElement(
+                            'label',
+                            null,
+                            '\u0420\u0435\u0436\u0438\u043C \u0440\u0430\u0431\u043E\u0442\u044B:'
+                        ),
+                        _react2.default.createElement('br', null),
+                        _react2.default.createElement(
+                            'div',
+                            { style: { border: 'solid 1px black', width: '14.28%', textAlign: 'center' } },
+                            _react2.default.createElement(
+                                'div',
+                                { style: { background: "red" } },
+                                '\u041F\u043D'
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                null,
+                                '\u0441',
+                                _react2.default.createElement(
+                                    'select',
+                                    null,
+                                    hoursArr.map(function (item, index) {
+                                        return _react2.default.createElement(
+                                            'option',
+                                            { value: item, key: index },
+                                            item
+                                        );
+                                    })
+                                ),
+                                _react2.default.createElement('br', null),
+                                '\u0434\u043E',
+                                _react2.default.createElement(
+                                    'select',
+                                    null,
+                                    hoursArr.map(function (item, index) {
+                                        return _react2.default.createElement(
+                                            'option',
+                                            { value: item, key: index },
+                                            item
+                                        );
+                                    })
+                                )
+                            )
+                        )
+                    ),
+                    _react2.default.createElement('input', {
+                        type: 'submit',
+                        value: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C',
+                        disabled: this.state.submitDisable
+                    })
+                )
+            );
+        }
+    }]);
+
+    return Form;
+}(_react.Component);
+
+exports.default = Form;
+
+/***/ }),
 /* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -27432,308 +27666,6 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(7);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Form = function (_Component) {
-    _inherits(Form, _Component);
-
-    function Form(props) {
-        _classCallCheck(this, Form);
-
-        var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
-
-        _this.state = {
-            title: '',
-            validTitle: '',
-
-            address: '',
-            validAddress: '',
-
-            unp: '',
-            validUnp: '',
-
-            submitDisable: true
-        };
-
-        _this.onChangeTitle = _this.onChangeTitle.bind(_this);
-        _this.validateTitle = _this.validateTitle.bind(_this);
-
-        _this.onChangeAddress = _this.onChangeAddress.bind(_this);
-        _this.validateAddress = _this.validateAddress.bind(_this);
-
-        _this.handleSubmit = _this.handleSubmit.bind(_this);
-        return _this;
-    }
-
-    _createClass(Form, [{
-        key: 'onChangeTitle',
-        value: function onChangeTitle(e) {
-            this.setState({ title: e.target.value });
-        }
-    }, {
-        key: 'validateTitle',
-        value: function validateTitle() {
-            if (this.state.title.length < 3) {
-                this.setState({ validTitle: false });
-            } else {
-                this.setState({ validTitle: true });
-            }
-        }
-    }, {
-        key: 'onChangeAddress',
-        value: function onChangeAddress(e) {
-            this.setState({ address: e.target.value });
-        }
-    }, {
-        key: 'validateAddress',
-        value: function validateAddress() {
-            var reg = /[a-zA-z]/;
-            if (this.state.address.length < 3) {
-                this.setState({ validAddress: false });
-            } else if (this.state.address.search(reg) !== -1) {
-                this.setState({ validAddress: false });
-            } else {
-                this.setState({ validAddress: true });
-            }
-        }
-    }, {
-        key: 'handleSubmit',
-        value: function handleSubmit(e) {
-            e.preventDefault();
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-
-            return _react2.default.createElement(
-                'div',
-                { className: 'form' },
-                _react2.default.createElement(
-                    'form',
-                    { onSubmit: this.handleSubmit },
-                    _react2.default.createElement(
-                        'h2',
-                        { className: 'formHeader' },
-                        '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043C\u0430\u0433\u0430\u0437\u0438\u043D'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'label', style: { height: '35px' } },
-                        _react2.default.createElement(
-                            'label',
-                            null,
-                            '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430:\xA0'
-                        ),
-                        _react2.default.createElement('input', {
-                            type: 'text',
-                            value: this.state.title,
-                            onChange: this.onChangeTitle,
-                            onBlur: this.validateTitle
-                        }),
-                        this.state.validTitle === false ? _react2.default.createElement(
-                            'span',
-                            { style: { color: 'red' } },
-                            _react2.default.createElement('img', { src: './img/cross.png', className: 'validationImg' }),
-                            _react2.default.createElement('br', null),
-                            _react2.default.createElement(
-                                'sup',
-                                null,
-                                '(\u043F\u043E\u043B\u0435 \u0434\u043E\u043B\u0436\u043D\u043E \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u043D\u0435 \u043C\u0435\u043D\u0435\u0435 3\u0445 \u0441\u0438\u043C\u0432\u043E\u043B\u043E\u0432)'
-                            )
-                        ) : this.state.validTitle === true ? _react2.default.createElement('img', { src: './img/check.png', className: 'validationImg' }) : null
-                    ),
-                    ' ',
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'label', style: { height: '35px' } },
-                        ' ',
-                        _react2.default.createElement(
-                            'label',
-                            null,
-                            '\u0410\u0434\u0440\u0435\u0441:'
-                        ),
-                        '\xA0',
-                        _react2.default.createElement('input', {
-                            type: 'text',
-                            value: this.state.street,
-                            onChange: this.onChangeAddress,
-                            onBlur: this.validateAddress
-                        }),
-                        this.state.validAddress === false ? _react2.default.createElement(
-                            'span',
-                            { style: { color: 'red' } },
-                            _react2.default.createElement('img', { src: './img/cross.png', className: 'validationImg' }),
-                            _react2.default.createElement('br', null),
-                            _react2.default.createElement(
-                                'sup',
-                                null,
-                                '(\u043F\u043E\u043B\u0435 \u043D\u0435 \u043C\u043E\u0436\u0435\u0442 \u0441\u043E\u0434\u0435\u0440\u0436\u0430\u0442\u044C \u0430\u043D\u0433\u043B\u0438\u0439\u0441\u043A\u0438\u0435 \u0441\u0438\u043C\u0432\u043E\u043B\u044B)'
-                            )
-                        ) : this.state.validAddress === true ? _react2.default.createElement('img', { src: './img/check.png', className: 'validationImg' }) : null
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'label' },
-                        _react2.default.createElement(
-                            'label',
-                            null,
-                            '\u0412\u0440\u0435\u043C\u044F \u0440\u0430\u0431\u043E\u0442\u044B:\xA0'
-                        ),
-                        '\u0441\xA0',
-                        _react2.default.createElement(
-                            'select',
-                            null,
-                            _react2.default.createElement(
-                                'option',
-                                { value: '08:00' },
-                                '08:00'
-                            ),
-                            _react2.default.createElement(
-                                'option',
-                                { value: '09:00' },
-                                '09:00'
-                            ),
-                            _react2.default.createElement(
-                                'option',
-                                { value: '10:00' },
-                                '10:00'
-                            ),
-                            _react2.default.createElement(
-                                'option',
-                                { value: '11:00' },
-                                '11:00'
-                            ),
-                            _react2.default.createElement(
-                                'option',
-                                { value: '12:00' },
-                                '12:00'
-                            )
-                        ),
-                        '\xA0 \u043F\u043E\xA0',
-                        _react2.default.createElement(
-                            'select',
-                            null,
-                            _react2.default.createElement(
-                                'option',
-                                { value: '18:00' },
-                                '18:00'
-                            ),
-                            _react2.default.createElement(
-                                'option',
-                                { value: '19:00' },
-                                '19:00'
-                            ),
-                            _react2.default.createElement(
-                                'option',
-                                { value: '20:00' },
-                                '20:00'
-                            )
-                        ),
-                        _react2.default.createElement('br', null),
-                        '\u0412\u044B\u0445\u043E\u0434\u043D\u044B\u0435 \u0434\u043D\u0438:',
-                        _react2.default.createElement('br', null),
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'checkbox' },
-                            _react2.default.createElement('input', { type: 'checkbox', value: '\u041F\u043E\u043D\u0435\u0434\u0435\u043B\u044C\u043D\u0438\u043A' }),
-                            '\u041F\u043E\u043D\u0435\u0434\u0435\u043B\u044C\u043D\u0438\u043A'
-                        ),
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'checkbox' },
-                            _react2.default.createElement('input', { type: 'checkbox', value: '\u0412\u0442\u043E\u0440\u043D\u0438\u043A' }),
-                            '\u0412\u0442\u043E\u0440\u043D\u0438\u043A'
-                        ),
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'checkbox' },
-                            _react2.default.createElement('input', { type: 'checkbox', value: '\u0421\u0440\u0435\u0434\u0430' }),
-                            '\u0421\u0440\u0435\u0434\u0430'
-                        ),
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'checkbox' },
-                            _react2.default.createElement('input', { type: 'checkbox', value: '\u0427\u0435\u0442\u0432\u0435\u0440\u0433' }),
-                            '\u0427\u0435\u0442\u0432\u0435\u0440\u0433'
-                        ),
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'checkbox' },
-                            _react2.default.createElement('input', { type: 'checkbox', value: '\u041F\u044F\u0442\u043D\u0438\u0446\u0430' }),
-                            '\u041F\u044F\u0442\u043D\u0438\u0446\u0430'
-                        ),
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'checkbox' },
-                            _react2.default.createElement('input', { type: 'checkbox', value: '\u0421\u0443\u0431\u0431\u043E\u0442\u0430' }),
-                            '\u0421\u0443\u0431\u0431\u043E\u0442\u0430'
-                        ),
-                        _react2.default.createElement(
-                            'span',
-                            { className: 'checkbox' },
-                            _react2.default.createElement('input', { type: 'checkbox', value: '\u0412\u043E\u0441\u043A\u0440\u0435\u0441\u0435\u043D\u044C\u0435' }),
-                            '\u0412\u043E\u0441\u043A\u0440\u0435\u0441\u0435\u043D\u044C\u0435'
-                        )
-                    ),
-                    ' ',
-                    'todo make logic',
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'label' },
-                        _react2.default.createElement(
-                            'label',
-                            null,
-                            '\u0423\u041D\u041F:'
-                        ),
-                        _react2.default.createElement('input', {
-                            type: 'text'
-                        })
-                    ),
-                    _react2.default.createElement('input', {
-                        type: 'submit',
-                        value: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C',
-                        disabled: this.state.submitDisable
-                    })
-                )
-            );
-        }
-    }]);
-
-    return Form;
-}(_react.Component);
-
-exports.default = Form;
 
 /***/ })
 /******/ ]);
