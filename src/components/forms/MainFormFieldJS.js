@@ -10,16 +10,6 @@ export default class Form extends Component{
             address:'',
             validAddress : '',
 
-            days: {
-                sunday: null,
-                monday: null,
-                tuesday: null,
-                wednesday: null,
-                thursday: null,
-                friday: null,
-                saturday: null
-            },
-
 
             submitDisable: true
         };
@@ -30,9 +20,12 @@ export default class Form extends Component{
         this.onChangeAddress = this.onChangeAddress.bind(this);
         this.validateAddress = this.validateAddress.bind(this);
 
+        this.onChangeWorkTime = this.onChangeWorkTime.bind(this);
+
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     onChangeTitle(e){
+        let tmp = 'tmp';
         this.setState({title: e.target.value})
     };
     validateTitle(){
@@ -59,6 +52,12 @@ export default class Form extends Component{
         else {
             this.setState({validAddress: true});
         }
+    };
+
+
+    onChangeWorkTime(e){
+        let currentValue = e.target.value;
+        alert(currentValue);
     };
 
 
@@ -123,13 +122,13 @@ export default class Form extends Component{
                     <div className="label">
                         <label>Режим работы:</label>
                         <br/>
-                        <div style={{border:'solid 1px black', width:'14.28%', textAlign:'center'}}>
-                            <div style={{background:"red"}}>Пн</div>
+                        <div className="dayForm">
+                            <div>Понедельник</div>
                             <div>с
-                                <select>
+                                <select onChange={this.onChangeWorkTime}>
                                     {
                                         hoursArr.map( (item, index)=>{
-                                            return <option value={item} key={index}>{item}</option>
+                                            return <option value={item} key={index} name="kst">{item}</option>
                                         })
                                     }
                                 </select>

@@ -11954,16 +11954,6 @@ var Form = function (_Component) {
             address: '',
             validAddress: '',
 
-            days: {
-                sunday: null,
-                monday: null,
-                tuesday: null,
-                wednesday: null,
-                thursday: null,
-                friday: null,
-                saturday: null
-            },
-
             submitDisable: true
         };
 
@@ -11973,6 +11963,8 @@ var Form = function (_Component) {
         _this.onChangeAddress = _this.onChangeAddress.bind(_this);
         _this.validateAddress = _this.validateAddress.bind(_this);
 
+        _this.onChangeWorkTime = _this.onChangeWorkTime.bind(_this);
+
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         return _this;
     }
@@ -11980,6 +11972,7 @@ var Form = function (_Component) {
     _createClass(Form, [{
         key: 'onChangeTitle',
         value: function onChangeTitle(e) {
+            var tmp = 'tmp';
             this.setState({ title: e.target.value });
         }
     }, {
@@ -12007,6 +12000,12 @@ var Form = function (_Component) {
             } else {
                 this.setState({ validAddress: true });
             }
+        }
+    }, {
+        key: 'onChangeWorkTime',
+        value: function onChangeWorkTime(e) {
+            var currentValue = e.target.value;
+            alert(currentValue);
         }
     }, {
         key: 'handleSubmit',
@@ -12097,11 +12096,11 @@ var Form = function (_Component) {
                         _react2.default.createElement('br', null),
                         _react2.default.createElement(
                             'div',
-                            { style: { border: 'solid 1px black', width: '14.28%', textAlign: 'center' } },
+                            { className: 'dayForm' },
                             _react2.default.createElement(
                                 'div',
-                                { style: { background: "red" } },
-                                '\u041F\u043D'
+                                null,
+                                '\u041F\u043E\u043D\u0435\u0434\u0435\u043B\u044C\u043D\u0438\u043A'
                             ),
                             _react2.default.createElement(
                                 'div',
@@ -12109,11 +12108,11 @@ var Form = function (_Component) {
                                 '\u0441',
                                 _react2.default.createElement(
                                     'select',
-                                    null,
+                                    { onChange: this.onChangeWorkTime },
                                     hoursArr.map(function (item, index) {
                                         return _react2.default.createElement(
                                             'option',
-                                            { value: item, key: index },
+                                            { value: item, key: index, name: 'kst' },
                                             item
                                         );
                                     })

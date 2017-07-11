@@ -63,6 +63,11 @@
     width: 20px;
     height: 20px;
     margin-bottom: -6px;
+}
+.dayForm {
+    border: solid 1px black;
+    width : 14.28%;
+    text-align: center;
 }.contentStyle {
     padding: 0;
     display: flex;
