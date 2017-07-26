@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Form from '../forms/MainFormFieldJS';
+import Form from '../forms/FormJS';
 import './footerCSS.css';
 
 export default class Footer extends Component{
@@ -23,7 +23,9 @@ export default class Footer extends Component{
                 <div className={this.state.openForm? 'btn red': 'btn green'} onClick={this.showForm}>
                     {this.state.openForm? 'Закрыть': 'Добавить магазин'}
                 </div>
-                {this.state.openForm ? <Form/> : null}
+                {
+                    this.state.openForm ? <Form/> : null
+                }
             </div>
         )
     }

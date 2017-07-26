@@ -1,7 +1,38 @@
 import React, {Component} from 'react';
+import ShopNameInput from "./ShopNameInput";
 
-export default class Form extends Component{
-    constructor(props){
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+const initialStore = ['one','two', 'tree'];
+
+function shopListStore(state = initialStore, action) {
+    if(action.type === 'ADD_SHOP') {
+        return [...state,
+            action.payload]
+    }
+    return state;
+}
+const store = createStore(shopListStore);
+
+
+export default class Form extends Component {
+
+    render() {
+        console.log(store.getState());
+        return (
+            <Provider store={store}>
+                <div className="form">
+                    <ShopNameInput/>
+                </div>
+            </Provider>
+        )
+    }
+}
+
+
+
+    /*constructor(props){
         super(props);
         this.state = {
             title: '',
@@ -59,10 +90,6 @@ export default class Form extends Component{
         let currentValue = e.target.value;
         alert(currentValue);
     };
-
-
-
-
     handleSubmit(e){
         e.preventDefault();
     }
@@ -97,7 +124,7 @@ export default class Form extends Component{
                                 <img src="./img/check.png" className="validationImg"/> :
                                 null
                         }
-                    </div> {/*название магазина*/}
+                    </div> {/!*название магазина*!/}
 
                     <div className="label" style={{height:'35px'}}>
                         <label>Адрес:</label>&nbsp;
@@ -117,7 +144,7 @@ export default class Form extends Component{
                                 <img src="./img/check.png" className="validationImg"/> :
                                 null
                         }
-                    </div>{/*адрес*/}
+                    </div>{/!*адрес*!/}
 
                     <div className="label">
                         <label>Режим работы:</label>
@@ -157,5 +184,4 @@ export default class Form extends Component{
                 </form>
             </div>
         )
-    }
-}
+    }*/
