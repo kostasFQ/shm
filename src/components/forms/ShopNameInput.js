@@ -23,7 +23,9 @@ class ShopNameInput extends Component {
                         <li key={i}>{val}</li>
                     )}
                 </ul>
-
+            </div>
+            <div>
+                testings
             </div>
         )
     }
