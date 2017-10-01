@@ -14,7 +14,6 @@ class ShopNameInput extends Component {
         return (
             <div className="label" style={{height:'35px'}}>
                 <label>Название магазина:&nbsp;</label>
-                111
                 <input type="text"
                        onBlur={this.addShop.bind(this)}
                        ref={(input) => {this.shopNameInput = input}}/>
