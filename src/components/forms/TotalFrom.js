@@ -11,9 +11,6 @@ class Total extends Component {
                 Магазин&nbsp;:&nbsp;{this.props.FormStore.shop}
                 <br/>
                 Адрес&nbsp;:&nbsp;{this.props.FormStore.address}
-                <div>
-                    <button>ADD</button>
-                </div>
 
             </div>
         )

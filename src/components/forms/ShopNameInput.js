@@ -32,14 +32,15 @@ class ShopNameInput extends Component {
 
     render() {
         return (
-            <div className="label" style={{height:'35px'}}>
+            <div className="label">
                 <label>Название магазина:&nbsp;</label>
                 <input type="text"
                        onBlur={this.addShopName}
                        ref={(input) => {this.shopNameInput = input}}/>
                 <br/>
-                {this.state.warning}
-
+                <div style={{color:'red'}}>
+                    {this.state.warning}
+                </div>
             </div>
         )
     }
@@ -47,7 +48,7 @@ class ShopNameInput extends Component {
 
 export default connect(
     state => ({
-        testStore: state
+        localStore: state
     }),
     dispatch => ({
         onAddShop: shopName => {

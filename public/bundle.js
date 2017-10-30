@@ -13585,6 +13585,10 @@ var _ShopAddressInput = __webpack_require__(289);
 
 var _ShopAddressInput2 = _interopRequireDefault(_ShopAddressInput);
 
+var _workTimeInput = __webpack_require__(290);
+
+var _workTimeInput2 = _interopRequireDefault(_workTimeInput);
+
 var _TotalFrom = __webpack_require__(285);
 
 var _TotalFrom2 = _interopRequireDefault(_TotalFrom);
@@ -13635,6 +13639,7 @@ var Form = function (_Component) {
     _createClass(Form, [{
         key: 'render',
         value: function render() {
+            /*store.dispatch({type : 'CLEAR'}); todo uncomm*/
             console.log(store.getState());
             return _react2.default.createElement(
                 _reactRedux.Provider,
@@ -13644,6 +13649,7 @@ var Form = function (_Component) {
                     { className: 'form' },
                     _react2.default.createElement(_ShopNameInput2.default, null),
                     _react2.default.createElement(_ShopAddressInput2.default, null),
+                    _react2.default.createElement(_workTimeInput2.default, null),
                     _react2.default.createElement(_TotalFrom2.default, null)
                 )
             );
@@ -13856,7 +13862,7 @@ var ShopNameInput = function (_Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'label', style: { height: '35px' } },
+                { className: 'label' },
                 _react2.default.createElement(
                     'label',
                     null,
@@ -13868,7 +13874,11 @@ var ShopNameInput = function (_Component) {
                         _this2.shopNameInput = input;
                     } }),
                 _react2.default.createElement('br', null),
-                this.state.warning
+                _react2.default.createElement(
+                    'div',
+                    { style: { color: 'red' } },
+                    this.state.warning
+                )
             );
         }
     }]);
@@ -13878,7 +13888,7 @@ var ShopNameInput = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(function (state) {
     return {
-        testStore: state
+        localStore: state
     };
 }, function (dispatch) {
     return {
@@ -28434,16 +28444,7 @@ var Total = function (_Component) {
                 this.props.FormStore.shop,
                 _react2.default.createElement('br', null),
                 '\u0410\u0434\u0440\u0435\u0441\xA0:\xA0',
-                this.props.FormStore.address,
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement(
-                        'button',
-                        null,
-                        'ADD'
-                    )
-                )
+                this.props.FormStore.address
             );
         }
     }]);
@@ -28574,7 +28575,7 @@ var ShopAddressInput = function (_Component) {
                     } }),
                 _react2.default.createElement(
                     'div',
-                    null,
+                    { style: { color: 'red' } },
                     this.state.warning
                 )
             );
@@ -28595,6 +28596,97 @@ exports.default = (0, _reactRedux.connect)(function (state) {
         }
     };
 })(ShopAddressInput);
+
+/***/ }),
+/* 290 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(94);
+
+__webpack_require__(286);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var WorkTimeInput = function (_Component) {
+    _inherits(WorkTimeInput, _Component);
+
+    function WorkTimeInput() {
+        _classCallCheck(this, WorkTimeInput);
+
+        return _possibleConstructorReturn(this, (WorkTimeInput.__proto__ || Object.getPrototypeOf(WorkTimeInput)).apply(this, arguments));
+    }
+
+    _createClass(WorkTimeInput, [{
+        key: 'render',
+        value: function render() {
+            var week = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
+            return _react2.default.createElement(
+                'div',
+                { className: 'label' },
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    '\u0412\u0440\u0435\u043C\u044F \u0440\u0430\u0431\u043E\u0442\u044B:'
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    week.map(function (i, index) {
+                        return _react2.default.createElement(
+                            'div',
+                            { key: index, className: 'workDays' },
+                            i,
+                            ':',
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement('input', { type: 'text', style: { width: '90%' },
+                                placeholder: '\u043D\u0430\u0447\u0430\u043B\u043E'
+                            }),
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement('input', { type: 'text', style: { width: '90%' },
+                                placeholder: '\u043E\u043A\u043E\u043D\u0447\u0430\u043D\u0438\u0435'
+                            })
+                        );
+                    })
+                )
+            );
+        }
+    }]);
+
+    return WorkTimeInput;
+}(_react.Component);
+/*
+export default connect(
+    state => ({
+        localStore: state
+    }),
+    dispatch => ({
+        onAddWorkTime: workTime => {
+            dispatch(setWorkTime(workTime));
+        }
+    })
+)(WorkTimeInput);*/
+
+
+exports.default = WorkTimeInput;
 
 /***/ })
 /******/ ]);
