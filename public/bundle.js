@@ -28649,7 +28649,7 @@ var WorkTimeInput = function (_Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    null,
+                    { style: { textAlign: 'center' } },
                     week.map(function (i, index) {
                         return _react2.default.createElement(
                             'div',
@@ -28657,6 +28657,10 @@ var WorkTimeInput = function (_Component) {
                             i,
                             ':',
                             _react2.default.createElement('br', null),
+                            _react2.default.createElement('input', { type: 'checkbox', name: '\u0432\u044B\u0445\u043E\u0434\u043D\u043E\u0439' }),
+                            '\u0432\u044B\u0445\u043E\u0434\u043D\u043E\u0439',
+                            _react2.default.createElement('input', { type: 'checkbox', name: '\u0432\u044B\u0445\u043E\u0434\u043D\u043E\u0439' }),
+                            '\u0440\u0430\u0431\u043E\u0447\u0438\u0439',
                             _react2.default.createElement('input', { type: 'text', style: { width: '90%' },
                                 placeholder: '\u043D\u0430\u0447\u0430\u043B\u043E'
                             }),

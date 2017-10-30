@@ -1,10 +1,10 @@
 .totalForm {
     border: 1px solid black;
-    margin-top: 230px;
 }
 .workDays{
     border:1px solid green;
-    width:13%;
+    width: 13.5%;
+    min-width: 95px;
     height: 100px;
     display: inline-block;
     text-align: center;

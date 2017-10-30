@@ -10,11 +10,13 @@ export default class WorkTimeInput extends Component {
         return(
             <div className='label'>
                 <label>Время работы:</label>
-                <div>
+                <div style={{textAlign:'center'}}>
                     {week.map((i, index) =>
                         <div key={index} className='workDays'>
                             {i}:
                             <br/>
+                            <input type="checkbox" name='выходной'/>выходной
+                            <input type="checkbox" name='выходной'/>рабочий
                             <input type="text" style={{width:'90%'}}
                                    placeholder='начало'
                             />
