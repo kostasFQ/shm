@@ -8,7 +8,7 @@ class ShopNameInput extends Component {
 
         this.state = {
             warning:null
-        }
+        };
 
         this.addShopName = this.addShopName.bind(this);
     }
@@ -28,10 +28,6 @@ class ShopNameInput extends Component {
 
             this.setState({warning : null});
         }
-
-
-        /*console.log('addShop!', this.shopNameInput.value);
-        this.props.onAddShop(this.shopNameInput.value);*/
     }
 
     render() {
