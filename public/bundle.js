@@ -13571,6 +13571,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = __webpack_require__(6);
 
 var _react2 = _interopRequireDefault(_react);
@@ -13578,6 +13580,10 @@ var _react2 = _interopRequireDefault(_react);
 var _ShopNameInput = __webpack_require__(134);
 
 var _ShopNameInput2 = _interopRequireDefault(_ShopNameInput);
+
+var _ShopAddressInput = __webpack_require__(289);
+
+var _ShopAddressInput2 = _interopRequireDefault(_ShopAddressInput);
 
 var _TotalFrom = __webpack_require__(285);
 
@@ -13595,21 +13601,24 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-var initialStore = [];
+var initialStore = {};
 
 function shopListStore() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialStore;
     var action = arguments[1];
 
-    if (action.type === 'ADD_FIELD') {
-        return [].concat(_toConsumableArray(state), [action.payload]);
+    if (action.type === 'ADD_SHOP') {
+        return _extends({}, state, {
+            shop: action.payload });
+    }
+    if (action.type === 'ADD_ADDRESS') {
+        return _extends({}, state, {
+            address: action.payload });
+    }
+    if (action.type === 'CLEAR') {
+        return {};
     }
 
-    /*if(action.type === 'CLEAR') {
-        return [];
-    }*/
     return state;
 }
 var store = (0, _redux.createStore)(shopListStore);
@@ -13624,16 +13633,17 @@ var Form = function (_Component) {
     }
 
     _createClass(Form, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             console.log(store.getState());
             return _react2.default.createElement(
                 _reactRedux.Provider,
                 { store: store },
                 _react2.default.createElement(
-                    "div",
-                    { className: "form" },
+                    'div',
+                    { className: 'form' },
                     _react2.default.createElement(_ShopNameInput2.default, null),
+                    _react2.default.createElement(_ShopAddressInput2.default, null),
                     _react2.default.createElement(_TotalFrom2.default, null)
                 )
             );
@@ -13797,6 +13807,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(94);
 
+var _index = __webpack_require__(288);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -13811,14 +13823,34 @@ var ShopNameInput = function (_Component) {
     function ShopNameInput(props) {
         _classCallCheck(this, ShopNameInput);
 
-        return _possibleConstructorReturn(this, (ShopNameInput.__proto__ || Object.getPrototypeOf(ShopNameInput)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (ShopNameInput.__proto__ || Object.getPrototypeOf(ShopNameInput)).call(this, props));
+
+        _this.state = {
+            warning: null
+        };
+
+        _this.addShopName = _this.addShopName.bind(_this);
+        return _this;
     }
 
     _createClass(ShopNameInput, [{
-        key: 'addShop',
-        value: function addShop() {
-            console.log('addShop!', this.shopNameInput.value);
-            this.props.onAddShop(this.shopNameInput.value);
+        key: 'addShopName',
+        value: function addShopName() {
+            var currentValue = this.shopNameInput.value;
+
+            if (currentValue.length < 2) {
+                this.setState({ warning: "название не может содержать менее 2х символов" });
+            } else if (currentValue.search(/\D/) === -1) {
+                this.setState({ warning: "название не может содержать только цифры" });
+            } else {
+                console.log('addAddress', currentValue);
+                this.props.onAddShop(currentValue);
+
+                this.setState({ warning: null });
+            }
+
+            /*console.log('addShop!', this.shopNameInput.value);
+            this.props.onAddShop(this.shopNameInput.value);*/
         }
     }, {
         key: 'render',
@@ -13834,22 +13866,12 @@ var ShopNameInput = function (_Component) {
                     '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430:\xA0'
                 ),
                 _react2.default.createElement('input', { type: 'text',
-                    onBlur: this.addShop.bind(this),
+                    onBlur: this.addShopName,
                     ref: function ref(input) {
                         _this2.shopNameInput = input;
                     } }),
                 _react2.default.createElement('br', null),
-                _react2.default.createElement(
-                    'ul',
-                    null,
-                    this.props.testStore.map(function (val, i) {
-                        return _react2.default.createElement(
-                            'li',
-                            { key: i },
-                            val
-                        );
-                    })
-                )
+                this.state.warning
             );
         }
     }]);
@@ -13864,7 +13886,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 }, function (dispatch) {
     return {
         onAddShop: function onAddShop(shopName) {
-            dispatch({ type: 'SET_SHOPNAME', payload: shopName });
+            dispatch((0, _index.setShopName)(shopName));
         }
     };
 })(ShopNameInput);
@@ -28412,11 +28434,18 @@ var Total = function (_Component) {
                 'div',
                 { className: 'totalForm' },
                 '\u041C\u0430\u0433\u0430\u0437\u0438\u043D\xA0:\xA0',
-                this.props.FormStore[0],
+                this.props.FormStore.shop,
+                _react2.default.createElement('br', null),
+                '\u0410\u0434\u0440\u0435\u0441\xA0:\xA0',
+                this.props.FormStore.address,
                 _react2.default.createElement(
-                    'button',
+                    'div',
                     null,
-                    'ADD'
+                    _react2.default.createElement(
+                        'button',
+                        null,
+                        'ADD'
+                    )
                 )
             );
         }
@@ -28436,6 +28465,143 @@ exports.default = (0, _reactRedux.connect)(function (globalStore) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 287 */,
+/* 288 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.setShopName = setShopName;
+exports.setShopAddressValue = setShopAddressValue;
+var ADD_SHOP = 'ADD_SHOP';
+var ADD_ADDRESS = 'ADD_ADDRESS';
+
+function setShopName(val) {
+    return {
+        type: ADD_SHOP,
+        payload: val
+    };
+}
+
+function setShopAddressValue(val) {
+    return {
+        type: ADD_ADDRESS,
+        payload: val
+    };
+}
+
+/***/ }),
+/* 289 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(94);
+
+var _index = __webpack_require__(288);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ShopAddressInput = function (_Component) {
+    _inherits(ShopAddressInput, _Component);
+
+    function ShopAddressInput(props) {
+        _classCallCheck(this, ShopAddressInput);
+
+        var _this = _possibleConstructorReturn(this, (ShopAddressInput.__proto__ || Object.getPrototypeOf(ShopAddressInput)).call(this, props));
+
+        _this.state = {
+            warning: null
+        };
+
+        _this.addAddress = _this.addAddress.bind(_this);
+        return _this;
+    }
+
+    _createClass(ShopAddressInput, [{
+        key: 'addAddress',
+        value: function addAddress() {
+            var currentValue = this.shopAddressInput.value;
+
+            if (currentValue.length < 2) {
+                this.setState({ warning: "адрес не может содержать менее 2х символов" });
+            } else if (currentValue.search(/\D/) === -1) {
+                this.setState({ warning: "адрес не может содержать только цифры" });
+            } else {
+                console.log('addAddress', currentValue);
+                this.props.onAddAddress(currentValue);
+
+                this.setState({ warning: null });
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'label' },
+                _react2.default.createElement(
+                    'label',
+                    null,
+                    '\u0410\u0434\u0440\u0435\u0441:\xA0'
+                ),
+                _react2.default.createElement('input', { type: 'text',
+                    ref: function ref(input) {
+                        _this2.shopAddressInput = input;
+                    } }),
+                _react2.default.createElement(
+                    'button',
+                    { onClick: this.addAddress },
+                    '\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C'
+                ),
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    this.state.warning
+                )
+            );
+        }
+    }]);
+
+    return ShopAddressInput;
+}(_react.Component);
+
+exports.default = (0, _reactRedux.connect)(function (state) {
+    return {
+        localStore: state
+    };
+}, function (dispatch) {
+    return {
+        onAddAddress: function onAddAddress(address) {
+            dispatch((0, _index.setShopAddressValue)(address));
+        }
+    };
+})(ShopAddressInput);
 
 /***/ })
 /******/ ]);

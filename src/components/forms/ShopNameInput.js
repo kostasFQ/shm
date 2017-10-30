@@ -1,13 +1,37 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import {setShopName} from "../../actions/index";
 
 class ShopNameInput extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            warning:null
+        }
+
+        this.addShopName = this.addShopName.bind(this);
     }
-    addShop() {
-        console.log('addShop!', this.shopNameInput.value);
-        this.props.onAddShop(this.shopNameInput.value);
+
+    addShopName() {
+        let currentValue = this.shopNameInput.value;
+
+        if (currentValue.length < 2) {
+            this.setState({warning : "название не может содержать менее 2х символов"});
+        }
+        else if(currentValue.search(/\D/) === -1) {
+            this.setState({warning : "название не может содержать только цифры"});
+        }
+        else {
+            console.log('addAddress', currentValue);
+            this.props.onAddShop(currentValue);
+
+            this.setState({warning : null});
+        }
+
+
+        /*console.log('addShop!', this.shopNameInput.value);
+        this.props.onAddShop(this.shopNameInput.value);*/
     }
 
     render() {
@@ -15,14 +39,10 @@ class ShopNameInput extends Component {
             <div className="label" style={{height:'35px'}}>
                 <label>Название магазина:&nbsp;</label>
                 <input type="text"
-                       onBlur={this.addShop.bind(this)}
+                       onBlur={this.addShopName}
                        ref={(input) => {this.shopNameInput = input}}/>
                 <br/>
-                <ul>
-                    {this.props.testStore.map( (val, i) =>
-                        <li key={i}>{val}</li>
-                    )}
-                </ul>
+                {this.state.warning}
 
             </div>
         )
@@ -35,7 +55,7 @@ export default connect(
     }),
     dispatch => ({
         onAddShop: shopName => {
-            dispatch({ type: 'SET_SHOPNAME', payload: shopName });
+            dispatch(setShopName(shopName));
         }
     })
 )(ShopNameInput);
