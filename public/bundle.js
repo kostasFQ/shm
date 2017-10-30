@@ -13797,8 +13797,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(94);
 
-var _index = __webpack_require__(288);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -13813,10 +13811,7 @@ var ShopNameInput = function (_Component) {
     function ShopNameInput(props) {
         _classCallCheck(this, ShopNameInput);
 
-        var _this = _possibleConstructorReturn(this, (ShopNameInput.__proto__ || Object.getPrototypeOf(ShopNameInput)).call(this, props));
-
-        _this.addShop = _this.addShop.bind(_this);
-        return _this;
+        return _possibleConstructorReturn(this, (ShopNameInput.__proto__ || Object.getPrototypeOf(ShopNameInput)).call(this, props));
     }
 
     _createClass(ShopNameInput, [{
@@ -13832,22 +13827,28 @@ var ShopNameInput = function (_Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'label' },
+                { className: 'label', style: { height: '35px' } },
                 _react2.default.createElement(
                     'label',
                     null,
-                    '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430 :\xA0'
+                    '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430:\xA0'
                 ),
                 _react2.default.createElement('input', { type: 'text',
-                    style: { width: '40%' },
-                    defaultValue: this.props.testStore[0],
+                    onBlur: this.addShop.bind(this),
                     ref: function ref(input) {
                         _this2.shopNameInput = input;
                     } }),
+                _react2.default.createElement('br', null),
                 _react2.default.createElement(
-                    'button',
-                    { onClick: this.addShop },
-                    '\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C'
+                    'ul',
+                    null,
+                    this.props.testStore.map(function (val, i) {
+                        return _react2.default.createElement(
+                            'li',
+                            { key: i },
+                            val
+                        );
+                    })
                 )
             );
         }
@@ -13863,7 +13864,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
 }, function (dispatch) {
     return {
         onAddShop: function onAddShop(shopName) {
-            dispatch((0, _index.setFieldValue)(shopName));
+            dispatch({ type: 'SET_SHOPNAME', payload: shopName });
         }
     };
 })(ShopNameInput);
@@ -28435,27 +28436,6 @@ exports.default = (0, _reactRedux.connect)(function (globalStore) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 287 */,
-/* 288 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.setFieldValue = setFieldValue;
-var ADD_FIELD = 'ADD_FIELD';
-
-function setFieldValue(val) {
-    return {
-        type: ADD_FIELD,
-        payload: val
-    };
-}
 
 /***/ })
 /******/ ]);
