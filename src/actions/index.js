@@ -1,6 +1,9 @@
-export function setNameShop(name) {
+const ADD_FIELD = 'ADD_FIELD';
+
+
+export function setFieldValue(val) {
     return {
-        type: 'SET_SHOPNAME',
-        payload: name
+        type: ADD_FIELD,
+        payload: val
     }
 }

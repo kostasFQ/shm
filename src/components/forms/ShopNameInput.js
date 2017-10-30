@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import {setFieldValue, setNameShop} from "../../actions/index";
 
 class ShopNameInput extends Component {
     constructor(props) {
         super(props);
+
+        this.addShop = this.addShop.bind(this); 
     }
+
     addShop() {
         console.log('addShop!', this.shopNameInput.value);
         this.props.onAddShop(this.shopNameInput.value);
@@ -12,17 +16,19 @@ class ShopNameInput extends Component {
 
     render() {
         return (
-            <div className="label" style={{height:'35px'}}>
-                <label>Название магазина:&nbsp;</label>
+            <div className="label" >
+                <label>Название магазина :&nbsp;</label>
                 <input type="text"
-                       onBlur={this.addShop.bind(this)}
+                       style={{width:'40%'}}
+                       defaultValue={this.props.testStore[0]}
                        ref={(input) => {this.shopNameInput = input}}/>
-                <br/>
+                <button onClick={this.addShop}>Применить</button>
+                {/*<br/>
                 <ul>
                     {this.props.testStore.map( (val, i) =>
                         <li key={i}>{val}</li>
                     )}
-                </ul>
+                </ul>*/}
 
             </div>
         )
@@ -35,7 +41,7 @@ export default connect(
     }),
     dispatch => ({
         onAddShop: shopName => {
-            dispatch({ type: 'SET_SHOPNAME', payload: shopName });
+            dispatch(setFieldValue(shopName));
         }
     })
 )(ShopNameInput);

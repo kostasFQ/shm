@@ -147,4 +147,7 @@
     font-size: x-large;
     font-family: 'Philosopher';
 
+}.totalForm {
+    border: 1px solid black;
+    margin-top: 100px;
 }

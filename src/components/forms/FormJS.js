@@ -1,16 +1,23 @@
 import React, {Component} from 'react';
 import ShopNameInput from "./ShopNameInput";
+import Total from "./TotalFrom";
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-const initialStore = ['one','two', 'tree'];
+
+
+const initialStore = [];
 
 function shopListStore(state = initialStore, action) {
-    if(action.type === 'ADD_SHOP') {
+    if(action.type === 'ADD_FIELD') {
         return [...state,
             action.payload]
     }
+
+    /*if(action.type === 'CLEAR') {
+        return [];
+    }*/
     return state;
 }
 const store = createStore(shopListStore);
@@ -24,6 +31,7 @@ export default class Form extends Component {
             <Provider store={store}>
                 <div className="form">
                     <ShopNameInput/>
+                    <Total/>
                 </div>
             </Provider>
         )
