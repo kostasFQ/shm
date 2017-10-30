@@ -13843,14 +13843,11 @@ var ShopNameInput = function (_Component) {
             } else if (currentValue.search(/\D/) === -1) {
                 this.setState({ warning: "название не может содержать только цифры" });
             } else {
-                console.log('addAddress', currentValue);
+                console.log('addNameShop', currentValue);
                 this.props.onAddShop(currentValue);
 
                 this.setState({ warning: null });
             }
-
-            /*console.log('addShop!', this.shopNameInput.value);
-            this.props.onAddShop(this.shopNameInput.value);*/
         }
     }, {
         key: 'render',
@@ -28571,14 +28568,10 @@ var ShopAddressInput = function (_Component) {
                     '\u0410\u0434\u0440\u0435\u0441:\xA0'
                 ),
                 _react2.default.createElement('input', { type: 'text',
+                    onBlur: this.addAddress,
                     ref: function ref(input) {
                         _this2.shopAddressInput = input;
                     } }),
-                _react2.default.createElement(
-                    'button',
-                    { onClick: this.addAddress },
-                    '\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C'
-                ),
                 _react2.default.createElement(
                     'div',
                     null,

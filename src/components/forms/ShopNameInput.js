@@ -23,7 +23,7 @@ class ShopNameInput extends Component {
             this.setState({warning : "название не может содержать только цифры"});
         }
         else {
-            console.log('addAddress', currentValue);
+            console.log('addNameShop', currentValue);
             this.props.onAddShop(currentValue);
 
             this.setState({warning : null});

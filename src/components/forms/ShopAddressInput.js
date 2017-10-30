@@ -36,8 +36,9 @@ class ShopAddressInput extends Component{
             <div className='label'>
                 <label>Адрес:&nbsp;</label>
                 <input type="text"
+                       onBlur={this.addAddress}
                        ref={(input) => {this.shopAddressInput = input}}/>
-                <button onClick={this.addAddress}>Применить</button>
+                {/*<button onClick={this.addAddress}>Применить</button>*/}
                 <div>
                     {this.state.warning}
                 </div>
