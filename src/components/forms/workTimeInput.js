@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './CSS/formsCSS.css';
+import Day from "./Day";
 
 
 export default class WorkTimeInput extends Component {
@@ -10,7 +11,12 @@ export default class WorkTimeInput extends Component {
         return(
             <div className='label'>
                 <label>Время работы:</label>
-                <div style={{textAlign:'center'}}>
+                <div>
+                    <Day/>
+                </div>
+
+
+                {/*<div style={{textAlign:'center'}}>
                     {week.map((i, index) =>
                         <div key={index} className='workDays'>
                             {i}:
@@ -26,7 +32,7 @@ export default class WorkTimeInput extends Component {
                             />
                         </div>
                     )}
-                </div>
+                </div>*/}
 
                 {/*<div className='workDays'>
                     Пн:
