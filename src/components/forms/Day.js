@@ -33,6 +33,7 @@ class Day extends Component {
         let startWorkTime = ['08:00', '09:00', '10:00', '11:00', '12:00'];
         let endWorkTime = ['13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
         let shopOptions = ['','поступление товара', 'скидка 10%','скидка 20%', 'скидка 30%', 'скидка 40%', 'скидка 50%', 'скидка 60%', 'скидка 70%', 'скидка 80%', 'скидка 90%'];
+        
 
         return(
             <div className='workDays'>
@@ -47,9 +48,9 @@ class Day extends Component {
                             <div>
                                 <div>
                                     Начало: <br/>
-                                    <select ref={(start) => {this.selectStart = start}}
-                                            defaultValue={this.props.localStore.monday.startTime}>
-                                        {startWorkTime.map( (value, i) =>
+                                    <select ref={(start) => {this.selectStart = start}}>
+                                        {
+                                            startWorkTime.map( (value, i) =>
                                             <option value={value} key={i}>
                                                 {value}
                                             </option>)
@@ -78,7 +79,7 @@ class Day extends Component {
                                         }
                                     </select>
                                 </div>
-                                <button onClick={this.accept}>accept</button>
+                                <button onClick={this.accept}><img src="./img/success.png" alt="V"/></button>
                             </div> : null
                     }
                 </div>
