@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import './CSS/formsCSS.css';
 import Day from "./Day";
 
@@ -7,28 +6,49 @@ import Day from "./Day";
 export default class WorkTimeInput extends Component {
 
     render(){
-        const week = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
+        const week = [
+            {
+                rus:"Понедельник",
+                eng: 'monday'
+            },
+            {
+                rus:"Вторник",
+                eng:'tuesday'
+            },
+            {
+                rus:"Среда",
+                eng:'wednesday'
+            },
+            {
+                rus:"Четверг",
+                eng:'thursday'
+            },
+            {
+                rus:"Пятница",
+                eng:'friday'
+            },
+            {
+                rus:"Суббота",
+                eng:'saturday'
+            },
+            {
+                rus:"Воскресенье",
+                eng:'sunday'
+            }];
         return(
             <div className='label'>
-                <label>Время работы:</label>
+                <label>Время работы</label>
+
                 <div className='tmp'>
-                    {week.map((i, index) =>
-                        <Day dayName = {i} key={index}/>
-                    )}
+                    <div style={{display:'flex'}}>
+                        {week.map((i, index) =>
+                            <Day dayNameRus = {i.rus} key={index}/>
+                        )}
+                    </div>
+
                 </div>
 
             </div>
         )
     }
 }
-/*
-export default connect(
-    state => ({
-        localStore: state
-    }),
-    dispatch => ({
-        onAddWorkTime: workTime => {
-            dispatch(setWorkTime(workTime));
-        }
-    })
-)(WorkTimeInput);*/

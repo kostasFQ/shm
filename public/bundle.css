@@ -151,14 +151,25 @@
     border: 1px solid black;
 }
 .workDays{
-    border:1px solid green;
-    width: 13.5%;
-    min-width: 95px;
+    margin: -1px 0 0 -1px;
+    padding: 2px;
+    border:1px solid black;
     height: 200px;
-    display: inline-block;
+    width: 100px;
+
+    justify-content: flex-start;
+    align-items: inherit;
+
     position: relative;
 }
-.tmp {
-    border:solid red 2px;
-    display: inline-block;
+.tmp{
+    width: 99%;
+    overflow-x: scroll;
+
+    border: 1px solid black;
+    display: flex;
+    justify-content: flex-start;
+}
+select {
+    width: 100%;
 }

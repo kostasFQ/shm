@@ -7530,8 +7530,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.setShopName = setShopName;
 exports.setShopAddressValue = setShopAddressValue;
+exports.selectDayType = selectDayType;
 var ADD_SHOP = 'ADD_SHOP';
 var ADD_ADDRESS = 'ADD_ADDRESS';
+var SELECT_DAY_TYPE = 'SELECT_DAY_TYPE';
 
 function setShopName(val) {
     return {
@@ -7544,6 +7546,13 @@ function setShopAddressValue(val) {
     return {
         type: ADD_ADDRESS,
         payload: val
+    };
+}
+
+function selectDayType(day) {
+    return {
+        type: SELECT_DAY_TYPE,
+        payload: day
     };
 }
 
@@ -13610,6 +13619,10 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(28);
+
+var _index = __webpack_require__(66);
+
 __webpack_require__(40);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -13628,36 +13641,41 @@ var Day = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Day.__proto__ || Object.getPrototypeOf(Day)).call(this, props));
 
+        _this.toggleDay = function () {
+            _this.setState({ dayOff: !_this.state.dayOff });
+            var tmp = _this.selectValue.options[_this.selectValue.selectedIndex].value;
+
+            _this.props.selectDay(tmp);
+            console.log(tmp);
+        };
+
         _this.state = {
             dayOff: true
         };
-
-        _this.toggleDay = _this.toggleDay.bind(_this);
         return _this;
     }
 
     _createClass(Day, [{
-        key: 'toggleDay',
-        value: function toggleDay() {
-            this.setState({ dayOff: !this.state.dayOff });
-        }
-    }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
 
             var startWorkTime = ['08:00', '09:00', '10:00', '11:00', '12:00'];
             var endWorkTime = ['13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
+            var shopOptions = ['', 'поступление товара', 'скидка 10%', 'скидка 20%', 'скидка 30%', 'скидка 40%', 'скидка 50%', 'скидка 60%', 'скидка 70%', 'скидка 80%', 'скидка 90%'];
 
             return _react2.default.createElement(
                 'div',
                 { className: 'workDays' },
-                this.props.dayName,
+                this.props.dayNameRus,
                 _react2.default.createElement(
                     'div',
                     null,
                     _react2.default.createElement(
                         'select',
-                        { name: 'work', onChange: this.toggleDay },
+                        { name: 'work', ref: function ref(sel) {
+                                _this2.selectValue = sel;
+                            }, onChange: this.toggleDay },
                         _react2.default.createElement(
                             'option',
                             { value: 'work' },
@@ -13705,6 +13723,22 @@ var Day = function (_Component) {
                                     );
                                 })
                             )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            null,
+                            '\u0414\u043E\u043F. \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F:',
+                            _react2.default.createElement(
+                                'select',
+                                null,
+                                shopOptions.map(function (value, i) {
+                                    return _react2.default.createElement(
+                                        'option',
+                                        { value: value, key: i },
+                                        value
+                                    );
+                                })
+                            )
                         )
                     ) : null
                 )
@@ -13715,7 +13749,17 @@ var Day = function (_Component) {
     return Day;
 }(_react.Component);
 
-exports.default = Day;
+exports.default = (0, _reactRedux.connect)(function (state) {
+    return {
+        localStore: state
+    };
+}, function (dispatch) {
+    return {
+        selectDay: function selectDay(dayType) {
+            dispatch((0, _index.selectDayType)(dayType));
+        }
+    };
+})(Day);
 
 /***/ }),
 /* 136 */
@@ -13778,6 +13822,13 @@ function shopListStore() {
         return _extends({}, state, {
             address: action.payload });
     }
+    if (action.type == 'SELECT_DAY_TYPE') {
+        return _extends({}, state, {
+            monday: {
+                status: action.payload
+            }
+        });
+    }
     if (action.type === 'CLEAR') {
         return {};
     }
@@ -13817,139 +13868,6 @@ var Form = function (_Component) {
 
     return Form;
 }(_react.Component);
-
-/*constructor(props){
-    super(props);
-    this.state = {
-        title: '',
-        validTitle:'',
-         address:'',
-        validAddress : '',
-          submitDisable: true
-    };
-     this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.validateTitle = this.validateTitle.bind(this);
-     this.onChangeAddress = this.onChangeAddress.bind(this);
-    this.validateAddress = this.validateAddress.bind(this);
-     this.onChangeWorkTime = this.onChangeWorkTime.bind(this);
-     this.handleSubmit = this.handleSubmit.bind(this);
-}
-onChangeTitle(e){
-    let tmp = 'tmp';
-    this.setState({title: e.target.value})
-};
-validateTitle(){
-    if(this.state.title.length < 3){
-        this.setState({validTitle: false});
-    }
-    else {
-        this.setState({validTitle: true});
-    }
-};
-  onChangeAddress(e){
-    this.setState({address : e.target.value})
-};
-validateAddress(){
-    let reg = /[a-zA-z]/;
-    if(this.state.address.length < 3){
-        this.setState({validAddress: false});
-    }
-    else if(this.state.address.search(reg) !== -1){
-        this.setState({validAddress: false});
-    }
-    else {
-        this.setState({validAddress: true});
-    }
-};
-  onChangeWorkTime(e){
-    let currentValue = e.target.value;
-    alert(currentValue);
-};
-handleSubmit(e){
-    e.preventDefault();
-}
-  render(){
-    let hoursArr= ['выходной'];
-    for(let i = 8; i <= 20; i++) {
-        hoursArr.push(i + ':00');
-    }
-     return(
-        <div className="form">
-            <form onSubmit={this.handleSubmit}>
-                <h2 className="formHeader">Добавить магазин</h2>
-                 <div className="label" style={{height:'35px'}}>
-                    <label>Название магазина:&nbsp;</label>
-                    <input
-                        type="text"
-                        value={this.state.title}
-                        onChange={this.onChangeTitle}
-                        onBlur={this.validateTitle}
-                    />
-                    {
-                        this.state.validTitle === false ?
-                        <span style={{color:'red'}}>
-                            <img src="./img/cross.png" className="validationImg"/>
-                            <br/>
-                            <sup>(поле должно содержать не менее 3х символов)</sup>
-                        </span> : this.state.validTitle === true ?
-                            <img src="./img/check.png" className="validationImg"/> :
-                            null
-                    }
-                </div> {/!*название магазина*!/}
-                 <div className="label" style={{height:'35px'}}>
-                    <label>Адрес:</label>&nbsp;
-                    <input
-                        type="text"
-                        value={this.state.street}
-                        onChange={this.onChangeAddress}
-                        onBlur={this.validateAddress}
-                    />
-                    {
-                        this.state.validAddress === false ?
-                            <span style={{color:'red'}}>
-                                <img src="./img/cross.png" className="validationImg"/>
-                                <br/>
-                                <sup>(поле не может быть пустым или содержать английские символы)</sup>
-                            </span> : this.state.validAddress === true ?
-                            <img src="./img/check.png" className="validationImg"/> :
-                            null
-                    }
-                </div>{/!*адрес*!/}
-                 <div className="label">
-                    <label>Режим работы:</label>
-                    <br/>
-                    <div className="dayForm">
-                        <div>Понедельник</div>
-                        <div>с
-                            <select onChange={this.onChangeWorkTime}>
-                                {
-                                    hoursArr.map( (item, index)=>{
-                                        return <option value={item} key={index} name="kst">{item}</option>
-                                    })
-                                }
-                            </select>
-                            <br/>
-                            до
-                            <select>
-                                {
-                                    hoursArr.map( (item, index)=>{
-                                        return <option value={item} key={index}>{item}</option>
-                                    })
-                                }
-                            </select>
-                        </div>
-                    </div>
-                 </div>
-                   <input
-                    type="submit"
-                    value='Добавить'
-                    disabled={this.state.submitDisable}
-                />
-             </form>
-        </div>
-    )
-}*/
-
 
 exports.default = Form;
 
@@ -14239,8 +14157,6 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(28);
-
 __webpack_require__(40);
 
 var _Day = __webpack_require__(135);
@@ -14267,21 +14183,46 @@ var WorkTimeInput = function (_Component) {
     _createClass(WorkTimeInput, [{
         key: 'render',
         value: function render() {
-            var week = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"];
+            var week = [{
+                rus: "Понедельник",
+                eng: 'monday'
+            }, {
+                rus: "Вторник",
+                eng: 'tuesday'
+            }, {
+                rus: "Среда",
+                eng: 'wednesday'
+            }, {
+                rus: "Четверг",
+                eng: 'thursday'
+            }, {
+                rus: "Пятница",
+                eng: 'friday'
+            }, {
+                rus: "Суббота",
+                eng: 'saturday'
+            }, {
+                rus: "Воскресенье",
+                eng: 'sunday'
+            }];
             return _react2.default.createElement(
                 'div',
                 { className: 'label' },
                 _react2.default.createElement(
                     'label',
                     null,
-                    '\u0412\u0440\u0435\u043C\u044F \u0440\u0430\u0431\u043E\u0442\u044B:'
+                    '\u0412\u0440\u0435\u043C\u044F \u0440\u0430\u0431\u043E\u0442\u044B'
                 ),
                 _react2.default.createElement(
                     'div',
                     { className: 'tmp' },
-                    week.map(function (i, index) {
-                        return _react2.default.createElement(_Day2.default, { dayName: i, key: index });
-                    })
+                    _react2.default.createElement(
+                        'div',
+                        { style: { display: 'flex' } },
+                        week.map(function (i, index) {
+                            return _react2.default.createElement(_Day2.default, { dayNameRus: i.rus, key: index });
+                        })
+                    )
                 )
             );
         }
@@ -14289,18 +14230,6 @@ var WorkTimeInput = function (_Component) {
 
     return WorkTimeInput;
 }(_react.Component);
-/*
-export default connect(
-    state => ({
-        localStore: state
-    }),
-    dispatch => ({
-        onAddWorkTime: workTime => {
-            dispatch(setWorkTime(workTime));
-        }
-    })
-)(WorkTimeInput);*/
-
 
 exports.default = WorkTimeInput;
 
