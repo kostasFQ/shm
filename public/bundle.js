@@ -13644,9 +13644,14 @@ var Day = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
+
+            var startWorkTime = ['08:00', '09:00', '10:00', '11:00', '12:00'];
+            var endWorkTime = ['13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
+
             return _react2.default.createElement(
                 'div',
                 { className: 'workDays' },
+                this.props.dayName,
                 _react2.default.createElement(
                     'div',
                     null,
@@ -13667,7 +13672,40 @@ var Day = function (_Component) {
                     this.state.dayOff ? _react2.default.createElement(
                         'div',
                         null,
-                        'work day!'
+                        _react2.default.createElement(
+                            'div',
+                            null,
+                            '\u041D\u0430\u0447\u0430\u043B\u043E: ',
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement(
+                                'select',
+                                null,
+                                startWorkTime.map(function (value, i) {
+                                    return _react2.default.createElement(
+                                        'option',
+                                        { value: value, key: i },
+                                        value
+                                    );
+                                })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            null,
+                            '\u041E\u043A\u043E\u043D\u0447\u0430\u043D\u0438\u0435: ',
+                            _react2.default.createElement('br', null),
+                            _react2.default.createElement(
+                                'select',
+                                null,
+                                endWorkTime.map(function (value, i) {
+                                    return _react2.default.createElement(
+                                        'option',
+                                        { value: value, key: i },
+                                        value
+                                    );
+                                })
+                            )
+                        )
                     ) : null
                 )
             );
@@ -14240,8 +14278,10 @@ var WorkTimeInput = function (_Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    null,
-                    _react2.default.createElement(_Day2.default, null)
+                    { className: 'tmp' },
+                    week.map(function (i, index) {
+                        return _react2.default.createElement(_Day2.default, { dayName: i, key: index });
+                    })
                 )
             );
         }
