@@ -16,11 +16,13 @@ class Day extends Component {
 
     toggleDay = () => {
         this.setState({dayOff: !this.state.dayOff});
-        let status = this.selectValue.options[this.selectValue.selectedIndex].value;
-        let day = this.props.dayNameEng;
+        const status = this.selectValue.options[this.selectValue.selectedIndex].value;
+        const day = this.props.dayNameEng;
+        const startTime = this.selectStart.options[this.selectStart.selectedIndex].value;
 
-        this.props.selectDay(status, day);
-        console.log(day + ' ' + status);
+
+        this.props.selectDay(day, status, startTime);
+        console.log(day + ' ' + status + 'start - ' + startTime);
     };
 
     render(){
@@ -42,7 +44,7 @@ class Day extends Component {
                             <div>
                                 <div>
                                     Начало: <br/>
-                                    <select>
+                                    <select ref={(start) => {this.selectStart = start}}>
                                         {startWorkTime.map( (value, i) =>
                                             <option value={value} key={i}>
                                                 {value}
@@ -84,8 +86,8 @@ export default connect(
         localStore: state
     }),
     dispatch => ({
-        selectDay: (status) => {
-            dispatch(selectDayType(status))
+        selectDay: (day, status, startTime) => {
+            dispatch(selectDayType(day, status, startTime))
         }
     })
 )(Day);

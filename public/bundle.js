@@ -7549,12 +7549,13 @@ function setShopAddressValue(val) {
     };
 }
 
-function selectDayType(status, day) {
+function selectDayType(day, status, startTime) {
     return {
         type: SELECT_DAY_TYPE,
         payload: {
             day: day,
-            status: status
+            status: status,
+            startTime: startTime
         }
     };
 }
@@ -13648,9 +13649,10 @@ var Day = function (_Component) {
             _this.setState({ dayOff: !_this.state.dayOff });
             var status = _this.selectValue.options[_this.selectValue.selectedIndex].value;
             var day = _this.props.dayNameEng;
+            var startTime = _this.selectStart.options[_this.selectStart.selectedIndex].value;
 
-            _this.props.selectDay(status, day);
-            console.log(day + ' ' + status);
+            _this.props.selectDay(day, status, startTime);
+            console.log(day + ' ' + status + 'start - ' + startTime);
         };
 
         _this.state = {
@@ -13702,7 +13704,9 @@ var Day = function (_Component) {
                             _react2.default.createElement('br', null),
                             _react2.default.createElement(
                                 'select',
-                                null,
+                                { ref: function ref(start) {
+                                        _this2.selectStart = start;
+                                    } },
                                 startWorkTime.map(function (value, i) {
                                     return _react2.default.createElement(
                                         'option',
@@ -13760,8 +13764,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     };
 }, function (dispatch) {
     return {
-        selectDay: function selectDay(status) {
-            dispatch((0, _index.selectDayType)(status));
+        selectDay: function selectDay(day, status, startTime) {
+            dispatch((0, _index.selectDayType)(day, status, startTime));
         }
     };
 })(Day);
@@ -13813,7 +13817,17 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var initialStore = {};
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var initialStore = {
+    shop: null,
+    address: null,
+    monday: {
+        status: null,
+        startWork: null,
+        endWork: null
+    }
+};
 
 function shopListStore() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialStore;
@@ -13828,12 +13842,10 @@ function shopListStore() {
             address: action.payload });
     }
     if (action.type == 'SELECT_DAY_TYPE') {
-        return _extends({}, state, {
-            monday: {
-                status: action.payload
-
-            }
-        });
+        return _extends({}, state, _defineProperty({}, action.payload.day, {
+            status: action.payload.status,
+            startTime: action.payload.startTime
+        }));
     }
     if (action.type === 'CLEAR') {
         return {};

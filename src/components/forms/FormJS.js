@@ -9,7 +9,15 @@ import { Provider } from 'react-redux';
 
 
 
-const initialStore = {};
+const initialStore = {
+    shop:null,
+    address:null,
+    monday: {
+        status:null,
+        startWork:null,
+        endWork:null
+    }
+};
 
 function shopListStore(state = initialStore, action) {
     if(action.type === 'ADD_SHOP') {
@@ -23,9 +31,9 @@ function shopListStore(state = initialStore, action) {
     if(action.type == 'SELECT_DAY_TYPE') {
         return {
             ...state,
-            monday: {
-                status: action.payload
-
+            [action.payload.day]: {
+                status : action.payload.status,
+                startTime : action.payload.startTime
             }
         };
     }
