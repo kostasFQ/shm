@@ -7549,10 +7549,13 @@ function setShopAddressValue(val) {
     };
 }
 
-function selectDayType(day) {
+function selectDayType(status, day) {
     return {
         type: SELECT_DAY_TYPE,
-        payload: day
+        payload: {
+            day: day,
+            status: status
+        }
     };
 }
 
@@ -13643,14 +13646,16 @@ var Day = function (_Component) {
 
         _this.toggleDay = function () {
             _this.setState({ dayOff: !_this.state.dayOff });
-            var tmp = _this.selectValue.options[_this.selectValue.selectedIndex].value;
+            var status = _this.selectValue.options[_this.selectValue.selectedIndex].value;
+            var day = _this.props.dayNameEng;
 
-            _this.props.selectDay(tmp);
-            console.log(tmp);
+            _this.props.selectDay(status, day);
+            console.log(day + ' ' + status);
         };
 
         _this.state = {
             dayOff: true
+
         };
         return _this;
     }
@@ -13755,8 +13760,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     };
 }, function (dispatch) {
     return {
-        selectDay: function selectDay(dayType) {
-            dispatch((0, _index.selectDayType)(dayType));
+        selectDay: function selectDay(status) {
+            dispatch((0, _index.selectDayType)(status));
         }
     };
 })(Day);
@@ -13826,6 +13831,7 @@ function shopListStore() {
         return _extends({}, state, {
             monday: {
                 status: action.payload
+
             }
         });
     }
@@ -14220,7 +14226,7 @@ var WorkTimeInput = function (_Component) {
                         'div',
                         { style: { display: 'flex' } },
                         week.map(function (i, index) {
-                            return _react2.default.createElement(_Day2.default, { dayNameRus: i.rus, key: index });
+                            return _react2.default.createElement(_Day2.default, { dayNameRus: i.rus, dayNameEng: i.eng, key: index });
                         })
                     )
                 )

@@ -25,6 +25,7 @@ function shopListStore(state = initialStore, action) {
             ...state,
             monday: {
                 status: action.payload
+
             }
         };
     }

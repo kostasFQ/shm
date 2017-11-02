@@ -1,6 +1,4 @@
-const initialState = {
-  shopName: 'test shop'
-};
+const initialState = {};
 
 export default function pageStore( state = initialState, action ) {
 

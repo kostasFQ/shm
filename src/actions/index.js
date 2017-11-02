@@ -17,9 +17,12 @@ export function setShopAddressValue(val) {
     }
 }
 
-export function selectDayType (day) {
+export function selectDayType (status, day) {
     return {
         type: SELECT_DAY_TYPE,
-        payload: day
+        payload: {
+            day: day,
+            status: status
+        }
     }
 }

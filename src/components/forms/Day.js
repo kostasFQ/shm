@@ -10,15 +10,17 @@ class Day extends Component {
 
         this.state = {
             dayOff : true
+
         };
     }
 
     toggleDay = () => {
         this.setState({dayOff: !this.state.dayOff});
-        let tmp = this.selectValue.options[this.selectValue.selectedIndex].value;
+        let status = this.selectValue.options[this.selectValue.selectedIndex].value;
+        let day = this.props.dayNameEng;
 
-        this.props.selectDay(tmp);
-        console.log(tmp);
+        this.props.selectDay(status, day);
+        console.log(day + ' ' + status);
     };
 
     render(){
@@ -82,8 +84,8 @@ export default connect(
         localStore: state
     }),
     dispatch => ({
-        selectDay: dayType => {
-            dispatch(selectDayType(dayType))
+        selectDay: (status) => {
+            dispatch(selectDayType(status))
         }
     })
 )(Day);

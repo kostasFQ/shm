@@ -42,7 +42,7 @@ export default class WorkTimeInput extends Component {
                 <div className='tmp'>
                     <div style={{display:'flex'}}>
                         {week.map((i, index) =>
-                            <Day dayNameRus = {i.rus} key={index}/>
+                            <Day dayNameRus = {i.rus}  dayNameEng = {i.eng} key={index}/>
                         )}
                     </div>
 
