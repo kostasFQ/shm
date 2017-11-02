@@ -9,20 +9,23 @@ class Day extends Component {
         super(props);
 
         this.state = {
-            dayOff : true
-
+            dayOff : false
         };
     }
 
-    toggleDay = () => {
+    toggleVisible = () => {
         this.setState({dayOff: !this.state.dayOff});
+    };
+
+    accept = () => {
         const status = this.selectValue.options[this.selectValue.selectedIndex].value;
         const day = this.props.dayNameEng;
         const startTime = this.selectStart.options[this.selectStart.selectedIndex].value;
+        const endTime = this.selectEnd.options[this.selectEnd.selectedIndex].value;
+        const additionalOptions = this.selectAdditional.options[this.selectAdditional.selectedIndex].value;
 
-
-        this.props.selectDay(day, status, startTime);
-        console.log(day + ' ' + status + 'start - ' + startTime);
+        this.props.selectDay(day, status, startTime, endTime, additionalOptions);
+        console.log(day + ' ' + status + 'start - ' + startTime + ' - ' + endTime);
     };
 
     render(){
@@ -35,16 +38,17 @@ class Day extends Component {
             <div className='workDays'>
                 {this.props.dayNameRus}
                 <div>
-                    <select name="work" ref={(sel) => {this.selectValue = sel}}  onChange={this.toggleDay}>
-                        <option value='work'>Рабочий</option>
-                        <option value='dayOff'>Выходной</option>
+                    <select name="work" ref={(sel) => {this.selectValue = sel}} onChange={this.toggleVisible}>
+                        <option value='work'>Выходной</option>
+                        <option value='dayOff'>Рабочий</option>
                     </select>
                     {
                         this.state.dayOff ?
                             <div>
                                 <div>
                                     Начало: <br/>
-                                    <select ref={(start) => {this.selectStart = start}}>
+                                    <select ref={(start) => {this.selectStart = start}}
+                                            defaultValue={this.props.localStore.monday.startTime}>
                                         {startWorkTime.map( (value, i) =>
                                             <option value={value} key={i}>
                                                 {value}
@@ -54,7 +58,7 @@ class Day extends Component {
                                 </div>
                                 <div>
                                     Окончание: <br/>
-                                    <select>
+                                    <select ref={(end) => {this.selectEnd = end}}>
                                         {endWorkTime.map( (value, i) =>
                                             <option value={value} key={i}>
                                                 {value}
@@ -64,7 +68,7 @@ class Day extends Component {
                                 </div>
                                 <div>
                                     Доп. информация:
-                                    <select>
+                                    <select ref={(additional) => {this.selectAdditional = additional}}>
                                         {
                                             shopOptions.map( (value, i) =>
                                                 <option value={value} key={i}>
@@ -74,6 +78,7 @@ class Day extends Component {
                                         }
                                     </select>
                                 </div>
+                                <button onClick={this.accept}>accept</button>
                             </div> : null
                     }
                 </div>
@@ -86,8 +91,8 @@ export default connect(
         localStore: state
     }),
     dispatch => ({
-        selectDay: (day, status, startTime) => {
-            dispatch(selectDayType(day, status, startTime))
+        selectDay: (day, status, startTime, endTime, additionalOptions) => {
+            dispatch(selectDayType(day, status, startTime, endTime, additionalOptions))
         }
     })
 )(Day);

@@ -7549,13 +7549,15 @@ function setShopAddressValue(val) {
     };
 }
 
-function selectDayType(day, status, startTime) {
+function selectDayType(day, status, startTime, endTime, additionalOptions) {
     return {
         type: SELECT_DAY_TYPE,
         payload: {
             day: day,
             status: status,
-            startTime: startTime
+            startTime: startTime,
+            endTime: endTime,
+            additionalOptions: additionalOptions
         }
     };
 }
@@ -13645,19 +13647,23 @@ var Day = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Day.__proto__ || Object.getPrototypeOf(Day)).call(this, props));
 
-        _this.toggleDay = function () {
+        _this.toggleVisible = function () {
             _this.setState({ dayOff: !_this.state.dayOff });
+        };
+
+        _this.accept = function () {
             var status = _this.selectValue.options[_this.selectValue.selectedIndex].value;
             var day = _this.props.dayNameEng;
             var startTime = _this.selectStart.options[_this.selectStart.selectedIndex].value;
+            var endTime = _this.selectEnd.options[_this.selectEnd.selectedIndex].value;
+            var additionalOptions = _this.selectAdditional.options[_this.selectAdditional.selectedIndex].value;
 
-            _this.props.selectDay(day, status, startTime);
-            console.log(day + ' ' + status + 'start - ' + startTime);
+            _this.props.selectDay(day, status, startTime, endTime, additionalOptions);
+            console.log(day + ' ' + status + 'start - ' + startTime + ' - ' + endTime);
         };
 
         _this.state = {
-            dayOff: true
-
+            dayOff: false
         };
         return _this;
     }
@@ -13682,16 +13688,16 @@ var Day = function (_Component) {
                         'select',
                         { name: 'work', ref: function ref(sel) {
                                 _this2.selectValue = sel;
-                            }, onChange: this.toggleDay },
+                            }, onChange: this.toggleVisible },
                         _react2.default.createElement(
                             'option',
                             { value: 'work' },
-                            '\u0420\u0430\u0431\u043E\u0447\u0438\u0439'
+                            '\u0412\u044B\u0445\u043E\u0434\u043D\u043E\u0439'
                         ),
                         _react2.default.createElement(
                             'option',
                             { value: 'dayOff' },
-                            '\u0412\u044B\u0445\u043E\u0434\u043D\u043E\u0439'
+                            '\u0420\u0430\u0431\u043E\u0447\u0438\u0439'
                         )
                     ),
                     this.state.dayOff ? _react2.default.createElement(
@@ -13706,7 +13712,8 @@ var Day = function (_Component) {
                                 'select',
                                 { ref: function ref(start) {
                                         _this2.selectStart = start;
-                                    } },
+                                    },
+                                    defaultValue: this.props.localStore.monday.startTime },
                                 startWorkTime.map(function (value, i) {
                                     return _react2.default.createElement(
                                         'option',
@@ -13723,7 +13730,9 @@ var Day = function (_Component) {
                             _react2.default.createElement('br', null),
                             _react2.default.createElement(
                                 'select',
-                                null,
+                                { ref: function ref(end) {
+                                        _this2.selectEnd = end;
+                                    } },
                                 endWorkTime.map(function (value, i) {
                                     return _react2.default.createElement(
                                         'option',
@@ -13739,7 +13748,9 @@ var Day = function (_Component) {
                             '\u0414\u043E\u043F. \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F:',
                             _react2.default.createElement(
                                 'select',
-                                null,
+                                { ref: function ref(additional) {
+                                        _this2.selectAdditional = additional;
+                                    } },
                                 shopOptions.map(function (value, i) {
                                     return _react2.default.createElement(
                                         'option',
@@ -13748,6 +13759,11 @@ var Day = function (_Component) {
                                     );
                                 })
                             )
+                        ),
+                        _react2.default.createElement(
+                            'button',
+                            { onClick: this.accept },
+                            'accept'
                         )
                     ) : null
                 )
@@ -13764,8 +13780,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     };
 }, function (dispatch) {
     return {
-        selectDay: function selectDay(day, status, startTime) {
-            dispatch((0, _index.selectDayType)(day, status, startTime));
+        selectDay: function selectDay(day, status, startTime, endTime, additionalOptions) {
+            dispatch((0, _index.selectDayType)(day, status, startTime, endTime, additionalOptions));
         }
     };
 })(Day);
@@ -13823,10 +13839,19 @@ var initialStore = {
     shop: null,
     address: null,
     monday: {
-        status: null,
-        startWork: null,
-        endWork: null
-    }
+        status: 'dayOff',
+        startTime: '08:00',
+        endTime: '17:00',
+        additionalOptions: '',
+        id: 1
+
+    },
+    tuesday: { status: 'dayOff' },
+    wednesday: { status: 'dayOff' },
+    thursday: { status: 'dayOff' },
+    friday: { status: 'dayOff' },
+    saturday: { status: 'dayOff' },
+    sunday: { status: 'dayOff' }
 };
 
 function shopListStore() {
@@ -13844,7 +13869,9 @@ function shopListStore() {
     if (action.type == 'SELECT_DAY_TYPE') {
         return _extends({}, state, _defineProperty({}, action.payload.day, {
             status: action.payload.status,
-            startTime: action.payload.startTime
+            startTime: action.payload.startTime,
+            endTime: action.payload.endTime,
+            additionalOptions: action.payload.additionalOptions
         }));
     }
     if (action.type === 'CLEAR') {

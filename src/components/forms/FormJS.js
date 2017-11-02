@@ -13,10 +13,19 @@ const initialStore = {
     shop:null,
     address:null,
     monday: {
-        status:null,
-        startWork:null,
-        endWork:null
-    }
+        status:'dayOff',
+        startTime:'08:00',
+        endTime: '17:00',
+        additionalOptions:'',
+        id:1
+
+    },
+    tuesday: {status:'dayOff'},
+    wednesday: {status:'dayOff'},
+    thursday: {status:'dayOff'},
+    friday: {status:'dayOff'},
+    saturday: {status:'dayOff'},
+    sunday: {status:'dayOff'}
 };
 
 function shopListStore(state = initialStore, action) {
@@ -33,7 +42,9 @@ function shopListStore(state = initialStore, action) {
             ...state,
             [action.payload.day]: {
                 status : action.payload.status,
-                startTime : action.payload.startTime
+                startTime : action.payload.startTime,
+                endTime : action.payload.endTime,
+                additionalOptions: action.payload.additionalOptions
             }
         };
     }
