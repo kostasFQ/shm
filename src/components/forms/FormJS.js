@@ -11,11 +11,7 @@ import { Provider } from 'react-redux';
 
 const initialStore = {
     shop:null,
-    address:{
-        district:null,
-        street:null,
-        building:null,
-    },
+    address:{},
     Mo_Fr : {},
     saturday: {},
     sunday: {}
@@ -31,7 +27,9 @@ function shopListStore(state = initialStore, action) {
             address: {
                 district:action.payload.district,
                 street:action.payload.street,
-                building:action.payload.building
+                building:action.payload.building,
+                latitude:action.payload.latitude,
+                longitude:action.payload.longitude
             }
         }
     }

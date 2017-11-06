@@ -5298,13 +5298,15 @@ function setShopName(val) {
     };
 }
 
-function setShopAddressValue(building, street, district) {
+function setShopAddressValue(building, street, district, latitude, longitude) {
     return {
         type: ADD_ADDRESS,
         payload: {
             building: building,
             street: street,
-            district: district
+            district: district,
+            latitude: latitude,
+            longitude: longitude
         }
     };
 }
@@ -13833,11 +13835,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var initialStore = {
     shop: null,
-    address: {
-        district: null,
-        street: null,
-        building: null
-    },
+    address: {},
     Mo_Fr: {},
     saturday: {},
     sunday: {}
@@ -13856,7 +13854,9 @@ function shopListStore() {
             address: {
                 district: action.payload.district,
                 street: action.payload.street,
-                building: action.payload.building
+                building: action.payload.building,
+                latitude: action.payload.latitude,
+                longitude: action.payload.longitude
             }
         });
     }
@@ -13958,10 +13958,12 @@ var ShopAddressInput = function (_Component) {
         _this.addAddress = function () {
             var currentValue = _this.shopAddressInput.value;
             var wordsArr = currentValue.split(/[,]/).reverse();
-            var building = wordsArr[0];
-            var street = wordsArr[1];
+            var building = wordsArr[0].substring(1);
+            var street = wordsArr[1].substring(1);
             var district = wordsArr[2];
             var coords = void 0;
+            var latitude = void 0;
+            var longitude = void 0;
 
             if (currentValue.length < 10) {
                 _this.setState({ warning: "недостаточное количество данных" });
@@ -13972,12 +13974,17 @@ var ShopAddressInput = function (_Component) {
             } else if (wordsArr.length < 3) {
                 _this.setState({ warning: "возможно не верно введены данные" });
             } else {
-                _this.props.onAddAddress(building, street, district);
-                _this.setState({ warning: null });
                 coords = _axios2.default.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Брест,' + street + ',' + building).then(function (response) {
                     coords = response.data.response.GeoObjectCollection.featureMember["0"].GeoObject.Point.pos.split(' ');
                     console.log(coords);
-                }).catch(function (error) {
+                    latitude = coords[0];
+                    longitude = coords[1];
+
+                    console.log(latitude);
+
+                    _this.props.onAddAddress(building, street, district, latitude, longitude);
+                    _this.setState({ warning: null });
+                }).then().catch(function (error) {
                     return console.log(error);
                 });
             }
@@ -14028,8 +14035,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     };
 }, function (dispatch) {
     return {
-        onAddAddress: function onAddAddress(building, street, district) {
-            dispatch((0, _index.setShopAddressValue)(building, street, district));
+        onAddAddress: function onAddAddress(building, street, district, latitude, longitude) {
+            dispatch((0, _index.setShopAddressValue)(building, street, district, latitude, longitude));
         }
     };
 })(ShopAddressInput);
