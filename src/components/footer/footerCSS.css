@@ -19,7 +19,7 @@
     z-index: 100;
     text-align: left;
     padding-left: 1%;
-    min-width: 230px;
+    min-width: 300px;
 }
 .btn{
     margin: auto;
@@ -38,7 +38,6 @@
     background-color: red;
 }
 .label{
-    border: 1px solid black;
     padding: 1%;
     width: 96%;
 }

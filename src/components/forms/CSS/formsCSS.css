@@ -1,26 +1,24 @@
-.totalForm {
-    border: 1px solid black;
-}
 .workDays{
-    margin: -1px 0 0 -1px;
     padding: 2px;
-    border:1px solid black;
     height: 200px;
-    width: 100px;
-
+    width: 33%;
+    border: solid 1px lightgray;
     justify-content: flex-start;
     align-items: inherit;
 
     position: relative;
 }
-.tmp{
-    width: 99%;
-    overflow-x: scroll;
-
-    border: 1px solid black;
-    display: flex;
-    justify-content: flex-start;
-}
 select {
-    width: 100%;
+    width: 98%;
+}
+.btn_place {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    width: 98%;
+}
+button {
+    width: 64px;
+    height: 32px;
 }

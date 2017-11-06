@@ -6,47 +6,21 @@ import Day from "./Day";
 export default class WorkTimeInput extends Component {
 
     render(){
-        const week = [
-            {
-                rus:"Понедельник",
-                eng: 'monday'
-            },
-            {
-                rus:"Вторник",
-                eng:'tuesday'
-            },
-            {
-                rus:"Среда",
-                eng:'wednesday'
-            },
-            {
-                rus:"Четверг",
-                eng:'thursday'
-            },
-            {
-                rus:"Пятница",
-                eng:'friday'
-            },
-            {
-                rus:"Суббота",
-                eng:'saturday'
-            },
-            {
-                rus:"Воскресенье",
-                eng:'sunday'
-            }];
+        const workSchedule = [ {rus:'Пн-Пт', eng:'Mo_Fr'}, {rus: 'суббота', eng: 'saturday'}, {rus: 'воскресенье', eng:'sunday' } ];
         return(
             <div className='label'>
-                <label>Время работы</label>
+                <fieldset>
+                    <legend>Время работы</legend>
+                    <div>
 
-                <div className='tmp'>
-                    <div style={{display:'flex'}}>
-                        {week.map((i, index) =>
-                            <Day dayNameRus = {i.rus}  dayNameEng = {i.eng} key={index}/>
-                        )}
+                        <div style={{display:'flex'}}>
+                            {workSchedule.map((el, index) =>
+                                <Day dayNameRus = {el.rus} key={index} dayNameEng = {el.eng}/>
+                            )}
+                        </div>
                     </div>
+                </fieldset>
 
-                </div>
 
             </div>
         )

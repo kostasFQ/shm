@@ -12,20 +12,9 @@ import { Provider } from 'react-redux';
 const initialStore = {
     shop:null,
     address:null,
-    monday: {
-        status:'dayOff',
-        startTime:'08:00',
-        endTime: '17:00',
-        additionalOptions:'',
-        id:1
-
-    },
-    tuesday: {status:'dayOff'},
-    wednesday: {status:'dayOff'},
-    thursday: {status:'dayOff'},
-    friday: {status:'dayOff'},
-    saturday: {status:'dayOff'},
-    sunday: {status:'dayOff'}
+    Mo_Fr : {    },
+    saturday: {},
+    sunday: {}
 };
 
 function shopListStore(state = initialStore, action) {

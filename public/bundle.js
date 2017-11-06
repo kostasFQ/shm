@@ -13654,16 +13654,26 @@ var Day = function (_Component) {
         _this.accept = function () {
             var status = _this.selectValue.options[_this.selectValue.selectedIndex].value;
             var day = _this.props.dayNameEng;
-            var startTime = _this.selectStart.options[_this.selectStart.selectedIndex].value;
-            var endTime = _this.selectEnd.options[_this.selectEnd.selectedIndex].value;
-            var additionalOptions = _this.selectAdditional.options[_this.selectAdditional.selectedIndex].value;
+            var startTime = void 0;
+            var endTime = void 0;
+            var additionalOptions = void 0;
 
+            if (status === 'dayOff') {
+                startTime = '';
+                endTime = '';
+                additionalOptions = '';
+            } else {
+                startTime = _this.selectStart.options[_this.selectStart.selectedIndex].value;
+                endTime = _this.selectEnd.options[_this.selectEnd.selectedIndex].value;
+                additionalOptions = _this.selectAdditional.options[_this.selectAdditional.selectedIndex].value;
+            }
             _this.props.selectDay(day, status, startTime, endTime, additionalOptions);
+
             console.log(day + ' ' + status + 'start - ' + startTime + ' - ' + endTime);
         };
 
         _this.state = {
-            dayOff: false
+            dayOff: true
         };
         return _this;
     }
@@ -13692,12 +13702,12 @@ var Day = function (_Component) {
                         _react2.default.createElement(
                             'option',
                             { value: 'work' },
-                            '\u0412\u044B\u0445\u043E\u0434\u043D\u043E\u0439'
+                            '\u0420\u0430\u0431\u043E\u0447\u0438\u0439'
                         ),
                         _react2.default.createElement(
                             'option',
                             { value: 'dayOff' },
-                            '\u0420\u0430\u0431\u043E\u0447\u0438\u0439'
+                            '\u0412\u044B\u0445\u043E\u0434\u043D\u043E\u0439'
                         )
                     ),
                     this.state.dayOff ? _react2.default.createElement(
@@ -13712,7 +13722,7 @@ var Day = function (_Component) {
                                 'select',
                                 { ref: function ref(start) {
                                         _this2.selectStart = start;
-                                    } },
+                                    }, defaultValue: this.props.localStore.Mo_Fr.startTime },
                                 startWorkTime.map(function (value, i) {
                                     return _react2.default.createElement(
                                         'option',
@@ -13758,13 +13768,17 @@ var Day = function (_Component) {
                                     );
                                 })
                             )
-                        ),
-                        _react2.default.createElement(
-                            'button',
-                            { onClick: this.accept },
-                            _react2.default.createElement('img', { src: './img/success.png', alt: 'V' })
                         )
                     ) : null
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'btn_place' },
+                    _react2.default.createElement(
+                        'button',
+                        { onClick: this.accept },
+                        _react2.default.createElement('img', { src: './img/success.png', alt: 'OK' })
+                    )
                 )
             );
         }
@@ -13837,20 +13851,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var initialStore = {
     shop: null,
     address: null,
-    monday: {
-        status: 'dayOff',
-        startTime: '08:00',
-        endTime: '17:00',
-        additionalOptions: '',
-        id: 1
-
-    },
-    tuesday: { status: 'dayOff' },
-    wednesday: { status: 'dayOff' },
-    thursday: { status: 'dayOff' },
-    friday: { status: 'dayOff' },
-    saturday: { status: 'dayOff' },
-    sunday: { status: 'dayOff' }
+    Mo_Fr: {},
+    saturday: {},
+    sunday: {}
 };
 
 function shopListStore() {
@@ -14165,12 +14168,42 @@ var Total = function (_Component) {
         value: function render() {
             return _react2.default.createElement(
                 'div',
-                { className: 'totalForm' },
-                '\u041C\u0430\u0433\u0430\u0437\u0438\u043D\xA0:\xA0',
-                this.props.FormStore.shop,
-                _react2.default.createElement('br', null),
-                '\u0410\u0434\u0440\u0435\u0441\xA0:\xA0',
-                this.props.FormStore.address
+                { className: 'label' },
+                _react2.default.createElement(
+                    'fieldset',
+                    null,
+                    _react2.default.createElement(
+                        'legend',
+                        null,
+                        '\u0414\u0430\u043D\u043D\u044B\u0435 \u0434\u043B\u044F \u043E\u0442\u043F\u0440\u0430\u0432\u043A\u0438'
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        '\u041C\u0430\u0433\u0430\u0437\u0438\u043D\xA0:\xA0',
+                        this.props.FormStore.shop
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        '\u0410\u0434\u0440\u0435\u0441\xA0:\xA0',
+                        this.props.FormStore.address
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        null,
+                        '\u0412\u0440\u0435\u043C\u044F \u0440\u0430\u0431\u043E\u0442\u044B\xA0:',
+                        _react2.default.createElement('br', null),
+                        '\u041F\u043E\u043D\u0435\u0434\u0435\u043B\u044C\u043D\u0438\u043A-\u041F\u044F\u0442\u043D\u0438\u0446\u0430\xA0:\xA0',
+                        this.props.FormStore.Mo_Fr.status === 'work' ? this.props.FormStore.Mo_Fr.startTime + ' - ' + this.props.FormStore.Mo_Fr.endTime : this.props.FormStore.Mo_Fr.status === 'dayOff' ? 'Выходной' : ' ',
+                        _react2.default.createElement('br', null),
+                        '\u0421\u0443\u0431\u0431\u043E\u0442\u0430\xA0:\xA0',
+                        this.props.FormStore.saturday.status === 'work' ? this.props.FormStore.saturday.startTime + ' - ' + this.props.FormStore.saturday.endTime : this.props.FormStore.saturday.status === 'dayOff' ? 'Выходной' : ' ',
+                        _react2.default.createElement('br', null),
+                        '\u0412\u043E\u0441\u043A\u0440\u0435\u0441\u0435\u043D\u044C\u0435\xA0:\xA0',
+                        this.props.FormStore.sunday.status === 'work' ? this.props.FormStore.sunday.startTime + ' - ' + this.props.FormStore.sunday.endTime : this.props.FormStore.sunday.status === 'dayOff' ? 'Выходной' : ' '
+                    )
+                )
             );
         }
     }]);
@@ -14227,45 +14260,28 @@ var WorkTimeInput = function (_Component) {
     _createClass(WorkTimeInput, [{
         key: 'render',
         value: function render() {
-            var week = [{
-                rus: "Понедельник",
-                eng: 'monday'
-            }, {
-                rus: "Вторник",
-                eng: 'tuesday'
-            }, {
-                rus: "Среда",
-                eng: 'wednesday'
-            }, {
-                rus: "Четверг",
-                eng: 'thursday'
-            }, {
-                rus: "Пятница",
-                eng: 'friday'
-            }, {
-                rus: "Суббота",
-                eng: 'saturday'
-            }, {
-                rus: "Воскресенье",
-                eng: 'sunday'
-            }];
+            var workSchedule = [{ rus: 'Пн-Пт', eng: 'Mo_Fr' }, { rus: 'суббота', eng: 'saturday' }, { rus: 'воскресенье', eng: 'sunday' }];
             return _react2.default.createElement(
                 'div',
                 { className: 'label' },
                 _react2.default.createElement(
-                    'label',
+                    'fieldset',
                     null,
-                    '\u0412\u0440\u0435\u043C\u044F \u0440\u0430\u0431\u043E\u0442\u044B'
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'tmp' },
+                    _react2.default.createElement(
+                        'legend',
+                        null,
+                        '\u0412\u0440\u0435\u043C\u044F \u0440\u0430\u0431\u043E\u0442\u044B'
+                    ),
                     _react2.default.createElement(
                         'div',
-                        { style: { display: 'flex' } },
-                        week.map(function (i, index) {
-                            return _react2.default.createElement(_Day2.default, { dayNameRus: i.rus, dayNameEng: i.eng, key: index });
-                        })
+                        null,
+                        _react2.default.createElement(
+                            'div',
+                            { style: { display: 'flex' } },
+                            workSchedule.map(function (el, index) {
+                                return _react2.default.createElement(_Day2.default, { dayNameRus: el.rus, key: index, dayNameEng: el.eng });
+                            })
+                        )
                     )
                 )
             );

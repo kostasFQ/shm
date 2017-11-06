@@ -9,7 +9,7 @@ class Day extends Component {
         super(props);
 
         this.state = {
-            dayOff : false
+            dayOff : true
         };
     }
 
@@ -20,11 +20,23 @@ class Day extends Component {
     accept = () => {
         const status = this.selectValue.options[this.selectValue.selectedIndex].value;
         const day = this.props.dayNameEng;
-        const startTime = this.selectStart.options[this.selectStart.selectedIndex].value;
-        const endTime = this.selectEnd.options[this.selectEnd.selectedIndex].value;
-        const additionalOptions = this.selectAdditional.options[this.selectAdditional.selectedIndex].value;
+        let startTime;
+        let endTime;
+        let additionalOptions;
 
+        if(status === 'dayOff') {
+            startTime = '';
+            endTime = '';
+            additionalOptions = '';
+        } else {
+            startTime = this.selectStart.options[this.selectStart.selectedIndex].value;
+            endTime = this.selectEnd.options[this.selectEnd.selectedIndex].value;
+            additionalOptions = this.selectAdditional.options[this.selectAdditional.selectedIndex].value;
+
+        }
         this.props.selectDay(day, status, startTime, endTime, additionalOptions);
+
+
         console.log(day + ' ' + status + 'start - ' + startTime + ' - ' + endTime);
     };
 
@@ -40,15 +52,15 @@ class Day extends Component {
                 {this.props.dayNameRus}
                 <div>
                     <select name="work" ref={(sel) => {this.selectValue = sel}} onChange={this.toggleVisible}>
-                        <option value='work'>Выходной</option>
-                        <option value='dayOff'>Рабочий</option>
+                        <option value='work'>Рабочий</option>
+                        <option value='dayOff'>Выходной</option>
                     </select>
                     {
                         this.state.dayOff ?
                             <div>
                                 <div>
                                     Начало: <br/>
-                                    <select ref={(start) => {this.selectStart = start}}>
+                                    <select ref={(start) => {this.selectStart = start}} defaultValue={this.props.localStore.Mo_Fr.startTime}>
                                         {
                                             startWorkTime.map( (value, i) =>
                                             <option value={value} key={i}>
@@ -79,10 +91,14 @@ class Day extends Component {
                                         }
                                     </select>
                                 </div>
-                                <button onClick={this.accept}><img src="./img/success.png" alt="V"/></button>
+
                             </div> : null
                     }
                 </div>
+                <div className='btn_place'>
+                    <button onClick={this.accept}><img src="./img/success.png" alt="OK"/></button>
+                </div>
+
             </div>
         )
     }
