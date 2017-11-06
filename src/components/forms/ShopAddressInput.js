@@ -20,6 +20,7 @@ class ShopAddressInput extends Component{
         let district = wordsArr[2];
         let coords;
 
+
         if (currentValue.length < 10) {
             this.setState({warning : "недостаточное количество данных"});
         }
@@ -34,17 +35,17 @@ class ShopAddressInput extends Component{
         }
 
         else {
-            building = wordsArr[0];
-            street = wordsArr[1];
-            district= wordsArr[2];
-
             this.props.onAddAddress(building, street, district);
             this.setState({warning : null});
             coords= axios.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Брест,'+street+','+building)
-                .then( response =>
-                    coords = response.data);
+                .then( response => {
+                    coords = response.data.response.GeoObjectCollection.featureMember["0"].GeoObject.Point.pos.split(' ');
+                    console.log(coords)
+
+                })
+                .catch ( (error) => console.log(error) )
         }
-        console.log(coords)
+
 
 
     };
