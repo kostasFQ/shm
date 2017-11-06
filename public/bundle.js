@@ -13935,6 +13935,10 @@ var _reactRedux = __webpack_require__(28);
 
 var _index = __webpack_require__(40);
 
+var _axios = __webpack_require__(116);
+
+var _axios2 = _interopRequireDefault(_axios);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -13954,9 +13958,13 @@ var ShopAddressInput = function (_Component) {
         _this.addAddress = function () {
             var currentValue = _this.shopAddressInput.value;
             var wordsArr = currentValue.split(/[,]/).reverse();
+            var building = wordsArr[0];
+            var street = wordsArr[1];
+            var district = wordsArr[2];
+            var coords = void 0;
 
-            if (currentValue.length < 2) {
-                _this.setState({ warning: "поле не может содержать менее 2х символов" });
+            if (currentValue.length < 10) {
+                _this.setState({ warning: "недостаточное количество данных" });
             } else if (currentValue.search(/\D/) === -1) {
                 _this.setState({ warning: "поле не может содержать только цифры" });
             } else if (currentValue.includes(',') === false) {
@@ -13964,15 +13972,17 @@ var ShopAddressInput = function (_Component) {
             } else if (wordsArr.length < 3) {
                 _this.setState({ warning: "возможно не верно введены данные" });
             } else {
-                console.log('addAddress', currentValue);
-                var building = wordsArr[0];
-                var street = wordsArr[1];
-                var district = wordsArr[2];
-                console.log(wordsArr);
+                building = wordsArr[0];
+                street = wordsArr[1];
+                district = wordsArr[2];
 
                 _this.props.onAddAddress(building, street, district);
                 _this.setState({ warning: null });
+                coords = _axios2.default.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Брест,' + street + ',' + building).then(function (response) {
+                    return coords = response.data;
+                });
             }
+            console.log(coords);
         };
 
         _this.state = {
