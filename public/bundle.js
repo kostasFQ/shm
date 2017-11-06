@@ -5298,22 +5298,25 @@ function setShopName(val) {
     };
 }
 
-function setShopAddressValue(val) {
+function setShopAddressValue(building, street, district) {
     return {
         type: ADD_ADDRESS,
-        payload: val
+        payload: {
+            building: building,
+            street: street,
+            district: district
+        }
     };
 }
 
-function selectDayType(day, status, startTime, endTime, additionalOptions) {
+function selectDayType(day, status, startTime, endTime) {
     return {
         type: SELECT_DAY_TYPE,
         payload: {
             day: day,
             status: status,
             startTime: startTime,
-            endTime: endTime,
-            additionalOptions: additionalOptions
+            endTime: endTime
         }
     };
 }
@@ -13665,9 +13668,8 @@ var Day = function (_Component) {
             } else {
                 startTime = _this.selectStart.options[_this.selectStart.selectedIndex].value;
                 endTime = _this.selectEnd.options[_this.selectEnd.selectedIndex].value;
-                additionalOptions = _this.selectAdditional.options[_this.selectAdditional.selectedIndex].value;
             }
-            _this.props.selectDay(day, status, startTime, endTime, additionalOptions);
+            _this.props.selectDay(day, status, startTime, endTime);
 
             console.log(day + ' ' + status + 'start - ' + startTime + ' - ' + endTime);
         };
@@ -13685,7 +13687,6 @@ var Day = function (_Component) {
 
             var startWorkTime = ['08:00', '09:00', '10:00', '11:00', '12:00'];
             var endWorkTime = ['13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
-            var shopOptions = ['', 'поступление товара', 'скидка 10%', 'скидка 20%', 'скидка 30%', 'скидка 40%', 'скидка 50%', 'скидка 60%', 'скидка 70%', 'скидка 80%', 'скидка 90%'];
 
             return _react2.default.createElement(
                 'div',
@@ -13743,24 +13744,6 @@ var Day = function (_Component) {
                                         _this2.selectEnd = end;
                                     } },
                                 endWorkTime.map(function (value, i) {
-                                    return _react2.default.createElement(
-                                        'option',
-                                        { value: value, key: i },
-                                        value
-                                    );
-                                })
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            null,
-                            '\u0414\u043E\u043F. \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F:',
-                            _react2.default.createElement(
-                                'select',
-                                { ref: function ref(additional) {
-                                        _this2.selectAdditional = additional;
-                                    } },
-                                shopOptions.map(function (value, i) {
                                     return _react2.default.createElement(
                                         'option',
                                         { value: value, key: i },
@@ -13850,7 +13833,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var initialStore = {
     shop: null,
-    address: null,
+    address: {
+        district: null,
+        street: null,
+        building: null
+    },
     Mo_Fr: {},
     saturday: {},
     sunday: {}
@@ -13866,14 +13853,18 @@ function shopListStore() {
     }
     if (action.type === 'ADD_ADDRESS') {
         return _extends({}, state, {
-            address: action.payload });
+            address: {
+                district: action.payload.district,
+                street: action.payload.street,
+                building: action.payload.building
+            }
+        });
     }
     if (action.type == 'SELECT_DAY_TYPE') {
         return _extends({}, state, _defineProperty({}, action.payload.day, {
             status: action.payload.status,
             startTime: action.payload.startTime,
-            endTime: action.payload.endTime,
-            additionalOptions: action.payload.additionalOptions
+            endTime: action.payload.endTime
         }));
     }
     if (action.type === 'CLEAR') {
@@ -13907,7 +13898,12 @@ var Form = function (_Component) {
                     _react2.default.createElement(_ShopNameInput2.default, null),
                     _react2.default.createElement(_ShopAddressInput2.default, null),
                     _react2.default.createElement(_workTimeInput2.default, null),
-                    _react2.default.createElement(_TotalFrom2.default, null)
+                    _react2.default.createElement(
+                        'button',
+                        null,
+                        'ok'
+                    ),
+                    '  '
                 )
             );
         }
@@ -13955,31 +13951,37 @@ var ShopAddressInput = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (ShopAddressInput.__proto__ || Object.getPrototypeOf(ShopAddressInput)).call(this, props));
 
+        _this.addAddress = function () {
+            var currentValue = _this.shopAddressInput.value;
+            var wordsArr = currentValue.split(/[,]/).reverse();
+
+            if (currentValue.length < 2) {
+                _this.setState({ warning: "поле не может содержать менее 2х символов" });
+            } else if (currentValue.search(/\D/) === -1) {
+                _this.setState({ warning: "поле не может содержать только цифры" });
+            } else if (currentValue.includes(',') === false) {
+                _this.setState({ warning: 'вводить значения необходимо через запятую' });
+            } else if (wordsArr.length < 3) {
+                _this.setState({ warning: "возможно не верно введены данные" });
+            } else {
+                console.log('addAddress', currentValue);
+                var building = wordsArr[0];
+                var street = wordsArr[1];
+                var district = wordsArr[2];
+                console.log(wordsArr);
+
+                _this.props.onAddAddress(building, street, district);
+                _this.setState({ warning: null });
+            }
+        };
+
         _this.state = {
             warning: null
         };
-
-        _this.addAddress = _this.addAddress.bind(_this);
         return _this;
     }
 
     _createClass(ShopAddressInput, [{
-        key: 'addAddress',
-        value: function addAddress() {
-            var currentValue = this.shopAddressInput.value;
-
-            if (currentValue.length < 2) {
-                this.setState({ warning: "адрес не может содержать менее 2х символов" });
-            } else if (currentValue.search(/\D/) === -1) {
-                this.setState({ warning: "адрес не может содержать только цифры" });
-            } else {
-                console.log('addAddress', currentValue);
-                this.props.onAddAddress(currentValue);
-
-                this.setState({ warning: null });
-            }
-        }
-    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
@@ -13993,10 +13995,13 @@ var ShopAddressInput = function (_Component) {
                     '\u0410\u0434\u0440\u0435\u0441:\xA0'
                 ),
                 _react2.default.createElement('input', { type: 'text',
-                    onBlur: this.addAddress,
+                    className: 'input',
+                    placeholder: '\u0420\u0430\u0439\u043E\u043D, \u0443\u043B\u0438\u0446\u0430, \u043D\u043E\u043C\u0435\u0440 \u0434\u043E\u043C\u0430',
                     ref: function ref(input) {
                         _this2.shopAddressInput = input;
-                    } }),
+                    },
+                    onBlur: this.addAddress
+                }),
                 _react2.default.createElement(
                     'div',
                     { style: { color: 'red' } },
@@ -14015,8 +14020,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     };
 }, function (dispatch) {
     return {
-        onAddAddress: function onAddAddress(address) {
-            dispatch((0, _index.setShopAddressValue)(address));
+        onAddAddress: function onAddAddress(building, street, district) {
+            dispatch((0, _index.setShopAddressValue)(building, street, district));
         }
     };
 })(ShopAddressInput);
@@ -14096,6 +14101,7 @@ var ShopNameInput = function (_Component) {
                     '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430:\xA0'
                 ),
                 _react2.default.createElement('input', { type: 'text',
+                    className: 'input ',
                     onBlur: this.addShopName,
                     ref: function ref(input) {
                         _this2.shopNameInput = input;

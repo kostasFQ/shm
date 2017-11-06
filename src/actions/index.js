@@ -10,22 +10,25 @@ export function setShopName(val) {
     }
 }
 
-export function setShopAddressValue(val) {
+export function setShopAddressValue(building, street, district) {
     return {
         type: ADD_ADDRESS,
-        payload:val
+        payload: {
+            building: building,
+            street: street,
+            district:district
+        }
     }
 }
 
-export function selectDayType (day, status, startTime, endTime, additionalOptions) {
+export function selectDayType (day, status, startTime, endTime) {
     return {
         type: SELECT_DAY_TYPE,
         payload: {
             day: day,
             status: status,
             startTime : startTime,
-            endTime : endTime,
-            additionalOptions : additionalOptions
+            endTime : endTime
         }
     }
 }

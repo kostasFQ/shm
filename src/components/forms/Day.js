@@ -31,10 +31,9 @@ class Day extends Component {
         } else {
             startTime = this.selectStart.options[this.selectStart.selectedIndex].value;
             endTime = this.selectEnd.options[this.selectEnd.selectedIndex].value;
-            additionalOptions = this.selectAdditional.options[this.selectAdditional.selectedIndex].value;
 
         }
-        this.props.selectDay(day, status, startTime, endTime, additionalOptions);
+        this.props.selectDay(day, status, startTime, endTime);
 
 
         console.log(day + ' ' + status + 'start - ' + startTime + ' - ' + endTime);
@@ -44,7 +43,6 @@ class Day extends Component {
 
         let startWorkTime = ['08:00', '09:00', '10:00', '11:00', '12:00'];
         let endWorkTime = ['13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
-        let shopOptions = ['','поступление товара', 'скидка 10%','скидка 20%', 'скидка 30%', 'скидка 40%', 'скидка 50%', 'скидка 60%', 'скидка 70%', 'скидка 80%', 'скидка 90%'];
         
 
         return(
@@ -79,19 +77,6 @@ class Day extends Component {
                                         }
                                     </select>
                                 </div>
-                                <div>
-                                    Доп. информация:
-                                    <select ref={(additional) => {this.selectAdditional = additional}}>
-                                        {
-                                            shopOptions.map( (value, i) =>
-                                                <option value={value} key={i}>
-                                                    {value}
-                                                </option>
-                                            )
-                                        }
-                                    </select>
-                                </div>
-
                             </div> : null
                     }
                 </div>

@@ -11,8 +11,12 @@ import { Provider } from 'react-redux';
 
 const initialStore = {
     shop:null,
-    address:null,
-    Mo_Fr : {    },
+    address:{
+        district:null,
+        street:null,
+        building:null,
+    },
+    Mo_Fr : {},
     saturday: {},
     sunday: {}
 };
@@ -24,7 +28,12 @@ function shopListStore(state = initialStore, action) {
     }
     if(action.type === 'ADD_ADDRESS') {
         return {...state,
-        address: action.payload}
+            address: {
+                district:action.payload.district,
+                street:action.payload.street,
+                building:action.payload.building
+            }
+        }
     }
     if(action.type == 'SELECT_DAY_TYPE') {
         return {
@@ -32,8 +41,7 @@ function shopListStore(state = initialStore, action) {
             [action.payload.day]: {
                 status : action.payload.status,
                 startTime : action.payload.startTime,
-                endTime : action.payload.endTime,
-                additionalOptions: action.payload.additionalOptions
+                endTime : action.payload.endTime
             }
         };
     }
@@ -57,7 +65,8 @@ export default class Form extends Component {
                     <ShopNameInput/>
                     <ShopAddressInput/>
                     <WorkTimeInput/>
-                    <Total/>
+                    <button>ok</button>
+                    {/*<Total/>*/}  {/*todo make in new window*/}
                 </div>
             </Provider>
         )

@@ -41,6 +41,9 @@
     padding: 1%;
     width: 96%;
 }
+.input {
+    width: 70%;
+}
 .checkbox{
     display: inline-block;
     width: 120px;

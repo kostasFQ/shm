@@ -35,6 +35,7 @@ class ShopNameInput extends Component {
             <div className="label">
                 <label>Название магазина:&nbsp;</label>
                 <input type="text"
+                       className='input '
                        onBlur={this.addShopName}
                        ref={(input) => {this.shopNameInput = input}}/>
                 <br/>
