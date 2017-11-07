@@ -5287,9 +5287,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.setShopName = setShopName;
 exports.setShopAddressValue = setShopAddressValue;
 exports.selectDayType = selectDayType;
+exports.addOptions = addOptions;
 var ADD_SHOP = 'ADD_SHOP';
 var ADD_ADDRESS = 'ADD_ADDRESS';
 var SELECT_DAY_TYPE = 'SELECT_DAY_TYPE';
+var ADD_OPTIONS = 'ADD_OPTIONS';
 
 function setShopName(val) {
     return {
@@ -5320,6 +5322,12 @@ function selectDayType(day, status, startTime, endTime) {
             startTime: startTime,
             endTime: endTime
         }
+    };
+}
+function addOptions(options) {
+    return {
+        type: ADD_OPTIONS,
+        payload: options
     };
 }
 
@@ -13862,12 +13870,17 @@ function shopListStore() {
             }
         });
     }
-    if (action.type == 'SELECT_DAY_TYPE') {
+    if (action.type === 'SELECT_DAY_TYPE') {
         return _extends({}, state, _defineProperty({}, action.payload.day, {
             status: action.payload.status,
             startTime: action.payload.startTime,
             endTime: action.payload.endTime
         }));
+    }
+    if (action.type === 'ADD_OPTIONS') {
+        return _extends({}, state, {
+            additionalOptions: action.payload
+        });
     }
     if (action.type === 'CLEAR') {
         return {};
@@ -28832,7 +28845,11 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(28);
+
 __webpack_require__(41);
+
+var _index = __webpack_require__(40);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28846,14 +28863,29 @@ var AdditionalOptions = function (_Component) {
     _inherits(AdditionalOptions, _Component);
 
     function AdditionalOptions() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
         _classCallCheck(this, AdditionalOptions);
 
-        return _possibleConstructorReturn(this, (AdditionalOptions.__proto__ || Object.getPrototypeOf(AdditionalOptions)).apply(this, arguments));
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = AdditionalOptions.__proto__ || Object.getPrototypeOf(AdditionalOptions)).call.apply(_ref, [this].concat(args))), _this), _this.addOptions = function () {
+            var optionsString = _this.areaInput.value;
+            var options = optionsString.split(/\n|[,.]/);
+            console.log(options);
+            _this.props.onAddOptions(options);
+        }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(AdditionalOptions, [{
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             var options = 'акции, скидки, дни обновления товара и т.д.';
             return _react2.default.createElement(
                 'div',
@@ -28866,7 +28898,14 @@ var AdditionalOptions = function (_Component) {
                         null,
                         '\u0414\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u0443\u0441\u043B\u043E\u0432\u0438\u044F'
                     ),
-                    _react2.default.createElement('textarea', { placeholder: options })
+                    _react2.default.createElement('textarea', {
+                        placeholder: options,
+                        ref: function ref(area) {
+                            _this2.areaInput = area;
+                        },
+                        defaultValue: '',
+                        onBlur: this.addOptions
+                    })
                 )
             );
         }
@@ -28875,7 +28914,17 @@ var AdditionalOptions = function (_Component) {
     return AdditionalOptions;
 }(_react.Component);
 
-exports.default = AdditionalOptions;
+exports.default = (0, _reactRedux.connect)(function (state) {
+    return {
+        localStore: state
+    };
+}, function (dispatch) {
+    return {
+        onAddOptions: function onAddOptions(options) {
+            return dispatch((0, _index.addOptions)(options));
+        }
+    };
+})(AdditionalOptions);
 
 /***/ })
 /******/ ]);

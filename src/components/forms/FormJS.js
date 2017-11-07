@@ -34,7 +34,7 @@ function shopListStore(state = initialStore, action) {
             }
         }
     }
-    if(action.type == 'SELECT_DAY_TYPE') {
+    if(action.type === 'SELECT_DAY_TYPE') {
         return {
             ...state,
             [action.payload.day]: {
@@ -43,6 +43,12 @@ function shopListStore(state = initialStore, action) {
                 endTime : action.payload.endTime
             }
         };
+    }
+    if(action.type === 'ADD_OPTIONS') {
+        return {
+            ...state,
+            additionalOptions: action.payload
+        }
     }
     if(action.type === 'CLEAR') {
         return {};
