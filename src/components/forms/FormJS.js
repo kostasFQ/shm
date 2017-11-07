@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ShopNameInput from "./ShopNameInput";
 import ShopAddressInput  from './ShopAddressInput';
 import WorkTimeInput from './workTimeInput';
+import AdditionalOptions from './AdditionalOptions'
 import Total from "./TotalFrom";
 
 import { createStore } from 'redux';
@@ -55,7 +56,7 @@ const store = createStore(shopListStore);
 export default class Form extends Component {
 
     render() {
-        /*store.dispatch({type : 'CLEAR'}); todo uncomm*/
+        /*store.dispatch({type : 'CLEAR'}); todo uncomment*/
         console.log(store.getState());
         return (
             <Provider store={store}>
@@ -63,6 +64,7 @@ export default class Form extends Component {
                     <ShopNameInput/>
                     <ShopAddressInput/>
                     <WorkTimeInput/>
+                    <AdditionalOptions/>
                     <button>ok</button>
                     {/*<Total/>*/}  {/*todo make in new window*/}
                 </div>

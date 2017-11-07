@@ -13813,6 +13813,10 @@ var _workTimeInput = __webpack_require__(140);
 
 var _workTimeInput2 = _interopRequireDefault(_workTimeInput);
 
+var _AdditionalOptions = __webpack_require__(292);
+
+var _AdditionalOptions2 = _interopRequireDefault(_AdditionalOptions);
+
 var _TotalFrom = __webpack_require__(139);
 
 var _TotalFrom2 = _interopRequireDefault(_TotalFrom);
@@ -13885,7 +13889,7 @@ var Form = function (_Component) {
     _createClass(Form, [{
         key: 'render',
         value: function render() {
-            /*store.dispatch({type : 'CLEAR'}); todo uncomm*/
+            /*store.dispatch({type : 'CLEAR'}); todo uncomment*/
             console.log(store.getState());
             return _react2.default.createElement(
                 _reactRedux.Provider,
@@ -13896,6 +13900,7 @@ var Form = function (_Component) {
                     _react2.default.createElement(_ShopNameInput2.default, null),
                     _react2.default.createElement(_ShopAddressInput2.default, null),
                     _react2.default.createElement(_workTimeInput2.default, null),
+                    _react2.default.createElement(_AdditionalOptions2.default, null),
                     _react2.default.createElement(
                         'button',
                         null,
@@ -28797,6 +28802,80 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 280 */,
+/* 281 */,
+/* 282 */,
+/* 283 */,
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+__webpack_require__(41);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AdditionalOptions = function (_Component) {
+    _inherits(AdditionalOptions, _Component);
+
+    function AdditionalOptions() {
+        _classCallCheck(this, AdditionalOptions);
+
+        return _possibleConstructorReturn(this, (AdditionalOptions.__proto__ || Object.getPrototypeOf(AdditionalOptions)).apply(this, arguments));
+    }
+
+    _createClass(AdditionalOptions, [{
+        key: 'render',
+        value: function render() {
+            var options = 'акции, скидки, дни обновления товара и т.д.';
+            return _react2.default.createElement(
+                'div',
+                { className: 'label' },
+                _react2.default.createElement(
+                    'fieldset',
+                    null,
+                    _react2.default.createElement(
+                        'legend',
+                        null,
+                        '\u0414\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0435 \u0443\u0441\u043B\u043E\u0432\u0438\u044F'
+                    ),
+                    _react2.default.createElement('textarea', { placeholder: options })
+                )
+            );
+        }
+    }]);
+
+    return AdditionalOptions;
+}(_react.Component);
+
+exports.default = AdditionalOptions;
 
 /***/ })
 /******/ ]);

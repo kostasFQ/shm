@@ -22,3 +22,8 @@ button {
     width: 64px;
     height: 32px;
 }
+textarea {
+    resize: horizontal;
+    height: 70px;
+    width: 99%;
+}

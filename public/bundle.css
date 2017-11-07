@@ -22,7 +22,7 @@
     top:10%;
     left: 10%;
     width: 80%;
-    height: 75%;
+    height: 530px;
     background-color: white;
     border: 1px solid black;
     border-radius: 5px;
@@ -172,4 +172,9 @@ select {
 button {
     width: 64px;
     height: 32px;
+}
+textarea {
+    resize: horizontal;
+    height: 70px;
+    width: 99%;
 }
