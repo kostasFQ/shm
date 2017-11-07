@@ -15,9 +15,9 @@ class ShopAddressInput extends Component{
     addAddress = () => {
         const currentValue = this.shopAddressInput.value;
         const wordsArr = currentValue.split(/[,]/).reverse();
-        let building = wordsArr[0].substring(1);
-        let street = wordsArr[1].substring(1);
-        let district = wordsArr[2];
+        let building;
+        let street;
+        let district;
         let coords;
         let latitude;
         let longitude;
@@ -29,27 +29,25 @@ class ShopAddressInput extends Component{
         else if(currentValue.search(/\D/) === -1) {
             this.setState({warning : "поле не может содержать только цифры"});
         }
-        else if(currentValue.includes(',') === false) {
-            this.setState({warning : 'вводить значения необходимо через запятую'})
-        }
-        else if(wordsArr.length < 3) {
-            this.setState({warning : "возможно не верно введены данные"});
+        else if(wordsArr.length !== 3) {
+            this.setState({warning : 'неверно введены данные'})
         }
 
         else {
+            building = wordsArr[0].substring(1);
+            street = wordsArr[1].substring(1);
+            district = wordsArr[2];
+
+
             coords= axios.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Брест,'+street+','+building)
                 .then( response => {
                     coords = response.data.response.GeoObjectCollection.featureMember["0"].GeoObject.Point.pos.split(' ');
-                    console.log(coords);
-                    latitude = coords[0];
-                    longitude = coords[1];
-
-                    console.log(latitude);
+                    latitude = coords[1];
+                    longitude = coords[0];
 
                     this.props.onAddAddress(building, street, district, latitude, longitude);
                     this.setState({warning : null});
                 })
-                .then()
                 .catch ( (error) => console.log(error) );
 
         }

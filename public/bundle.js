@@ -13661,12 +13661,10 @@ var Day = function (_Component) {
             var day = _this.props.dayNameEng;
             var startTime = void 0;
             var endTime = void 0;
-            var additionalOptions = void 0;
 
             if (status === 'dayOff') {
                 startTime = '';
                 endTime = '';
-                additionalOptions = '';
             } else {
                 startTime = _this.selectStart.options[_this.selectStart.selectedIndex].value;
                 endTime = _this.selectEnd.options[_this.selectEnd.selectedIndex].value;
@@ -13958,9 +13956,9 @@ var ShopAddressInput = function (_Component) {
         _this.addAddress = function () {
             var currentValue = _this.shopAddressInput.value;
             var wordsArr = currentValue.split(/[,]/).reverse();
-            var building = wordsArr[0].substring(1);
-            var street = wordsArr[1].substring(1);
-            var district = wordsArr[2];
+            var building = void 0;
+            var street = void 0;
+            var district = void 0;
             var coords = void 0;
             var latitude = void 0;
             var longitude = void 0;
@@ -13969,22 +13967,21 @@ var ShopAddressInput = function (_Component) {
                 _this.setState({ warning: "недостаточное количество данных" });
             } else if (currentValue.search(/\D/) === -1) {
                 _this.setState({ warning: "поле не может содержать только цифры" });
-            } else if (currentValue.includes(',') === false) {
-                _this.setState({ warning: 'вводить значения необходимо через запятую' });
-            } else if (wordsArr.length < 3) {
-                _this.setState({ warning: "возможно не верно введены данные" });
+            } else if (wordsArr.length !== 3) {
+                _this.setState({ warning: 'неверно введены данные' });
             } else {
+                building = wordsArr[0].substring(1);
+                street = wordsArr[1].substring(1);
+                district = wordsArr[2];
+
                 coords = _axios2.default.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Брест,' + street + ',' + building).then(function (response) {
                     coords = response.data.response.GeoObjectCollection.featureMember["0"].GeoObject.Point.pos.split(' ');
-                    console.log(coords);
-                    latitude = coords[0];
-                    longitude = coords[1];
-
-                    console.log(latitude);
+                    latitude = coords[1];
+                    longitude = coords[0];
 
                     _this.props.onAddAddress(building, street, district, latitude, longitude);
                     _this.setState({ warning: null });
-                }).then().catch(function (error) {
+                }).catch(function (error) {
                     return console.log(error);
                 });
             }

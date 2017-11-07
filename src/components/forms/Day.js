@@ -22,12 +22,10 @@ class Day extends Component {
         const day = this.props.dayNameEng;
         let startTime;
         let endTime;
-        let additionalOptions;
 
         if(status === 'dayOff') {
             startTime = '';
             endTime = '';
-            additionalOptions = '';
         } else {
             startTime = this.selectStart.options[this.selectStart.selectedIndex].value;
             endTime = this.selectEnd.options[this.selectEnd.selectedIndex].value;
