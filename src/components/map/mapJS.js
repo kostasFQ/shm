@@ -5,7 +5,7 @@ import {YMaps, Map, Placemark} from 'react-yandex-maps';
 export default class YandexMap extends Component {
 
     render() {
-        const mapState = { center: [52.104125, 23.755530], zoom: 10};
+        const mapState = { center: [52.105783, 23.685234], zoom: 10};
 
         const shops = this.props.shops;
 
@@ -19,10 +19,10 @@ export default class YandexMap extends Component {
                                     return <Placemark
                                         key={'placemark_' + shop._id}
                                         geometry={{
-                                            coordinates: [shop.latitude, shop.longitude]
+                                            coordinates: [shop.address.latitude, shop.address.longitude]
                                         }}
                                         properties={{
-                                            iconContent: shop.shopName
+                                            iconContent: shop.shop
                                         }}
                                         options={{
                                             preset: 'islands#blackStretchyIcon',
@@ -33,10 +33,10 @@ export default class YandexMap extends Component {
                                     return <Placemark
                                         key={'placemark_' + shop._id}
                                         geometry={{
-                                            coordinates: [shop.latitude, shop.longitude]
+                                            coordinates: [shop.address.latitude, shop.address.longitude]
                                         }}
                                         properties={{
-                                            iconContent: shop.shopName
+                                            iconContent: shop.shop
                                         }}
                                         options={{
                                             preset: 'islands#blackStretchyIcon',

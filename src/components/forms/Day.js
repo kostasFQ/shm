@@ -24,8 +24,8 @@ class Day extends Component {
         let endTime;
 
         if(status === 'dayOff') {
-            startTime = '';
-            endTime = '';
+            startTime = ' ';
+            endTime = ' ';
         } else {
             startTime = this.selectStart.options[this.selectStart.selectedIndex].value;
             endTime = this.selectEnd.options[this.selectEnd.selectedIndex].value;
@@ -79,7 +79,9 @@ class Day extends Component {
                     }
                 </div>
                 <div className='btn_place'>
-                    <button onClick={this.accept}><img src="./img/success.png" alt="OK"/></button>
+                    <button
+                        className='submitButton'
+                        onClick={this.accept}>Применить</button>
                 </div>
 
             </div>

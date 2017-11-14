@@ -169,7 +169,7 @@ select {
     bottom: 0;
     width: 98%;
 }
-button {
+.button {
     width: 64px;
     height: 32px;
 }
@@ -177,4 +177,15 @@ textarea {
     resize: horizontal;
     height: 70px;
     width: 99%;
+}
+.submitButton {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 80%;
+    height: 35px;
+    background: cadetblue;
+    cursor: pointer;
+    border: 1px solid black;
+    color: white;
 }

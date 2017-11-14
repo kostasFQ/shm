@@ -43,29 +43,27 @@ export default class MainFilter extends Component{
                         {
                             this.props.shops
                                 .sort( (a, b) => {
-                                    if(a.shopName === b.shopName) return 0;
-                                    return a.shopName < b.shopName ? -1 : 1;
+                                    if(a.shop === b.shop) return 0;
+                                    return a.shop < b.shop ? -1 : 1;
                                 })
                                 .map( (shop)=> {
-                                    if(this.state.districtsFilter === shop.district){
+                                    if(this.state.districtsFilter === shop.address.district){
                                         return <Item
                                             key={shop._id}
-                                            shopName={shop.shopName}
-                                            street={shop.street}
-                                            building={shop.building}
-                                            workTimeStart={shop.workTimeStart}
-                                            workTimeEnd={shop.workTimeEnd}
-                                            dayOff={shop.dayOff}
+                                            shopName={shop.shop}
+                                            address={shop.address}
+                                            Mo_Fr={shop.Mo_Fr}
+                                            saturday = {shop.saturday}
+                                            sunday = {shop.sunday}
                                         />
                                     } if(this.state.districtsFilter === 'all') {
                                         return <Item
                                             key={shop._id}
-                                            shopName={shop.shopName}
-                                            street={shop.street}
-                                            building={shop.building}
-                                            workTimeStart={shop.workTimeStart}
-                                            workTimeEnd={shop.workTimeEnd}
-                                            dayOff={shop.dayOff}
+                                            shopName={shop.shop}
+                                            address={shop.address}
+                                            Mo_Fr={shop.Mo_Fr}
+                                            saturday = {shop.saturday}
+                                            sunday = {shop.sunday}
                                         />
                                     }
 

@@ -42,8 +42,8 @@ class ShopAddressInput extends Component{
             coords= axios.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Брест,'+street+','+building)
                 .then( response => {
                     coords = response.data.response.GeoObjectCollection.featureMember["0"].GeoObject.Point.pos.split(' ');
-                    latitude = coords[1];
-                    longitude = coords[0];
+                    latitude = +coords[1];
+                    longitude = +coords[0];
 
                     this.props.onAddAddress(building, street, district, latitude, longitude);
                     this.setState({warning : null});

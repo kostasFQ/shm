@@ -8,10 +8,28 @@ export default class Item extends Component {
         return(
             <div className="listItem">
                 <div className="shopTitle">{this.props.shopName}</div>
-                <div>Адрес: {this.props.street}, {this.props.building}</div>
-                <div>Часы работы: {this.props.workTimeStart}:00
-                    - {this.props.workTimeEnd}:00</div>
-                <div>Выходной: {this.props.dayOff}</div>
+                <div>Адрес: {this.props.address.street}, {this.props.address.building}</div>
+                <div>Часы работы:
+                    <div>
+                        Пн-Пт: {this.props.Mo_Fr.startTime} - {this.props.Mo_Fr.endTime}
+                    </div>
+                    <div>
+                        Суббота :&nbsp;
+                        {
+                            this.props.saturday.status === "work" ?
+                            this.props.saturday.startTime +" - "+ this.props.saturday.endTime : "Выходной"
+                        }
+
+
+                    </div>
+                    <div>
+                        Воскресенье:&nbsp;
+                        {
+                            this.props.sunday.status === "work" ?
+                                this.props.sunday.startTime+" - "+this.props.sunday.endTime : "Выходной"
+                        }
+                    </div>
+                </div>
             </div>
         )
     }

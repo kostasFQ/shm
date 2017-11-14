@@ -6,7 +6,7 @@ export default class Footer extends Component{
     constructor(props){
         super(props);
         this.state = {
-            openForm: true // todo false!!
+            openForm: false
         };
 
         this.showForm = this.showForm.bind(this);

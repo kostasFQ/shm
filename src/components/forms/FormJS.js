@@ -71,8 +71,8 @@ export default class Form extends Component {
                     <ShopAddressInput/>
                     <WorkTimeInput/>
                     <AdditionalOptions/>
-                    <button>ok</button>
-                    {/*<Total/>*/}  {/*todo make in new window*/}
+                    <hr/>
+                    <Total/>
                 </div>
             </Provider>
         )
