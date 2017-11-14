@@ -15,7 +15,7 @@ export default class YandexMap extends Component {
                     <Map state={mapState} width={'100%'} height={'100%'}>
                         {
                             shops.map( (shop)=> {
-                                if(this.props.districtsFilter === shop.district){
+                                if(this.props.districtsFilter === shop.address.district){
                                     return <Placemark
                                         key={'placemark_' + shop._id}
                                         geometry={{

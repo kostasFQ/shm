@@ -62,7 +62,7 @@ class ShopAddressInput extends Component{
                 <label>Адрес:&nbsp;</label>
                 <input type="text"
                        className='input'
-                       placeholder='Район, улица, номер дома'
+                       placeholder='Формат ввода адреса : район, улица, №дома'
                        ref={(input) => {this.shopAddressInput = input}}
                        onBlur={this.addAddress}
                 />

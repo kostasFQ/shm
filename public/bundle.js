@@ -3974,9 +3974,9 @@ function setShopAddressValue(building, street, district, latitude, longitude) {
     return {
         type: ADD_ADDRESS,
         payload: {
-            building: building,
-            street: street,
-            district: district,
+            building: building.toLowerCase(),
+            street: street.toLowerCase(),
+            district: district.toLowerCase(),
             latitude: latitude,
             longitude: longitude
         }
@@ -13791,8 +13791,8 @@ var Day = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            var startWorkTime = ['08:00', '09:00', '10:00', '11:00', '12:00'];
-            var endWorkTime = ['13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
+            var startWorkTime = ['09:00', '10:00', '11:00', '12:00'];
+            var endWorkTime = ['16:00', '17:00', '18:00', '19:00', '20:00'];
 
             return _react2.default.createElement(
                 'div',
@@ -14122,7 +14122,7 @@ var ShopAddressInput = function (_Component) {
                 ),
                 _react2.default.createElement('input', { type: 'text',
                     className: 'input',
-                    placeholder: '\u0420\u0430\u0439\u043E\u043D, \u0443\u043B\u0438\u0446\u0430, \u043D\u043E\u043C\u0435\u0440 \u0434\u043E\u043C\u0430',
+                    placeholder: '\u0424\u043E\u0440\u043C\u0430\u0442 \u0432\u0432\u043E\u0434\u0430 \u0430\u0434\u0440\u0435\u0441\u0430 : \u0440\u0430\u0439\u043E\u043D, \u0443\u043B\u0438\u0446\u0430, \u2116\u0434\u043E\u043C\u0430',
                     ref: function ref(input) {
                         _this2.shopAddressInput = input;
                     },
@@ -14452,6 +14452,8 @@ var Item = function (_Component) {
     _createClass(Item, [{
         key: 'render',
         value: function render() {
+            var street = this.props.address.street[0].toUpperCase() + this.props.address.street.substring(1);
+            var building = this.props.address.building;
             return _react2.default.createElement(
                 'div',
                 { className: 'listItem' },
@@ -14464,9 +14466,9 @@ var Item = function (_Component) {
                     'div',
                     null,
                     '\u0410\u0434\u0440\u0435\u0441: ',
-                    this.props.address.street,
+                    street,
                     ', ',
-                    this.props.address.building
+                    building
                 ),
                 _react2.default.createElement(
                     'div',
@@ -14491,7 +14493,23 @@ var Item = function (_Component) {
                         null,
                         '\u0412\u043E\u0441\u043A\u0440\u0435\u0441\u0435\u043D\u044C\u0435:\xA0',
                         this.props.sunday.status === "work" ? this.props.sunday.startTime + " - " + this.props.sunday.endTime : "Выходной"
-                    )
+                    ),
+                    this.props.additionalOptions.length > 0 ? _react2.default.createElement(
+                        'div',
+                        { className: 'options' },
+                        '\u0414\u043E\u043F\u043E\u043B\u043D\u0438\u0442\u0435\u043B\u044C\u043D\u0430\u044F \u0438\u043D\u0444\u043E\u0440\u043C\u0430\u0446\u0438\u044F:',
+                        _react2.default.createElement(
+                            'ul',
+                            null,
+                            this.props.additionalOptions.map(function (el, i) {
+                                return _react2.default.createElement(
+                                    'li',
+                                    { key: i },
+                                    el
+                                );
+                            })
+                        )
+                    ) : null
                 )
             );
         }
@@ -14651,7 +14669,8 @@ var MainFilter = function (_Component) {
                                     address: shop.address,
                                     Mo_Fr: shop.Mo_Fr,
                                     saturday: shop.saturday,
-                                    sunday: shop.sunday
+                                    sunday: shop.sunday,
+                                    additionalOptions: shop.additionalOptions
                                 });
                             }if (_this2.state.districtsFilter === 'all') {
                                 return _react2.default.createElement(_itemOfList2.default, {
@@ -14660,7 +14679,8 @@ var MainFilter = function (_Component) {
                                     address: shop.address,
                                     Mo_Fr: shop.Mo_Fr,
                                     saturday: shop.saturday,
-                                    sunday: shop.sunday
+                                    sunday: shop.sunday,
+                                    additionalOptions: shop.additionalOptions
                                 });
                             }
                         })
@@ -14734,7 +14754,7 @@ var YandexMap = function (_Component) {
                         _reactYandexMaps.Map,
                         { state: mapState, width: '100%', height: '100%' },
                         shops.map(function (shop) {
-                            if (_this2.props.districtsFilter === shop.district) {
+                            if (_this2.props.districtsFilter === shop.address.district) {
                                 return _react2.default.createElement(_reactYandexMaps.Placemark, {
                                     key: 'placemark_' + shop._id,
                                     geometry: {

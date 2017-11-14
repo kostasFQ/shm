@@ -55,6 +55,7 @@ export default class MainFilter extends Component{
                                             Mo_Fr={shop.Mo_Fr}
                                             saturday = {shop.saturday}
                                             sunday = {shop.sunday}
+                                            additionalOptions = {shop.additionalOptions}
                                         />
                                     } if(this.state.districtsFilter === 'all') {
                                         return <Item
@@ -64,14 +65,12 @@ export default class MainFilter extends Component{
                                             Mo_Fr={shop.Mo_Fr}
                                             saturday = {shop.saturday}
                                             sunday = {shop.sunday}
+                                            additionalOptions = {shop.additionalOptions}
                                         />
                                     }
-
-
                                 },)
                         }
                     </div>
-
                 </div>
                 <YandexMap
                     districtsFilter={this.state.districtsFilter}

@@ -148,8 +148,15 @@
 .shopTitle{
     font-size: x-large;
     font-family: 'Philosopher';
-
-}.workDays{
+}
+.options {
+    padding: 0;
+}
+ul{
+    padding-left: 20px;
+    margin: 0;
+}
+.workDays{
     padding: 2px;
     height: 200px;
     width: 33%;
