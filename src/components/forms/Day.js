@@ -56,7 +56,7 @@ class Day extends Component {
                             <div>
                                 <div>
                                     Начало: <br/>
-                                    <select ref={(start) => {this.selectStart = start}} defaultValue={this.props.localStore.Mo_Fr.startTime}>
+                                    <select ref={(start) => {this.selectStart = start}} defaultValue="10:00">
                                         {
                                             startWorkTime.map( (value, i) =>
                                             <option value={value} key={i}>

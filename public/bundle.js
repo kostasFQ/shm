@@ -13829,7 +13829,7 @@ var Day = function (_Component) {
                                 'select',
                                 { ref: function ref(start) {
                                         _this2.selectStart = start;
-                                    }, defaultValue: this.props.localStore.Mo_Fr.startTime },
+                                    }, defaultValue: '10:00' },
                                 startWorkTime.map(function (value, i) {
                                     return _react2.default.createElement(
                                         'option',
