@@ -63,7 +63,6 @@ export default class Form extends Component {
 
     render() {
         store.dispatch({type : 'CLEAR'});
-        console.log(store.getState());
         return (
             <Provider store={store}>
                 <div className="form">

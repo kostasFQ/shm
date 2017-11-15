@@ -11,7 +11,6 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 app.get('/shops', shopsController.getAllShops);
-
 app.post('/shops', shopsController.postNewShop);
 
 

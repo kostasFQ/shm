@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Shop = mongoose.model('Shop');
 
+
 exports.getAllShops = (req, res)=> {
     Shop.find({}, (err, data) => {
         if(err) return console.log(err);

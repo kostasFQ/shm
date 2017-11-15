@@ -12578,8 +12578,8 @@ var Content = function (_Component) {
     }
 
     _createClass(Content, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
+        key: 'render',
+        value: function render() {
             var _this2 = this;
 
             _axios2.default.get('http://localhost:8080/shops').then(function (response) {
@@ -12587,10 +12587,6 @@ var Content = function (_Component) {
             }).catch(function (error) {
                 console.log(error);
             });
-        }
-    }, {
-        key: 'render',
-        value: function render() {
             return _react2.default.createElement(
                 'div',
                 null,
@@ -14003,7 +13999,6 @@ var Form = function (_Component) {
         key: 'render',
         value: function render() {
             store.dispatch({ type: 'CLEAR' });
-            console.log(store.getState());
             return _react2.default.createElement(
                 _reactRedux.Provider,
                 { store: store },
@@ -14305,7 +14300,7 @@ var Total = function (_Component) {
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Total.__proto__ || Object.getPrototypeOf(Total)).call.apply(_ref, [this].concat(args))), _this), _this.submit = function () {
             var data = _this.props.FormStore;
-            _axios2.default.post('http://localhost:8080/shops', data).then(console.log(data));
+            _axios2.default.post('http://localhost:8080/shops', data);
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 

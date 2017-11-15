@@ -11,7 +11,7 @@ export default class Content extends Component {
         this.state = {shops:[]}
     }
 
-    componentDidMount() {
+    render() {
         axios.get('http://localhost:8080/shops')
             .then((response) => {
                 this.setState({shops:response.data});
@@ -19,10 +19,6 @@ export default class Content extends Component {
             .catch(function (error) {
                 console.log(error);
             });
-    };
-
-
-    render() {
         return(
             <div>
                 <MainFilter shops={this.state.shops}/>
