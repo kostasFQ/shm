@@ -37,6 +37,5 @@ exports.postNewShop = (req, res) => {
         }
 
     });
-    console.log(data);
     return newShop.save();
 };

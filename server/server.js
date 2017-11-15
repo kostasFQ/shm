@@ -22,8 +22,6 @@ app.use(function (err, req, res, next) {
    res.status(500).json(err);
 });
 
-
-
 const server = app.listen(8080, ()=> {
    console.log('Server running on port 8080.');
 });

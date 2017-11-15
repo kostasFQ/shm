@@ -62,7 +62,7 @@ const store = createStore(shopListStore);
 export default class Form extends Component {
 
     render() {
-        /*store.dispatch({type : 'CLEAR'}); todo uncomment*/
+        store.dispatch({type : 'CLEAR'});
         console.log(store.getState());
         return (
             <Provider store={store}>
@@ -71,7 +71,6 @@ export default class Form extends Component {
                     <ShopAddressInput/>
                     <WorkTimeInput/>
                     <AdditionalOptions/>
-                    <hr/>
                     <Total/>
                 </div>
             </Provider>
