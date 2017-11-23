@@ -47,7 +47,7 @@ export default class MainFilter extends Component{
                                     return a.shop < b.shop ? -1 : 1;
                                 })
                                 .map( (shop)=> {
-                                    if(this.state.districtsFilter === shop.address.district || 'all' ){
+                                    if(this.state.districtsFilter.toLowerCase() === shop.address.district.toLowerCase()){
                                         return <Item
                                             key={shop._id}
                                             shopName={shop.shop}
@@ -57,7 +57,7 @@ export default class MainFilter extends Component{
                                             sunday = {shop.sunday}
                                             additionalOptions = {shop.additionalOptions}
                                         />
-                                    } /*if(this.state.districtsFilter === 'all') {
+                                    } if(this.state.districtsFilter === 'all') {
                                         return <Item
                                             key={shop._id}
                                             shopName={shop.shop}
@@ -67,7 +67,7 @@ export default class MainFilter extends Component{
                                             sunday = {shop.sunday}
                                             additionalOptions = {shop.additionalOptions}
                                         />
-                                    }*/
+                                    }
                                 },)
                         }
                     </div>

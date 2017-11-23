@@ -14659,7 +14659,7 @@ var MainFilter = function (_Component) {
                             if (a.shop === b.shop) return 0;
                             return a.shop < b.shop ? -1 : 1;
                         }).map(function (shop) {
-                            if (_this2.state.districtsFilter === shop.address.district || 'all') {
+                            if (_this2.state.districtsFilter.toLowerCase() === shop.address.district.toLowerCase()) {
                                 return _react2.default.createElement(_itemOfList2.default, {
                                     key: shop._id,
                                     shopName: shop.shop,
@@ -14669,17 +14669,17 @@ var MainFilter = function (_Component) {
                                     sunday: shop.sunday,
                                     additionalOptions: shop.additionalOptions
                                 });
-                            } /*if(this.state.districtsFilter === 'all') {
-                                return <Item
-                                    key={shop._id}
-                                    shopName={shop.shop}
-                                    address={shop.address}
-                                    Mo_Fr={shop.Mo_Fr}
-                                    saturday = {shop.saturday}
-                                    sunday = {shop.sunday}
-                                    additionalOptions = {shop.additionalOptions}
-                                />
-                              }*/
+                            }if (_this2.state.districtsFilter === 'all') {
+                                return _react2.default.createElement(_itemOfList2.default, {
+                                    key: shop._id,
+                                    shopName: shop.shop,
+                                    address: shop.address,
+                                    Mo_Fr: shop.Mo_Fr,
+                                    saturday: shop.saturday,
+                                    sunday: shop.sunday,
+                                    additionalOptions: shop.additionalOptions
+                                });
+                            }
                         })
                     )
                 ),
