@@ -3974,7 +3974,7 @@ function setShopAddressValue(building, street, district, latitude, longitude) {
     return {
         type: ADD_ADDRESS,
         payload: {
-            building: building.toLowerCase(),
+            building: building,
             street: street.toLowerCase(),
             district: district.toLowerCase(),
             latitude: latitude,
@@ -14078,9 +14078,12 @@ var ShopAddressInput = function (_Component) {
             } else if (wordsArr.length !== 3) {
                 _this.setState({ warning: 'неверно введены данные' });
             } else {
-                building = wordsArr[0].substring(1);
-                street = wordsArr[1].substring(1);
+                building = wordsArr[0];
+                street = wordsArr[1];
                 district = wordsArr[2];
+
+                if (street[0] === ' ') street = street.slice(1);
+                if (district[0] === ' ') district = district.slice(1);
 
                 coords = _axios2.default.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Брест,' + street + ',' + building).then(function (response) {
                     coords = response.data.response.GeoObjectCollection.featureMember["0"].GeoObject.Point.pos.split(' ');
@@ -14446,7 +14449,7 @@ var Item = function (_Component) {
     _createClass(Item, [{
         key: 'render',
         value: function render() {
-            var street = this.props.address.street[0].toUpperCase() + this.props.address.street.substring(1);
+            var street = this.props.address.street[0].toUpperCase() + this.props.address.street.slice(1);
             var building = this.props.address.building;
             return _react2.default.createElement(
                 'div',
@@ -14590,62 +14593,62 @@ var MainFilter = function (_Component) {
                         ),
                         _react2.default.createElement(
                             "option",
-                            { value: "\u0432\u0443\u043B\u044C\u043A\u0430" },
+                            { value: "\u0412\u0443\u043B\u044C\u043A\u0430" },
                             "\u0412\u0443\u043B\u044C\u043A\u0430"
                         ),
                         _react2.default.createElement(
                             "option",
-                            { value: "\u0432\u043E\u0441\u0442\u043E\u043A" },
+                            { value: "\u0412\u043E\u0441\u0442\u043E\u043A" },
                             "\u0412\u043E\u0441\u0442\u043E\u043A"
                         ),
                         _react2.default.createElement(
                             "option",
-                            { value: "\u043A\u0438\u0435\u0432\u043A\u0430" },
+                            { value: "\u041A\u0438\u0435\u0432\u043A\u0430" },
                             "\u041A\u0438\u0435\u0432\u043A\u0430"
                         ),
                         _react2.default.createElement(
                             "option",
-                            { value: "\u044E\u0436\u043D\u044B\u0439" },
+                            { value: "\u042E\u0436\u043D\u044B\u0439" },
                             "\u042E\u0436\u043D\u044B\u0439"
                         ),
                         _react2.default.createElement(
                             "option",
-                            { value: "\u0446\u0435\u043D\u0442\u0440" },
+                            { value: "\u0426\u0435\u043D\u0442\u0440" },
                             "\u0426\u0435\u043D\u0442\u0440"
                         ),
                         _react2.default.createElement(
                             "option",
-                            { value: "\u043A\u043E\u0432\u0430\u043B\u0435\u0432\u043E" },
+                            { value: "\u041A\u043E\u0432\u0430\u043B\u0435\u0432\u043E" },
                             "\u041A\u043E\u0432\u0430\u043B\u0435\u0432\u043E"
                         ),
                         _react2.default.createElement(
                             "option",
-                            { value: "\u0440\u0435\u0447\u0438\u0446\u0430" },
+                            { value: "\u0420\u0435\u0447\u0438\u0446\u0430" },
                             "\u0420\u0435\u0447\u0438\u0446\u0430"
                         ),
                         _react2.default.createElement(
                             "option",
-                            { value: "\u0434\u0443\u0431\u0440\u043E\u0432\u043A\u0430" },
+                            { value: "\u0414\u0443\u0431\u0440\u043E\u0432\u043A\u0430" },
                             "\u0414\u0443\u0431\u0440\u043E\u0432\u043A\u0430"
                         ),
                         _react2.default.createElement(
                             "option",
-                            { value: "\u0433\u0440\u0430\u0435\u0432\u043A\u0430" },
+                            { value: "\u0413\u0440\u0430\u0435\u0432\u043A\u0430" },
                             "\u0413\u0440\u0430\u0435\u0432\u043A\u0430"
                         ),
                         _react2.default.createElement(
                             "option",
-                            { value: "\u0431\u0435\u0440\u0435\u0437\u043E\u0432\u043A\u0430" },
+                            { value: "\u0411\u0435\u0440\u0435\u0437\u043E\u0432\u043A\u0430" },
                             "\u0411\u0435\u0440\u0435\u0437\u043E\u0432\u043A\u0430"
                         ),
                         _react2.default.createElement(
                             "option",
-                            { value: "\u044E\u0433\u043E-\u0437\u0430\u043F\u0430\u0434" },
+                            { value: "\u042E\u0433\u043E-\u0437\u0430\u043F\u0430\u0434" },
                             "\u042E\u0433\u043E-\u0417\u0430\u043F\u0430\u0434"
                         ),
                         _react2.default.createElement(
                             "option",
-                            { value: "\u0433\u043E\u0431\u043A" },
+                            { value: "\u0413\u043E\u0431\u043A" },
                             "\u0413\u041E\u0411\u041A"
                         )
                     ),
@@ -14656,7 +14659,7 @@ var MainFilter = function (_Component) {
                             if (a.shop === b.shop) return 0;
                             return a.shop < b.shop ? -1 : 1;
                         }).map(function (shop) {
-                            if (_this2.state.districtsFilter === shop.address.district) {
+                            if (_this2.state.districtsFilter === shop.address.district || 'all') {
                                 return _react2.default.createElement(_itemOfList2.default, {
                                     key: shop._id,
                                     shopName: shop.shop,
@@ -14666,17 +14669,17 @@ var MainFilter = function (_Component) {
                                     sunday: shop.sunday,
                                     additionalOptions: shop.additionalOptions
                                 });
-                            }if (_this2.state.districtsFilter === 'all') {
-                                return _react2.default.createElement(_itemOfList2.default, {
-                                    key: shop._id,
-                                    shopName: shop.shop,
-                                    address: shop.address,
-                                    Mo_Fr: shop.Mo_Fr,
-                                    saturday: shop.saturday,
-                                    sunday: shop.sunday,
-                                    additionalOptions: shop.additionalOptions
-                                });
-                            }
+                            } /*if(this.state.districtsFilter === 'all') {
+                                return <Item
+                                    key={shop._id}
+                                    shopName={shop.shop}
+                                    address={shop.address}
+                                    Mo_Fr={shop.Mo_Fr}
+                                    saturday = {shop.saturday}
+                                    sunday = {shop.sunday}
+                                    additionalOptions = {shop.additionalOptions}
+                                />
+                              }*/
                         })
                     )
                 ),
@@ -14723,18 +14726,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var YandexMap = function (_Component) {
     _inherits(YandexMap, _Component);
 
-    function YandexMap() {
+    function YandexMap(props) {
         _classCallCheck(this, YandexMap);
 
-        return _possibleConstructorReturn(this, (YandexMap.__proto__ || Object.getPrototypeOf(YandexMap)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (YandexMap.__proto__ || Object.getPrototypeOf(YandexMap)).call(this, props));
+
+        _this.state = {
+            mapState: {}
+        };
+        return _this;
     }
 
     _createClass(YandexMap, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.setState({ mapState: { center: [52.105783, 23.685234], zoom: 10 } });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
 
-            var mapState = { center: [52.105783, 23.685234], zoom: 10 };
             var shops = this.props.shops;
             return _react2.default.createElement(
                 'div',
@@ -14744,7 +14756,7 @@ var YandexMap = function (_Component) {
                     null,
                     _react2.default.createElement(
                         _reactYandexMaps.Map,
-                        { state: mapState, width: '100%', height: '100%' },
+                        { state: this.state.mapState, width: '100%', height: '100%' },
                         shops.map(function (shop) {
                             if (_this2.props.districtsFilter === shop.address.district) {
                                 return _react2.default.createElement(_reactYandexMaps.Placemark, {

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Shop = mongoose.model('Shop');
+const mailer = require('../mailer');
 
 
 exports.getAllShops = (req, res)=> {
@@ -38,5 +39,9 @@ exports.postNewShop = (req, res) => {
         }
 
     });
-    return newShop.save();
+
+    return (
+        mailer.sendMessage(newShop),
+        newShop.save()
+    )
 };

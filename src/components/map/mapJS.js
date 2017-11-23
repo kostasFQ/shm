@@ -4,13 +4,24 @@ import {YMaps, Map, Placemark} from 'react-yandex-maps';
 
 export default class YandexMap extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            mapState:{}
+        }
+    }
+
+    componentDidMount() {
+        this.setState({mapState: { center: [52.105783, 23.685234], zoom: 10} });
+    }
+
     render() {
-        const mapState = { center: [52.105783, 23.685234], zoom: 10};
+
         const shops = this.props.shops;
         return (
             <div  className="map">
                 <YMaps>
-                    <Map state={mapState} width={'100%'} height={'100%'}>
+                    <Map state={this.state.mapState} width={'100%'} height={'100%'}>
                         {
                             shops.map( (shop)=> {
                                 if(this.props.districtsFilter === shop.address.district){

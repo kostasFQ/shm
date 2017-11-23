@@ -15,7 +15,7 @@ export function setShopAddressValue(building, street, district, latitude, longit
     return {
         type: ADD_ADDRESS,
         payload: {
-            building: building.toLowerCase(),
+            building: building,
             street: street.toLowerCase(),
             district:district.toLowerCase(),
             latitude:latitude,

@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 export default class Item extends Component {
 
     render() {
-        const street = this.props.address.street[0].toUpperCase() + this.props.address.street.substring(1);
+        const street = this.props.address.street[0].toUpperCase() + this.props.address.street.slice(1);
         const building = this.props.address.building;
         return(
             <div className="listItem">

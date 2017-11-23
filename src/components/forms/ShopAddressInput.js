@@ -34,9 +34,12 @@ class ShopAddressInput extends Component{
         }
 
         else {
-            building = wordsArr[0].substring(1);
-            street = wordsArr[1].substring(1);
+            building = wordsArr[0];
+            street = wordsArr[1];
             district = wordsArr[2];
+
+            if(street[0] === ' ') street = street.slice(1);
+            if(district[0] === ' ') district = district.slice(1);
 
 
             coords= axios.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Брест,'+street+','+building)

@@ -9,6 +9,7 @@
     "cors": "^2.8.3",
     "express": "^4.15.2",
     "mongoose": "^4.9.7",
+    "nodemailer": "^4.4.0",
     "react-redux": "5.0.5",
     "react-yandex-maps": "^1.1.2",
     "redux": "3.7.2"
