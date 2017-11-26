@@ -32,14 +32,13 @@
     margin-right: 1%;
 }
 
-
-
-@media screen and (max-width: 600px){
+@media (max-width: 500px){
     .contentStyle {
+        width: 50%;
         flex-flow: row wrap;
         justify-content: flex-start;
         align-items: stretch;
-
+        background-color: green;
     }
     .leftBar {
         height: 273px;

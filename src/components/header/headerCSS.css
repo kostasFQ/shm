@@ -2,11 +2,9 @@
 
 .headerStyle {
     box-sizing: border-box;
-    width: 100%;
     color: #706075;
-    font-size: xx-large;
-    font-weight: 800;
+    font-size: 2em;
+    font-weight: bolder;
     font-family: 'Oxygen', sans-serif;
-    display: inline-flex;
-
+    display: flex;
 }
