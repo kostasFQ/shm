@@ -4,13 +4,20 @@
     display: flex;
     flex-flow: row nowrap;
     width: 100%;
+    height: 100%;
     background-color: lightgray;
 }
+
+.tmp {
+    border: 3px solid red;
+    height: 700px;
+}
+
+
 .leftBar {
     width: 30%;
     overflow: hidden;
     min-width: 250px;
-    height: 525px;
 }
 .select{
     margin-left: 2px;
@@ -23,7 +30,7 @@
     padding-left: 30%;
 }
 .listField {
-    height: 498px;
+    height: auto;
     width: 110%;
     overflow-y: scroll;
 }
@@ -34,11 +41,10 @@
 
 @media (max-width: 500px){
     .contentStyle {
-        width: 50%;
+        width: 100%;
         flex-flow: row wrap;
         justify-content: flex-start;
         align-items: stretch;
-        background-color: green;
     }
     .leftBar {
         height: 273px;
@@ -59,6 +65,21 @@
     }
     .footer{
         margin-top: 0;
+    }
+    .form{
+        transition: 1s;
+        position: absolute;
+        top:10%;
+        left: 0.1%;
+        width: 98%;
+        height: 530px;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 5px;
+        z-index: 100;
+        text-align: left;
+        padding-left: 1%;
+        min-width: 300px;
     }
 
 }

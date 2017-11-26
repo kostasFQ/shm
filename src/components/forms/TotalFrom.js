@@ -14,7 +14,7 @@ class Total extends Component {
 
     render() {
         return (
-            <div className='label'>
+            <div>
                 <button
                     className='submitButton'
                     onClick={this.submit}
