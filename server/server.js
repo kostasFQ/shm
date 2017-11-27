@@ -23,12 +23,6 @@ app.use(function (err, req, res, next) {
    res.status(500).json(err);
 });
 
-/*const x = fs.readFileSync(__dirname+'/temp.md', 'utf-8');
-console.log(x);
-
-const server = app.listen(8080, ()=> {
-   console.log('Server running on port 8080.');
-});*/
 const server = https.createServer({
     key : fs.readFileSync('key.pem'),
     cert : fs.readFileSync('cert.pem')
