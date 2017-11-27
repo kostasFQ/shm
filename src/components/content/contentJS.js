@@ -12,7 +12,7 @@ export default class Content extends Component {
     }
 
     render() {
-        axios.get('https://localhost:8080/shops')
+        axios.get('http://localhost:8080/shops')
             .then((response) => {
                 this.setState({shops:response.data});
             })

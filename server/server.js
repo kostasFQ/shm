@@ -23,9 +23,6 @@ app.use(function (err, req, res, next) {
    res.status(500).json(err);
 });
 
-const server = https.createServer({
-    key : fs.readFileSync('key.pem'),
-    cert : fs.readFileSync('cert.pem')
-},app).listen(process.env.PORT || 8080, () => {
+const server = app.listen(process.env.PORT || 8080, () => {
     console.log('Server running on port 8080.')
 });
