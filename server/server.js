@@ -1,5 +1,7 @@
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const express = require('express');
+const https = require('https');
+const fs = require('fs');
 
 require('./models/indexModels.js');
 
@@ -8,11 +10,11 @@ const shopsController = require('./controlers/shopsController.js');
 const app = express();
 
 app.use(express.static('public'));
+
 app.use(bodyParser.json());
 
 app.get('/shops', shopsController.getAllShops);
 app.post('/shops', shopsController.postNewShop);
-
 
 app.use(function (req, res, next) {
     res.status(404).send('Page not found!!');
@@ -21,7 +23,15 @@ app.use(function (err, req, res, next) {
    res.status(500).json(err);
 });
 
+/*const x = fs.readFileSync(__dirname+'/temp.md', 'utf-8');
+console.log(x);
+
 const server = app.listen(8080, ()=> {
    console.log('Server running on port 8080.');
+});*/
+const server = https.createServer({
+    key : fs.readFileSync('key.pem'),
+    cert : fs.readFileSync('cert.pem')
+},app).listen(process.env.PORT || 8080, () => {
+    console.log('Server running on port 8080.')
 });
-
