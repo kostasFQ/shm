@@ -20,7 +20,7 @@ export default class Content extends Component {
                 console.log(error);
             });
         return(
-            <div className='tmp'>
+            <div>
                 <MainFilter shops={this.state.shops}/>
             </div>
         )

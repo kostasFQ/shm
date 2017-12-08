@@ -13529,7 +13529,7 @@ var Content = function (_Component) {
             });
             return _react2.default.createElement(
                 'div',
-                { className: 'tmp' },
+                null,
                 _react2.default.createElement(_mainFilterJS2.default, { shops: this.state.shops })
             );
         }
