@@ -22,8 +22,6 @@ class ShopAddressInput extends Component{
         let latitude;
         let longitude;
 
-
-
         if (currentValue.length < 10) {
             this.setState({warning : "недостаточное количество данных"});
         }
