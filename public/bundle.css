@@ -107,7 +107,7 @@
     padding-left: 30%;
 }
 .listField {
-    height: auto;
+    height: 100%;
     width: 110%;
     overflow-y: scroll;
 }
