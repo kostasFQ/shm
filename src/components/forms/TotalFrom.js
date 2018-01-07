@@ -8,7 +8,7 @@ class Total extends Component {
 
     submit = () => {
         const data = this.props.FormStore;
-        axios.post('http://localhost:8080/shops', data)
+        axios.post('https://localhost:8080/shops', data)
     };
 
 
