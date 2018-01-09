@@ -13517,12 +13517,22 @@ var Content = function (_Component) {
         return _this;
     }
 
+    /*componentDidMount(){
+        axios.get('https://localhost:8080/shops')
+            .then((response) => {
+                this.setState({shops:response.data});
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }*/
+
     _createClass(Content, [{
         key: 'render',
         value: function render() {
             var _this2 = this;
 
-            _axios2.default.get('http://localhost:8080/shops').then(function (response) {
+            _axios2.default.get('https://localhost:8080/shops').then(function (response) {
                 _this2.setState({ shops: response.data });
             }).catch(function (error) {
                 console.log(error);
@@ -14297,7 +14307,7 @@ var Total = function (_Component) {
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Total.__proto__ || Object.getPrototypeOf(Total)).call.apply(_ref, [this].concat(args))), _this), _this.submit = function () {
             var data = _this.props.FormStore;
-            _axios2.default.post('http://localhost:8080/shops', data);
+            _axios2.default.post('https://localhost:8080/shops', data);
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
