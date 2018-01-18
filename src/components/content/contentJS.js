@@ -11,25 +11,18 @@ export default class Content extends Component {
         this.state = {shops:[]}
     }
 
-    /*componentDidMount(){
-        axios.get('https://localhost:8080/shops')
+    componentDidMount(){
+        axios.get('http://localhost:8080/shops')
             .then((response) => {
                 this.setState({shops:response.data});
             })
             .catch(function (error) {
                 console.log(error);
             });
-    }*/
+    }
 
 
     render() {
-        axios.get('https://localhost:8080/shops')
-            .then((response) => {
-                this.setState({shops:response.data});
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
         return(
             <div>
                 <MainFilter shops={this.state.shops}/>

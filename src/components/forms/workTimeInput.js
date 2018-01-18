@@ -6,7 +6,7 @@ import Day from "./Day";
 export default class WorkTimeInput extends Component {
 
     render(){
-        const workSchedule = [ {rus:'Пн-Пт', eng:'Mo_Fr'}, {rus: 'суббота', eng: 'saturday'}, {rus: 'воскресенье', eng:'sunday' } ];
+        const workSchedule = [ {rus:'Пн-Пт', eng:'Mo_Fr'}, {rus: 'Суббота', eng: 'saturday'}, {rus: 'Воскресенье', eng:'sunday' } ];
         return(
             <div className='label'>
                 <fieldset>

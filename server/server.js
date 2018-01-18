@@ -9,7 +9,7 @@ const shopsController = require('./controlers/shopsController.js');
 
 const app = express();
 
-app.use(express.static(__dirname+'/public'));
+app.use(express.static('public'));
 
 app.use(bodyParser.json());
 
@@ -24,15 +24,15 @@ app.use(function (err, req, res, next) {
    res.status(500).json(err);
 });
 
-const server = app.listen(process.env.PORT || 8081, () => {
+const server = app.listen(process.env.PORT || 8080, () => {
     console.log('Server running on port 8080.')
 });
 
-https.createServer({
+/*https.createServer({
     key: fs.readFileSync('key.pem'),
     cert: fs.readFileSync('cert.pem')
 }, app).listen(process.env.PORT || 8080, () => {
     console.log('Secure server running on port 8080.')
-});
+});*/
 
 

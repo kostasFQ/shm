@@ -9,7 +9,7 @@ class Day extends Component {
         super(props);
 
         this.state = {
-            dayOff : true
+           dayOff : true
         };
     }
 
@@ -40,11 +40,11 @@ class Day extends Component {
     render(){
 
         let startWorkTime = ['09:00', '10:00', '11:00', '12:00'];
-        let endWorkTime = ['16:00','17:00','18:00','19:00','20:00'];
+        let endWorkTime = ['17:00','18:00','19:00','20:00'];
         
 
         return(
-            <div className='workDays'>
+            <div className='workDays' style={{'border':"1px solid black"}} onBlur={this.accept}>
                 {this.props.dayNameRus}
                 <div>
                     <select name="work" ref={(sel) => {this.selectValue = sel}} onChange={this.toggleVisible}>
@@ -78,12 +78,6 @@ class Day extends Component {
                             </div> : null
                     }
                 </div>
-                <div className='btn_place'>
-                    <button
-                        className='submitButton'
-                        onClick={this.accept}>Применить</button>
-                </div>
-
             </div>
         )
     }
@@ -93,8 +87,8 @@ export default connect(
         localStore: state
     }),
     dispatch => ({
-        selectDay: (day, status, startTime, endTime, additionalOptions) => {
-            dispatch(selectDayType(day, status, startTime, endTime, additionalOptions))
+        selectDay: (day, status, startTime, endTime) => {
+            dispatch(selectDayType(day, status, startTime, endTime))
         }
     })
 )(Day);

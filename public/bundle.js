@@ -13517,26 +13517,20 @@ var Content = function (_Component) {
         return _this;
     }
 
-    /*componentDidMount(){
-        axios.get('https://localhost:8080/shops')
-            .then((response) => {
-                this.setState({shops:response.data});
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }*/
-
     _createClass(Content, [{
-        key: 'render',
-        value: function render() {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
             var _this2 = this;
 
-            _axios2.default.get('https://localhost:8080/shops').then(function (response) {
+            _axios2.default.get('http://localhost:8080/shops').then(function (response) {
                 _this2.setState({ shops: response.data });
             }).catch(function (error) {
                 console.log(error);
             });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
             return _react2.default.createElement(
                 'div',
                 null,
@@ -13590,7 +13584,7 @@ var Footer = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, props));
 
         _this.state = {
-            openForm: false
+            openForm: false //todo false!!!
         };
 
         _this.showForm = _this.showForm.bind(_this);
@@ -13795,11 +13789,11 @@ var Day = function (_Component) {
             var _this2 = this;
 
             var startWorkTime = ['09:00', '10:00', '11:00', '12:00'];
-            var endWorkTime = ['16:00', '17:00', '18:00', '19:00', '20:00'];
+            var endWorkTime = ['17:00', '18:00', '19:00', '20:00'];
 
             return _react2.default.createElement(
                 'div',
-                { className: 'workDays' },
+                { className: 'workDays', style: { 'border': "1px solid black" }, onBlur: this.accept },
                 this.props.dayNameRus,
                 _react2.default.createElement(
                     'div',
@@ -13862,17 +13856,6 @@ var Day = function (_Component) {
                             )
                         )
                     ) : null
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'btn_place' },
-                    _react2.default.createElement(
-                        'button',
-                        {
-                            className: 'submitButton',
-                            onClick: this.accept },
-                        '\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C'
-                    )
                 )
             );
         }
@@ -13887,8 +13870,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     };
 }, function (dispatch) {
     return {
-        selectDay: function selectDay(day, status, startTime, endTime, additionalOptions) {
-            dispatch((0, _index.selectDayType)(day, status, startTime, endTime, additionalOptions));
+        selectDay: function selectDay(day, status, startTime, endTime) {
+            dispatch((0, _index.selectDayType)(day, status, startTime, endTime));
         }
     };
 })(Day);
@@ -13949,9 +13932,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var initialStore = {
     shop: null,
     address: {},
-    Mo_Fr: {},
-    saturday: {},
-    sunday: {}
+    Mo_Fr: {
+        status: 'work',
+        startTime: '10:00',
+        endTime: '16:00'
+    },
+    saturday: {
+        status: 'work',
+        startTime: '10:00',
+        endTime: '16:00'
+    },
+    sunday: {
+        status: 'work',
+        startTime: '10:00',
+        endTime: '17:00'
+    }
 };
 
 function shopListStore() {
@@ -14307,13 +14302,14 @@ var Total = function (_Component) {
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Total.__proto__ || Object.getPrototypeOf(Total)).call.apply(_ref, [this].concat(args))), _this), _this.submit = function () {
             var data = _this.props.FormStore;
-            _axios2.default.post('https://localhost:8080/shops', data);
+            _axios2.default.post('http://localhost:8080/shops', data).then(location.reload());
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(Total, [{
         key: 'render',
         value: function render() {
+            console.log(this.props.FormStore);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -14381,7 +14377,7 @@ var WorkTimeInput = function (_Component) {
     _createClass(WorkTimeInput, [{
         key: 'render',
         value: function render() {
-            var workSchedule = [{ rus: 'Пн-Пт', eng: 'Mo_Fr' }, { rus: 'суббота', eng: 'saturday' }, { rus: 'воскресенье', eng: 'sunday' }];
+            var workSchedule = [{ rus: 'Пн-Пт', eng: 'Mo_Fr' }, { rus: 'Суббота', eng: 'saturday' }, { rus: 'Воскресенье', eng: 'sunday' }];
             return _react2.default.createElement(
                 'div',
                 { className: 'label' },
