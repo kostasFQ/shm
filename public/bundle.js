@@ -3975,8 +3975,8 @@ function setShopAddressValue(building, street, district, latitude, longitude) {
         type: ADD_ADDRESS,
         payload: {
             building: building,
-            street: street.toLowerCase(),
-            district: district.toLowerCase(),
+            street: street,
+            district: district,
             latitude: latitude,
             longitude: longitude
         }
@@ -13927,23 +13927,23 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var initialStore = {
-    shop: null,
-    address: {},
-    Mo_Fr: {
-        status: 'work',
-        startTime: '10:00',
-        endTime: '16:00'
+    /*shop:null,
+    address:{},
+    Mo_Fr : {
+        status : 'work',
+        startTime : '10:00',
+        endTime : '17:00'
     },
     saturday: {
-        status: 'work',
-        startTime: '10:00',
-        endTime: '16:00'
+        status : 'work',
+        startTime : '10:00',
+        endTime : '17:00'
     },
     sunday: {
-        status: 'work',
-        startTime: '10:00',
-        endTime: '17:00'
-    }
+        status : 'work',
+        startTime : '10:00',
+        endTime : '17:00'
+    }*/
 };
 
 function shopListStore() {
@@ -13997,7 +13997,7 @@ var Form = function (_Component) {
     _createClass(Form, [{
         key: 'render',
         value: function render() {
-            store.dispatch({ type: 'CLEAR' });
+            /*store.dispatch({type : 'CLEAR'});*/ //todo mark
             return _react2.default.createElement(
                 _reactRedux.Provider,
                 { store: store },
@@ -14063,14 +14063,61 @@ var ShopAddressInput = function (_Component) {
         var _this = _possibleConstructorReturn(this, (ShopAddressInput.__proto__ || Object.getPrototypeOf(ShopAddressInput)).call(this, props));
 
         _this.handleChange = function (event) {
-            if (event.target.value.length < 2) {
-                _this.setState({ war: false, warning: "недостаточное количество данных" });
-                return;
-            } else {
-                var _this$setState;
+            if (event.target.name !== 'building') {
+                if (event.target.value.length < 4 || /[0-9]/.test(event.target.value)) {
+                    var _this$setState;
 
-                _this.setState((_this$setState = {}, _defineProperty(_this$setState, event.target.name, event.target.value.toLowerCase()), _defineProperty(_this$setState, 'war', true), _defineProperty(_this$setState, 'warning', ''), _this$setState));
+                    _this.setState((_this$setState = {}, _defineProperty(_this$setState, event.target.name, {
+                        value: event.target.value.toLowerCase().trim(),
+                        verificate: false
+                    }), _defineProperty(_this$setState, 'warning', 'недопустимое значение'), _this$setState));
+                } else {
+                    var _this$setState2;
+
+                    _this.setState((_this$setState2 = {}, _defineProperty(_this$setState2, event.target.name, {
+                        value: event.target.value.toLowerCase().trim(),
+                        verificate: true
+                    }), _defineProperty(_this$setState2, 'warning', ''), _this$setState2));
+                }
+            } else {
+                if (event.target.value.length < 2) {
+                    var _this$setState3;
+
+                    _this.setState((_this$setState3 = {}, _defineProperty(_this$setState3, event.target.name, {
+                        value: event.target.value.toLowerCase().trim(),
+                        verificate: false
+                    }), _defineProperty(_this$setState3, 'warning', 'wrong length - '), _this$setState3));
+                } else {
+                    var _this$setState4;
+
+                    _this.setState((_this$setState4 = {}, _defineProperty(_this$setState4, event.target.name, {
+                        value: event.target.value.toLowerCase().trim(),
+                        verificate: true
+                    }), _defineProperty(_this$setState4, 'warning', ''), _this$setState4));
+                }
             }
+        };
+
+        _this.verification = function (event) {
+            if (_this.state[event.target.name].value.length === 0) {
+                var _this$setState5;
+
+                _this.setState((_this$setState5 = {}, _defineProperty(_this$setState5, event.target.name, {
+                    value: _this.state[event.target.name].value.trim(),
+                    verificate: false
+                }), _defineProperty(_this$setState5, 'warning', 'wroooong'), _this$setState5));
+            } else {
+                var coordinates = _axios2.default.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Брест,' + _this.state.street.value + ',' + _this.state.building.value).then(function (response) {
+                    coordinates = response.data.response.GeoObjectCollection.featureMember["0"].GeoObject.Point.pos.split(' ');
+                    _this.setState({
+                        latitude: +coordinates[1],
+                        longitude: +coordinates[0]
+                    });
+                    _this.props.onAddAddress(_this.state.building, _this.state.street, _this.state.district, _this.state.latitude, _this.state.longitude);
+                    _this.setState({ warning: null });
+                });
+            }
+            console.log(_this.state);
         };
 
         _this.addAddress = function () {
@@ -14109,25 +14156,27 @@ var ShopAddressInput = function (_Component) {
 
         _this.state = {
             warning: null,
-            district: null,
-            street: null,
-            building: null,
+            district: {
+                value: '',
+                verificate: undefined
+            },
+            street: {
+                value: '',
+                verificate: undefined
+            },
+            building: {
+                value: '',
+                verificate: undefined
+            },
             latitude: null,
-            longitude: null,
-            war: false
+            longitude: null
         };
         return _this;
     }
 
-    /*verification = () => {
-        console.log('veryfication!')
-    };*/
-
     _createClass(ShopAddressInput, [{
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
             return _react2.default.createElement(
                 'div',
                 { className: 'label' },
@@ -14136,46 +14185,40 @@ var ShopAddressInput = function (_Component) {
                     null,
                     '\u0410\u0434\u0440\u0435\u0441:\xA0'
                 ),
-                _react2.default.createElement('input', { type: 'text',
-                    className: 'input',
-                    placeholder: '\u0424\u043E\u0440\u043C\u0430\u0442 \u0432\u0432\u043E\u0434\u0430 \u0430\u0434\u0440\u0435\u0441\u0430 : \u0440\u0430\u0439\u043E\u043D, \u0443\u043B\u0438\u0446\u0430, \u2116\u0434\u043E\u043C\u0430',
-                    ref: function ref(input) {
-                        _this2.shopAddressInput = input;
-                    },
-                    onBlur: this.addAddress
-                }),
-                _react2.default.createElement('div', { style: { color: 'red' } }),
-                _react2.default.createElement('hr', null),
                 _react2.default.createElement(
                     'div',
-                    null,
+                    { onBlur: this.verification },
                     _react2.default.createElement(
-                        'span',
-                        { className: 'addressInput', onBlur: this.verification },
-                        '\u0420\u0430\u0439\u043E\u043D: ',
-                        this.state.district,
-                        _react2.default.createElement('input', { type: 'text', size: '15', name: 'district', className: this.state.war ? 'green' : 'red',
-                            onChange: this.handleChange
-                        }),
-                        this.state.warning
-                    ),
-                    _react2.default.createElement(
-                        'span',
+                        'div',
                         { className: 'addressInput' },
-                        '\u0423\u043B\u0438\u0446\u0430: ',
-                        this.state.street,
-                        _react2.default.createElement('input', { type: 'text', size: '20', name: 'street', className: this.state.war ? 'green' : 'red',
+                        '\u0420\u0430\u0439\u043E\u043D:',
+                        _react2.default.createElement('input', { type: 'text', size: '15', name: 'district',
+                            className: this.state.district.verificate === undefined ? null : this.state.district.verificate ? null : 'redBorder',
                             onChange: this.handleChange
                         })
                     ),
                     _react2.default.createElement(
-                        'span',
+                        'div',
                         { className: 'addressInput' },
-                        '\u0414\u043E\u043C: ',
-                        this.state.building,
+                        '\u0423\u043B\u0438\u0446\u0430:',
+                        _react2.default.createElement('input', { type: 'text', size: '20', name: 'street',
+                            className: this.state.street.verificate === undefined ? null : this.state.street.verificate ? null : 'redBorder',
+                            onChange: this.handleChange
+                        })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'addressInput' },
+                        '\u0414\u043E\u043C:',
                         _react2.default.createElement('input', { type: 'text', size: '5', name: 'building',
+                            className: this.state.building.verificate === undefined ? null : this.state.building.verificate ? null : 'redBorder',
                             onChange: this.handleChange
                         })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { style: { color: 'red' } },
+                        this.state.warning
                     )
                 )
             );
@@ -14359,7 +14402,7 @@ var Total = function (_Component) {
     _createClass(Total, [{
         key: 'render',
         value: function render() {
-            console.log(this.props.FormStore);
+            console.log('totalForm', this.props.FormStore);
             return _react2.default.createElement(
                 'div',
                 null,

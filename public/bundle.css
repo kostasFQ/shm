@@ -76,8 +76,11 @@
     text-align: center;
 }
 .addressInput {
-    margin-right: 2%;
+    margin: 1%;
     display: inline-block;
+}
+.redBorder{
+    border: solid red 2px;
 }.contentStyle {
     padding: 0;
     display: flex;

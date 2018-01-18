@@ -14,7 +14,7 @@ class Total extends Component {
 
 
     render() {
-        console.log(this.props.FormStore);
+        console.log('totalForm', this.props.FormStore);
         return (
             <div>
                 <button

@@ -8,35 +8,93 @@ class ShopAddressInput extends Component{
         super(props);
         this.state = {
             warning:null,
-            district:null,
-            street:null,
-            building:null,
+            district:{
+                value:'',
+                verificate: undefined
+            },
+            street:{
+                value:'',
+                verificate: undefined
+            },
+            building:{
+                value:'',
+                verificate: undefined
+            },
             latitude:null,
-            longitude:null,
-            war:false
+            longitude:null
         };
     }
 
     handleChange = (event) => {
-        if(event.target.value.length < 2){
-            this.setState({ war:false, warning : "недостаточное количество данных" });
-            return;
+        if(event.target.name !== 'building'){
+            if(event.target.value.length < 4 || /[0-9]/.test(event.target.value) ){
+                this.setState({
+                    [event.target.name]:{
+                        value: ( (event.target.value).toLowerCase() ).trim(),
+                        verificate: false
+                    },
+                    warning:'недопустимое значение'
+                });
+            }
+
+
+            else {
+                this.setState({
+                    [event.target.name]:{
+                        value: ( (event.target.value).toLowerCase() ).trim(),
+                        verificate: true
+                    },
+                    warning:''
+                });
+            }
         }
+
         else {
-            this.setState({
-                [event.target.name]: (event.target.value).toLowerCase(),
-                war:true,
-                warning:''
-            });
+            if(event.target.value.length < 2){
+                this.setState({
+                    [event.target.name]:{
+                        value: ( (event.target.value).toLowerCase() ).trim(),
+                        verificate: false
+                    },
+                    warning:'wrong length - '
+                });
+            } else {
+                this.setState({
+                    [event.target.name]:{
+                        value: ( (event.target.value).toLowerCase() ).trim(),
+                        verificate: true
+                    },
+                    warning:''
+                });
+            }
         }
-
-
 
     };
 
-    /*verification = () => {
-        console.log('veryfication!')
-    };*/
+    verification = (event) => {
+        if(this.state[event.target.name].value.length === 0) {
+            this.setState({
+                [event.target.name]:{
+                    value: (this.state[event.target.name].value).trim(),
+                    verificate: false
+                },
+                warning:'wroooong'
+            });
+        } else {
+            let coordinates = axios.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Брест,'+ this.state.street.value +','+ this.state.building.value)
+                .then( response => {
+                        coordinates = response.data.response.GeoObjectCollection.featureMember["0"].GeoObject.Point.pos.split(' ');
+                        this.setState({
+                            latitude: +coordinates[1],
+                            longitude: +coordinates[0]
+                        });
+                    this.props.onAddAddress(this.state.building, this.state.street, this.state.district, this.state.latitude, this.state.longitude);
+                    this.setState({warning : null});
+                    }
+                )
+        }
+        console.log(this.state);
+    };
 
 
     addAddress = () => {
@@ -87,39 +145,31 @@ class ShopAddressInput extends Component{
         return(
             <div className='label'>
                 <label>Адрес:&nbsp;</label>
-                <input type="text"
-                       className='input'
-                       placeholder='Формат ввода адреса : район, улица, №дома'
-                       ref={(input) => {this.shopAddressInput = input}}
-                       onBlur={this.addAddress}
-                />
-                <div style={{color:'red'}}>
-                    {/*{this.state.warning}*/}
-                </div>
-
-
-
-
-                <hr/>
-                <div>
-                    <span  className='addressInput' onBlur={this.verification}>
-                        Район: {this.state.district}
-                        <input type="text" size="15" name="district" className={this.state.war ? 'green' : 'red'}
-                               onChange={this.handleChange}
-                        />{this.state.warning}
-                    </span>
-                    <span  className='addressInput'>
-                        Улица: {this.state.street}
-                        <input type="text" size='20' name='street' className={this.state.war ? 'green' : 'red'}
+                <div onBlur={this.verification}>
+                    <div  className='addressInput' >
+                        Район:
+                        <input type="text" size="15" name="district"
+                               className={this.state.district.verificate === undefined ?  null  : this.state.district.verificate ? null :'redBorder'}
                                onChange={this.handleChange}
                         />
-                    </span>
-                    <span  className='addressInput'>
-                        Дом: {this.state.building}
+                    </div>
+                    <div  className='addressInput'>
+                        Улица:
+                        <input type="text" size='20' name='street'
+                               className={this.state.street.verificate === undefined ?  null  : this.state.street.verificate ? null :'redBorder'}
+                               onChange={this.handleChange}
+                        />
+                    </div>
+                    <div  className='addressInput'>
+                        Дом:
                         <input type="text" size='5' name='building'
+                               className={this.state.building.verificate === undefined ?  null  : this.state.building.verificate ? null :'redBorder'}
                                onChange={this.handleChange}
                         />
-                    </span>
+                    </div>
+                    <div style={{color:'red'}}>
+                        {this.state.warning}
+                    </div>
 
 
 

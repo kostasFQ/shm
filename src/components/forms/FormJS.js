@@ -11,23 +11,23 @@ import { Provider } from 'react-redux';
 
 
 const initialStore = {
-    shop:null,
+    /*shop:null,
     address:{},
     Mo_Fr : {
         status : 'work',
         startTime : '10:00',
-        endTime : '16:00'
+        endTime : '17:00'
     },
     saturday: {
         status : 'work',
         startTime : '10:00',
-        endTime : '16:00'
+        endTime : '17:00'
     },
     sunday: {
         status : 'work',
         startTime : '10:00',
         endTime : '17:00'
-    }
+    }*/
 };
 
 function shopListStore(state = initialStore, action) {
@@ -74,7 +74,7 @@ const store = createStore(shopListStore);
 export default class Form extends Component {
 
     render() {
-        store.dispatch({type : 'CLEAR'});
+        /*store.dispatch({type : 'CLEAR'});*/ //todo mark
         return (
             <Provider store={store}>
                 <div className="form">
