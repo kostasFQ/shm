@@ -7,9 +7,36 @@ class ShopAddressInput extends Component{
     constructor(props) {
         super(props);
         this.state = {
-          warning:null
+            warning:null,
+            district:null,
+            street:null,
+            building:null,
+            latitude:null,
+            longitude:null,
+            war:false
         };
     }
+
+    handleChange = (event) => {
+        if(event.target.value.length < 2){
+            this.setState({ war:false, warning : "недостаточное количество данных" });
+            return;
+        }
+        else {
+            this.setState({
+                [event.target.name]: (event.target.value).toLowerCase(),
+                war:true,
+                warning:''
+            });
+        }
+
+
+
+    };
+
+    /*verification = () => {
+        console.log('veryfication!')
+    };*/
 
 
     addAddress = () => {
@@ -67,8 +94,37 @@ class ShopAddressInput extends Component{
                        onBlur={this.addAddress}
                 />
                 <div style={{color:'red'}}>
-                    {this.state.warning}
+                    {/*{this.state.warning}*/}
                 </div>
+
+
+
+
+                <hr/>
+                <div>
+                    <span  className='addressInput' onBlur={this.verification}>
+                        Район: {this.state.district}
+                        <input type="text" size="15" name="district" className={this.state.war ? 'green' : 'red'}
+                               onChange={this.handleChange}
+                        />{this.state.warning}
+                    </span>
+                    <span  className='addressInput'>
+                        Улица: {this.state.street}
+                        <input type="text" size='20' name='street' className={this.state.war ? 'green' : 'red'}
+                               onChange={this.handleChange}
+                        />
+                    </span>
+                    <span  className='addressInput'>
+                        Дом: {this.state.building}
+                        <input type="text" size='5' name='building'
+                               onChange={this.handleChange}
+                        />
+                    </span>
+
+
+
+                </div>
+
             </div>
 
 
@@ -84,5 +140,6 @@ export default connect(
         onAddAddress: (building, street, district, latitude, longitude) => {
             dispatch(setShopAddressValue(building, street, district, latitude, longitude));
         }
+
     })
 )(ShopAddressInput)

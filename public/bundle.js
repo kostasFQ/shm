@@ -13583,21 +13583,18 @@ var Footer = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).call(this, props));
 
-        _this.state = {
-            openForm: false //todo false!!!
+        _this.showForm = function () {
+            var cState = _this.state.openForm;
+            _this.setState({ openForm: !cState });
         };
 
-        _this.showForm = _this.showForm.bind(_this);
+        _this.state = {
+            openForm: true //todo false!!!
+        };
         return _this;
     }
 
     _createClass(Footer, [{
-        key: 'showForm',
-        value: function showForm() {
-            var cState = this.state.openForm;
-            this.setState({ openForm: !cState });
-        }
-    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -14049,6 +14046,8 @@ var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -14062,6 +14061,17 @@ var ShopAddressInput = function (_Component) {
         _classCallCheck(this, ShopAddressInput);
 
         var _this = _possibleConstructorReturn(this, (ShopAddressInput.__proto__ || Object.getPrototypeOf(ShopAddressInput)).call(this, props));
+
+        _this.handleChange = function (event) {
+            if (event.target.value.length < 2) {
+                _this.setState({ war: false, warning: "недостаточное количество данных" });
+                return;
+            } else {
+                var _this$setState;
+
+                _this.setState((_this$setState = {}, _defineProperty(_this$setState, event.target.name, event.target.value.toLowerCase()), _defineProperty(_this$setState, 'war', true), _defineProperty(_this$setState, 'warning', ''), _this$setState));
+            }
+        };
 
         _this.addAddress = function () {
             var currentValue = _this.shopAddressInput.value;
@@ -14098,10 +14108,20 @@ var ShopAddressInput = function (_Component) {
         };
 
         _this.state = {
-            warning: null
+            warning: null,
+            district: null,
+            street: null,
+            building: null,
+            latitude: null,
+            longitude: null,
+            war: false
         };
         return _this;
     }
+
+    /*verification = () => {
+        console.log('veryfication!')
+    };*/
 
     _createClass(ShopAddressInput, [{
         key: 'render',
@@ -14124,10 +14144,39 @@ var ShopAddressInput = function (_Component) {
                     },
                     onBlur: this.addAddress
                 }),
+                _react2.default.createElement('div', { style: { color: 'red' } }),
+                _react2.default.createElement('hr', null),
                 _react2.default.createElement(
                     'div',
-                    { style: { color: 'red' } },
-                    this.state.warning
+                    null,
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'addressInput', onBlur: this.verification },
+                        '\u0420\u0430\u0439\u043E\u043D: ',
+                        this.state.district,
+                        _react2.default.createElement('input', { type: 'text', size: '15', name: 'district', className: this.state.war ? 'green' : 'red',
+                            onChange: this.handleChange
+                        }),
+                        this.state.warning
+                    ),
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'addressInput' },
+                        '\u0423\u043B\u0438\u0446\u0430: ',
+                        this.state.street,
+                        _react2.default.createElement('input', { type: 'text', size: '20', name: 'street', className: this.state.war ? 'green' : 'red',
+                            onChange: this.handleChange
+                        })
+                    ),
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'addressInput' },
+                        '\u0414\u043E\u043C: ',
+                        this.state.building,
+                        _react2.default.createElement('input', { type: 'text', size: '5', name: 'building',
+                            onChange: this.handleChange
+                        })
+                    )
                 )
             );
         }
@@ -14145,6 +14194,7 @@ exports.default = (0, _reactRedux.connect)(function (state) {
         onAddAddress: function onAddAddress(building, street, district, latitude, longitude) {
             dispatch((0, _index.setShopAddressValue)(building, street, district, latitude, longitude));
         }
+
     };
 })(ShopAddressInput);
 

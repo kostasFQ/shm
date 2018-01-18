@@ -6,16 +6,14 @@ export default class Footer extends Component{
     constructor(props){
         super(props);
         this.state = {
-            openForm: false //todo false!!!
+            openForm: true //todo false!!!
         };
-
-        this.showForm = this.showForm.bind(this);
     }
 
-    showForm(){
+    showForm = () =>{
         const cState = this.state.openForm;
         this.setState({openForm: !cState});
-    }
+    };
 
     render(){
         return(

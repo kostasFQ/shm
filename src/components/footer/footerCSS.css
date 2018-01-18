@@ -38,6 +38,7 @@
 .label{
     padding: 1%;
     width: 96%;
+    border: 1px solid black;
 }
 .input {
     width: 70%;
@@ -58,4 +59,8 @@
     border: solid 1px black;
     width : 14.28%;
     text-align: center;
+}
+.addressInput {
+    margin-right: 2%;
+    display: inline-block;
 }
