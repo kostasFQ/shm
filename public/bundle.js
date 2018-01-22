@@ -3970,13 +3970,14 @@ function setShopName(val) {
     };
 }
 
-function setShopAddressValue(building, street, district, latitude, longitude) {
+function setShopAddressValue(building, street, district, city, latitude, longitude) {
     return {
         type: ADD_ADDRESS,
         payload: {
             building: building,
             street: street,
             district: district,
+            city: city,
             latitude: latitude,
             longitude: longitude
         }
@@ -13927,23 +13928,23 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var initialStore = {
-    /*shop:null,
-    address:{},
-    Mo_Fr : {
-        status : 'work',
-        startTime : '10:00',
-        endTime : '17:00'
+    shop: null,
+    address: {},
+    Mo_Fr: {
+        status: 'work',
+        startTime: '10:00',
+        endTime: '17:00'
     },
     saturday: {
-        status : 'work',
-        startTime : '10:00',
-        endTime : '17:00'
+        status: 'work',
+        startTime: '10:00',
+        endTime: '17:00'
     },
     sunday: {
-        status : 'work',
-        startTime : '10:00',
-        endTime : '17:00'
-    }*/
+        status: 'work',
+        startTime: '10:00',
+        endTime: '17:00'
+    }
 };
 
 function shopListStore() {
@@ -13957,6 +13958,7 @@ function shopListStore() {
     if (action.type === 'ADD_ADDRESS') {
         return _extends({}, state, {
             address: {
+                city: action.payload.city,
                 district: action.payload.district,
                 street: action.payload.street,
                 building: action.payload.building,
@@ -14064,13 +14066,13 @@ var ShopAddressInput = function (_Component) {
 
         _this.handleChange = function (event) {
             if (event.target.name !== 'building') {
-                if (event.target.value.length < 4 || /[0-9]/.test(event.target.value)) {
+                if (event.target.value.length < 4 || /[0-9a-zA-Z]/.test(event.target.value)) {
                     var _this$setState;
 
                     _this.setState((_this$setState = {}, _defineProperty(_this$setState, event.target.name, {
                         value: event.target.value.toLowerCase().trim(),
                         verificate: false
-                    }), _defineProperty(_this$setState, 'warning', 'недопустимое значение'), _this$setState));
+                    }), _defineProperty(_this$setState, 'warning', 'недопустимое значение'), _defineProperty(_this$setState, 'event', event.target.name), _this$setState));
                 } else {
                     var _this$setState2;
 
@@ -14080,13 +14082,13 @@ var ShopAddressInput = function (_Component) {
                     }), _defineProperty(_this$setState2, 'warning', ''), _this$setState2));
                 }
             } else {
-                if (event.target.value.length < 2) {
+                if (event.target.value.length < 1 || !/[0-9]([а-яА-я]*)$/.test(event.target.value)) {
                     var _this$setState3;
 
                     _this.setState((_this$setState3 = {}, _defineProperty(_this$setState3, event.target.name, {
                         value: event.target.value.toLowerCase().trim(),
                         verificate: false
-                    }), _defineProperty(_this$setState3, 'warning', 'wrong length - '), _this$setState3));
+                    }), _defineProperty(_this$setState3, 'warning', 'не верно введены данные'), _this$setState3));
                 } else {
                     var _this$setState4;
 
@@ -14113,49 +14115,19 @@ var ShopAddressInput = function (_Component) {
                         latitude: +coordinates[1],
                         longitude: +coordinates[0]
                     });
-                    _this.props.onAddAddress(_this.state.building, _this.state.street, _this.state.district, _this.state.latitude, _this.state.longitude);
+                    _this.props.onAddAddress(_this.state.building, _this.state.street, _this.state.district, _this.state.city, _this.state.latitude, _this.state.longitude);
                     _this.setState({ warning: null });
                 });
             }
-            console.log(_this.state);
-        };
-
-        _this.addAddress = function () {
-            var currentValue = _this.shopAddressInput.value;
-            var wordsArr = currentValue.split(/[,]/).reverse();
-            var building = void 0;
-            var street = void 0;
-            var district = void 0;
-            var coords = void 0;
-            var latitude = void 0;
-            var longitude = void 0;
-
-            if (currentValue.length < 10) {
-                _this.setState({ warning: "недостаточное количество данных" });
-            } else if (currentValue.search(/\D/) === -1) {
-                _this.setState({ warning: "поле не может содержать только цифры" });
-            } else if (wordsArr.length !== 3) {
-                _this.setState({ warning: 'неверно введены данные' });
-            } else {
-                building = wordsArr[0].trim();
-                street = wordsArr[1].trim();
-                district = wordsArr[2].trim();
-
-                coords = _axios2.default.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Брест,' + street + ',' + building).then(function (response) {
-                    coords = response.data.response.GeoObjectCollection.featureMember["0"].GeoObject.Point.pos.split(' ');
-                    latitude = +coords[1];
-                    longitude = +coords[0];
-
-                    _this.props.onAddAddress(building, street, district, latitude, longitude);
-                    _this.setState({ warning: null });
-                }).catch(function (error) {
-                    return console.log(error);
-                });
-            }
+            console.log('shopAddressInput', _this.state);
         };
 
         _this.state = {
             warning: null,
+            city: {
+                value: '',
+                verificate: undefined
+            },
             district: {
                 value: '',
                 verificate: undefined
@@ -14181,44 +14153,57 @@ var ShopAddressInput = function (_Component) {
                 'div',
                 { className: 'label' },
                 _react2.default.createElement(
-                    'label',
+                    'fieldset',
                     null,
-                    '\u0410\u0434\u0440\u0435\u0441:\xA0'
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { onBlur: this.verification },
                     _react2.default.createElement(
-                        'div',
-                        { className: 'addressInput' },
-                        '\u0420\u0430\u0439\u043E\u043D:',
-                        _react2.default.createElement('input', { type: 'text', size: '15', name: 'district',
-                            className: this.state.district.verificate === undefined ? null : this.state.district.verificate ? null : 'redBorder',
-                            onChange: this.handleChange
-                        })
+                        'legend',
+                        null,
+                        '\u0410\u0434\u0440\u0435\u0441:'
                     ),
                     _react2.default.createElement(
                         'div',
-                        { className: 'addressInput' },
-                        '\u0423\u043B\u0438\u0446\u0430:',
-                        _react2.default.createElement('input', { type: 'text', size: '20', name: 'street',
-                            className: this.state.street.verificate === undefined ? null : this.state.street.verificate ? null : 'redBorder',
-                            onChange: this.handleChange
-                        })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'addressInput' },
-                        '\u0414\u043E\u043C:',
-                        _react2.default.createElement('input', { type: 'text', size: '5', name: 'building',
-                            className: this.state.building.verificate === undefined ? null : this.state.building.verificate ? null : 'redBorder',
-                            onChange: this.handleChange
-                        })
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { style: { color: 'red' } },
-                        this.state.warning
+                        { onBlur: this.verification },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'addressInput' },
+                            '\u0413\u043E\u0440\u043E\u0434:',
+                            _react2.default.createElement('input', { type: 'text', size: '15', name: 'city',
+                                className: this.state.city.verificate === undefined ? null : this.state.city.verificate ? null : 'redBorder',
+                                onChange: this.handleChange
+                            })
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'addressInput' },
+                            '\u0420\u0430\u0439\u043E\u043D:',
+                            _react2.default.createElement('input', { type: 'text', size: '15', name: 'district',
+                                className: this.state.district.verificate === undefined ? null : this.state.district.verificate ? null : 'redBorder',
+                                onChange: this.handleChange
+                            })
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'addressInput' },
+                            '\u0423\u043B\u0438\u0446\u0430:',
+                            _react2.default.createElement('input', { type: 'text', size: '20', name: 'street',
+                                className: this.state.street.verificate === undefined ? null : this.state.street.verificate ? null : 'redBorder',
+                                onChange: this.handleChange
+                            })
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'addressInput' },
+                            '\u0414\u043E\u043C:',
+                            _react2.default.createElement('input', { type: 'text', size: '5', name: 'building',
+                                className: this.state.building.verificate === undefined ? null : this.state.building.verificate ? null : 'redBorder',
+                                onChange: this.handleChange
+                            })
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { style: { color: 'red' } },
+                            this.state.warning
+                        )
                     )
                 )
             );
@@ -14234,8 +14219,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     };
 }, function (dispatch) {
     return {
-        onAddAddress: function onAddAddress(building, street, district, latitude, longitude) {
-            dispatch((0, _index.setShopAddressValue)(building, street, district, latitude, longitude));
+        onAddAddress: function onAddAddress(building, street, district, city, latitude, longitude) {
+            dispatch((0, _index.setShopAddressValue)(building, street, district, city, latitude, longitude));
         }
 
     };
@@ -14278,31 +14263,32 @@ var ShopNameInput = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (ShopNameInput.__proto__ || Object.getPrototypeOf(ShopNameInput)).call(this, props));
 
-        _this.state = {
-            warning: null
+        _this.addShopName = function () {
+            var currentValue = _this.shopNameInput.value;
+
+            if (currentValue.length < 2) {
+                _this.setState({ warning: "название не может содержать менее 2х символов" });
+            } else if (currentValue.search(/\D/) === -1) {
+                _this.setState({ warning: "название не может содержать только цифры" });
+            } else {
+                console.log('addNameShop', currentValue);
+                _this.props.onAddShop(currentValue);
+
+                _this.setState({ warning: null });
+            }
         };
 
-        _this.addShopName = _this.addShopName.bind(_this);
+        _this.state = {
+            shopName: {
+                value: 'shopNameDefault',
+                verificate: undefined
+            },
+            warning: null
+        };
         return _this;
     }
 
     _createClass(ShopNameInput, [{
-        key: 'addShopName',
-        value: function addShopName() {
-            var currentValue = this.shopNameInput.value;
-
-            if (currentValue.length < 2) {
-                this.setState({ warning: "название не может содержать менее 2х символов" });
-            } else if (currentValue.search(/\D/) === -1) {
-                this.setState({ warning: "название не может содержать только цифры" });
-            } else {
-                console.log('addNameShop', currentValue);
-                this.props.onAddShop(currentValue);
-
-                this.setState({ warning: null });
-            }
-        }
-    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
@@ -14326,7 +14312,14 @@ var ShopNameInput = function (_Component) {
                     'div',
                     { style: { color: 'red' } },
                     this.state.warning
-                )
+                ),
+                _react2.default.createElement('hr', null),
+                '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435:',
+                this.state.shopName.value,
+                _react2.default.createElement('input', { type: 'text', name: 'shopName',
+                    className: this.state.shopName.verificate === undefined ? null : this.state.shopName.verificate ? null : 'redBorder',
+                    onChange: this.addShopName
+                })
             );
         }
     }]);

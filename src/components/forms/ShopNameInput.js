@@ -7,13 +7,15 @@ class ShopNameInput extends Component {
         super(props);
 
         this.state = {
+            shopName: {
+              value: 'shopNameDefault',
+              verificate: undefined
+            },
             warning:null
         };
-
-        this.addShopName = this.addShopName.bind(this);
     }
 
-    addShopName() {
+    addShopName = () => {
         let currentValue = this.shopNameInput.value;
 
         if (currentValue.length < 2) {
@@ -28,7 +30,7 @@ class ShopNameInput extends Component {
 
             this.setState({warning : null});
         }
-    }
+    };
 
     render() {
         return (
@@ -42,6 +44,12 @@ class ShopNameInput extends Component {
                 <div style={{color:'red'}}>
                     {this.state.warning}
                 </div>
+                <hr/>
+                Название:{this.state.shopName.value}
+                <input type="text" name="shopName"
+                       className={this.state.shopName.verificate === undefined ?  null  : this.state.shopName.verificate ? null :'redBorder'}
+                       onChange={this.addShopName}
+                />
             </div>
         )
     }

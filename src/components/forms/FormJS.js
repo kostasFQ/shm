@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 
 
 const initialStore = {
-    /*shop:null,
+    shop:null,
     address:{},
     Mo_Fr : {
         status : 'work',
@@ -27,7 +27,7 @@ const initialStore = {
         status : 'work',
         startTime : '10:00',
         endTime : '17:00'
-    }*/
+    }
 };
 
 function shopListStore(state = initialStore, action) {
@@ -38,6 +38,7 @@ function shopListStore(state = initialStore, action) {
     if(action.type === 'ADD_ADDRESS') {
         return {...state,
             address: {
+                city: action.payload.city,
                 district:action.payload.district,
                 street:action.payload.street,
                 building:action.payload.building,

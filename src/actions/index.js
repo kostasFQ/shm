@@ -11,13 +11,14 @@ export function setShopName(val) {
     }
 }
 
-export function setShopAddressValue(building, street, district, latitude, longitude) {
+export function setShopAddressValue(building, street, district, city, latitude, longitude) {
     return {
         type: ADD_ADDRESS,
         payload: {
             building: building,
             street: street,
             district:district,
+            city: city,
             latitude:latitude,
             longitude:longitude
         }
