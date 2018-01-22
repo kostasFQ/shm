@@ -86,14 +86,14 @@ class ShopAddressInput extends Component{
                 warning:'wroooong'
             });
         } else {
-            let coordinates = axios.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Брест,'+ this.state.street.value +','+ this.state.building.value)
+            let coordinates = axios.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode='+this.state.city.value+','+ this.state.street.value +','+ this.state.building.value)
                 .then( response => {
                         coordinates = response.data.response.GeoObjectCollection.featureMember["0"].GeoObject.Point.pos.split(' ');
                         this.setState({
                             latitude: +coordinates[1],
                             longitude: +coordinates[0]
                         });
-                    this.props.onAddAddress(this.state.building, this.state.street, this.state.district, this.state.city, this.state.latitude, this.state.longitude);
+                    this.props.onAddAddress(this.state);
                     this.setState({warning : null});
                     }
                 )
@@ -157,8 +157,8 @@ export default connect(
         localStore : state
     }),
     dispatch => ({
-        onAddAddress: (building, street, district, city,latitude, longitude) => {
-            dispatch(setShopAddressValue(building, street, district, city,latitude, longitude));
+        onAddAddress: (address) => {
+            dispatch(setShopAddressValue(address));
         }
 
     })

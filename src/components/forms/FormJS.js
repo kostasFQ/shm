@@ -11,8 +11,28 @@ import { Provider } from 'react-redux';
 
 
 const initialStore = {
-    shop:null,
-    address:{},
+    shop:{
+        value: undefined,
+        verificate: undefined
+    },
+    address:{
+        city: {
+            value: undefined,
+            verificate: undefined
+        },
+        district: {
+            value: undefined,
+            verificate: undefined
+        },
+        street: {
+            value: undefined,
+            verificate: undefined
+        },
+        building: {
+            value: undefined,
+            verificate: undefined
+        }
+    },
     Mo_Fr : {
         status : 'work',
         startTime : '10:00',

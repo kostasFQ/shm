@@ -3963,23 +3963,26 @@ var ADD_ADDRESS = 'ADD_ADDRESS';
 var SELECT_DAY_TYPE = 'SELECT_DAY_TYPE';
 var ADD_OPTIONS = 'ADD_OPTIONS';
 
-function setShopName(val) {
+function setShopName(shopName) {
     return {
         type: ADD_SHOP,
-        payload: val
+        payload: {
+            value: shopName.value,
+            verificate: shopName.verificate
+        }
     };
 }
 
-function setShopAddressValue(building, street, district, city, latitude, longitude) {
+function setShopAddressValue(address) {
     return {
         type: ADD_ADDRESS,
         payload: {
-            building: building,
-            street: street,
-            district: district,
-            city: city,
-            latitude: latitude,
-            longitude: longitude
+            building: address.building,
+            street: address.street,
+            district: address.district,
+            city: address.city,
+            latitude: address.latitude,
+            longitude: address.longitude
         }
     };
 }
@@ -13928,8 +13931,28 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var initialStore = {
-    shop: null,
-    address: {},
+    shop: {
+        value: undefined,
+        verificate: undefined
+    },
+    address: {
+        city: {
+            value: undefined,
+            verificate: undefined
+        },
+        district: {
+            value: undefined,
+            verificate: undefined
+        },
+        street: {
+            value: undefined,
+            verificate: undefined
+        },
+        building: {
+            value: undefined,
+            verificate: undefined
+        }
+    },
     Mo_Fr: {
         status: 'work',
         startTime: '10:00',
@@ -14109,13 +14132,13 @@ var ShopAddressInput = function (_Component) {
                     verificate: false
                 }), _defineProperty(_this$setState5, 'warning', 'wroooong'), _this$setState5));
             } else {
-                var coordinates = _axios2.default.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode=Брест,' + _this.state.street.value + ',' + _this.state.building.value).then(function (response) {
+                var coordinates = _axios2.default.get('https://geocode-maps.yandex.ru/1.x/?format=json&geocode=' + _this.state.city.value + ',' + _this.state.street.value + ',' + _this.state.building.value).then(function (response) {
                     coordinates = response.data.response.GeoObjectCollection.featureMember["0"].GeoObject.Point.pos.split(' ');
                     _this.setState({
                         latitude: +coordinates[1],
                         longitude: +coordinates[0]
                     });
-                    _this.props.onAddAddress(_this.state.building, _this.state.street, _this.state.district, _this.state.city, _this.state.latitude, _this.state.longitude);
+                    _this.props.onAddAddress(_this.state);
                     _this.setState({ warning: null });
                 });
             }
@@ -14219,8 +14242,8 @@ exports.default = (0, _reactRedux.connect)(function (state) {
     };
 }, function (dispatch) {
     return {
-        onAddAddress: function onAddAddress(building, street, district, city, latitude, longitude) {
-            dispatch((0, _index.setShopAddressValue)(building, street, district, city, latitude, longitude));
+        onAddAddress: function onAddAddress(address) {
+            dispatch((0, _index.setShopAddressValue)(address));
         }
 
     };
@@ -14278,9 +14301,47 @@ var ShopNameInput = function (_Component) {
             }
         };
 
+        _this.handleInputShopName = function (event) {
+            if (event.target.value.length < 3) {
+                _this.setState({
+                    shopName: {
+                        value: event.target.value.trim(),
+                        verificate: false
+                    },
+                    warning: 'короткое название'
+                });
+            } else {
+                _this.setState({
+                    shopName: {
+                        value: event.target.value.trim(),
+                        verificate: true
+                    },
+                    warning: null
+                });
+            }
+            console.log(_this.state.shopName);
+        };
+
+        _this.verification = function () {
+            if (_this.state.shopName.value.length === 0) {
+                _this.setState({
+                    shopName: {
+                        value: _this.state.shopName.value.trim(),
+                        verificate: false
+                    },
+                    warning: 'поле дожно быть заполнено'
+                });
+            } else if (_this.state.warning !== null) {
+                return;
+            } else {
+                _this.props.onAddShop(_this.state.shopName);
+                _this.setState({ warning: null });
+            }
+        };
+
         _this.state = {
             shopName: {
-                value: 'shopNameDefault',
+                value: '',
                 verificate: undefined
             },
             warning: null
@@ -14291,35 +14352,19 @@ var ShopNameInput = function (_Component) {
     _createClass(ShopNameInput, [{
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
             return _react2.default.createElement(
                 'div',
-                { className: 'label' },
-                _react2.default.createElement(
-                    'label',
-                    null,
-                    '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430:\xA0'
-                ),
-                _react2.default.createElement('input', { type: 'text',
-                    className: 'input ',
-                    onBlur: this.addShopName,
-                    ref: function ref(input) {
-                        _this2.shopNameInput = input;
-                    } }),
-                _react2.default.createElement('br', null),
+                { className: 'label', onBlur: this.verification },
+                '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430:',
+                _react2.default.createElement('input', { type: 'text', name: 'shopName',
+                    className: this.state.shopName.verificate === undefined ? 'input' : this.state.shopName.verificate ? 'input' : 'input redBorder',
+                    onChange: this.handleInputShopName
+                }),
                 _react2.default.createElement(
                     'div',
                     { style: { color: 'red' } },
                     this.state.warning
-                ),
-                _react2.default.createElement('hr', null),
-                '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435:',
-                this.state.shopName.value,
-                _react2.default.createElement('input', { type: 'text', name: 'shopName',
-                    className: this.state.shopName.verificate === undefined ? null : this.state.shopName.verificate ? null : 'redBorder',
-                    onChange: this.addShopName
-                })
+                )
             );
         }
     }]);

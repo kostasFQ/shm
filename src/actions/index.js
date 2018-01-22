@@ -4,23 +4,26 @@ const SELECT_DAY_TYPE = 'SELECT_DAY_TYPE';
 const ADD_OPTIONS = 'ADD_OPTIONS';
 
 
-export function setShopName(val) {
+export function setShopName(shopName) {
     return {
         type: ADD_SHOP,
-        payload: val
+        payload: {
+            value: shopName.value,
+            verificate: shopName.verificate
+        }
     }
 }
 
-export function setShopAddressValue(building, street, district, city, latitude, longitude) {
+export function setShopAddressValue(address) {
     return {
         type: ADD_ADDRESS,
         payload: {
-            building: building,
-            street: street,
-            district:district,
-            city: city,
-            latitude:latitude,
-            longitude:longitude
+            building: address.building,
+            street: address.street,
+            district:  address.district,
+            city: address.city,
+            latitude: address.latitude,
+            longitude: address.longitude
         }
     }
 }

@@ -8,7 +8,7 @@ class ShopNameInput extends Component {
 
         this.state = {
             shopName: {
-              value: 'shopNameDefault',
+              value: '',
               verificate: undefined
             },
             warning:null
@@ -32,24 +32,56 @@ class ShopNameInput extends Component {
         }
     };
 
+    handleInputShopName = (event) => {
+        if(event.target.value.length < 3 ){
+            this.setState({
+                shopName: {
+                    value: (event.target.value).trim(),
+                    verificate: false
+                },
+                warning:'короткое название'
+            });
+        } else {
+            this.setState({
+                shopName: {
+                    value: (event.target.value).trim(),
+                    verificate: true
+                },
+                warning: null
+            });
+        }
+        console.log(this.state.shopName)
+    };
+    verification = () =>{
+        if(this.state.shopName.value.length === 0) {
+            this.setState({
+                shopName: {
+                    value: (this.state.shopName.value).trim(),
+                    verificate: false
+                },
+                warning: 'поле дожно быть заполнено'
+            });
+        }
+        else if(this.state.warning !== null) {
+            return;
+        }
+        else {
+            this.props.onAddShop(this.state.shopName);
+            this.setState({warning : null});
+        }
+    };
+
     render() {
         return (
-            <div className="label">
-                <label>Название магазина:&nbsp;</label>
-                <input type="text"
-                       className='input '
-                       onBlur={this.addShopName}
-                       ref={(input) => {this.shopNameInput = input}}/>
-                <br/>
+            <div className="label" onBlur={this.verification}>
+                Название магазина:
+                <input type="text" name="shopName"
+                       className={this.state.shopName.verificate === undefined ?  'input'  : this.state.shopName.verificate ? 'input' :'input redBorder'}
+                       onChange={this.handleInputShopName}
+                />
                 <div style={{color:'red'}}>
                     {this.state.warning}
                 </div>
-                <hr/>
-                Название:{this.state.shopName.value}
-                <input type="text" name="shopName"
-                       className={this.state.shopName.verificate === undefined ?  null  : this.state.shopName.verificate ? null :'redBorder'}
-                       onChange={this.addShopName}
-                />
             </div>
         )
     }
