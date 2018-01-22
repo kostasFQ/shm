@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Oxygen);@import url(https://fonts.googleapis.com/css?family=Philosopher);body{
+@import url(https://fonts.googleapis.com/css?family=Oxygen);@import url(https://fonts.googleapis.com/css?family=Philosopher);@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);body{
     margin: 0;
     padding: 0;
     background-color: lightgray;
@@ -14,19 +14,20 @@
     display: flex;
 }
 .footer{
+    display: flex;
     height: 38px;
-    text-align: center;
+    justify-content: center;
+    margin: auto;
     background-color: rebeccapurple;
     width: 100%;
-    min-width: 100px;
+    min-width: 300px;
 }
 .form{
-    transition: 1s;
     position: absolute;
     top:10%;
     left: 5%;
     width: 85%;
-    background-color: white;
+    background-color: #F2F2F2;
     border: 1px solid black;
     border-radius: 5px;
     z-index: 100;
@@ -35,8 +36,11 @@
     min-width: 300px;
 }
 .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: auto;
-    width: 150px;
+    width: 50%;
     height: 30px;
     background-color: white;
     border: 1px solid black;
@@ -57,29 +61,12 @@
 .input {
     width: 70%;
 }
-.checkbox{
-    display: inline-block;
-    width: 120px;
-}
-.formHeader{
-    text-align: center;
-}
-.validationImg {
-    width: 20px;
-    height: 20px;
-    margin-bottom: -6px;
-}
-.dayForm {
-    border: solid 1px black;
-    width : 14.28%;
-    text-align: center;
-}
 .addressInput {
     margin: 1%;
     display: inline-block;
 }
-.redBorder{
-    border: solid red 2px;
+.nameShop{
+    font-size: x-large;
 }.contentStyle {
     padding: 0;
     display: flex;
@@ -91,13 +78,6 @@
     position: relative;
     height: 85.5vh;
 }
-
-
-.tmp {
-    display: flex;
-    align-items: stretch;
-}
-
 .leftBar {
     width: 30%;
     overflow: hidden;
@@ -126,17 +106,20 @@
 @media (max-width: 500px){
     .contentStyle {
         width: 100%;
+        height: 600px;
         flex-flow: row wrap;
         justify-content: flex-start;
         align-items: stretch;
     }
     .leftBar {
-        height: 273px;
+        height: 50%;
         width: 105%;
         margin-right: 10%;
     }
     .map {
-        padding-top: 3px;
+        border: 1px solid black;
+        position: relative;
+        height: 50%;
         min-width: 245px;
     }
     .select{
@@ -146,17 +129,12 @@
     .listField{
         height: 100%;
     }
-    .footer{
-        margin-top: 0;
-    }
     .form{
-        transition: 1s;
         position: absolute;
         top:10%;
         left: 0.1%;
         width: 98%;
-        height: 530px;
-        background-color: white;
+        background-color: #F2F2F2;
         border: 1px solid black;
         border-radius: 5px;
         z-index: 100;
@@ -201,30 +179,28 @@ ul{
 select {
     width: 98%;
 }
-.btn_place {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    bottom: 0;
-    width: 98%;
-}
-.button {
-    width: 64px;
-    height: 32px;
-}
 textarea {
     resize: horizontal;
     height: 70px;
     width: 99%;
+    overflow-y: scroll;
 }
 .submitButton {
     display: flex;
     justify-content: center;
-    margin: auto;
+    margin: 1% auto;
     width: 80%;
     height: 35px;
     background: cadetblue;
     cursor: pointer;
-    border: 1px solid black;
+    border: 1px solid cadetblue;
+    overflow: hidden;
+    box-shadow: black 0 0 1px 1px;
+    border-radius: 5px;
+}
+.buttonText{
+    position: relative;
+    font-size: 120%;
     color: white;
+    font-family: 'Yanone Kaffeesatz';
 }

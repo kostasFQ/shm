@@ -14,13 +14,18 @@ class Total extends Component {
 
 
     render() {
-        console.log('totalForm', this.props.FormStore);
         return (
             <div>
-                <button
-                    className='submitButton'
-                    onClick={this.submit}
-                >Добавить магазин</button>
+                {this.props.FormStore.shop.verificate &&
+                 this.props.FormStore.address.city.verificate &&
+                 this.props.FormStore.address.district.verificate &&
+                 this.props.FormStore.address.street.verificate &&
+                 this.props.FormStore.address.building.verificate ?
+                    <button
+                        className='submitButton'
+                        onClick={this.submit}
+                    >Добавить магазин</button> : null
+                }
             </div>
         )
     }

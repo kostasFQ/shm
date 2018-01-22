@@ -13,11 +13,12 @@ exports.getAllShops = (req, res)=> {
 exports.postNewShop = (req, res) => {
     const data = req.body;
     const newShop = new Shop({
-        shop : data.shop,
+        shop : data.shop.value,
         address : {
-            district : data.address.district,
-            street : data.address.street,
-            building: data.address.building,
+            city: data.address.city.value,
+            district : data.address.district.value,
+            street : data.address.street.value,
+            building: data.address.building.value,
             latitude : data.address.latitude,
             longitude : data.address.longitude
         },

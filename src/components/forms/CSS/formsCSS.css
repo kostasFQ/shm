@@ -11,30 +11,29 @@
 select {
     width: 98%;
 }
-.btn_place {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    bottom: 0;
-    width: 98%;
-}
-.button {
-    width: 64px;
-    height: 32px;
-}
 textarea {
     resize: horizontal;
     height: 70px;
     width: 99%;
+    overflow-y: scroll;
 }
 .submitButton {
     display: flex;
     justify-content: center;
-    margin: auto;
+    margin: 1% auto;
     width: 80%;
     height: 35px;
     background: cadetblue;
     cursor: pointer;
-    border: 1px solid black;
+    border: 1px solid cadetblue;
+    overflow: hidden;
+    box-shadow: black 0 0 1px 1px;
+    border-radius: 5px;
+}
+@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
+.buttonText{
+    position: relative;
+    font-size: 120%;
     color: white;
+    font-family: 'Yanone Kaffeesatz';
 }

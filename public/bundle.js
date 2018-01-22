@@ -13607,7 +13607,11 @@ var Footer = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     { className: this.state.openForm ? 'btn red' : 'btn green', onClick: this.showForm },
-                    this.state.openForm ? 'Закрыть' : 'Добавить магазин'
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'buttonText' },
+                        this.state.openForm ? 'Закрыть' : 'Добавить магазин'
+                    )
                 ),
                 this.state.openForm ? _react2.default.createElement(_FormJS2.default, null) : null
             );
@@ -14142,7 +14146,6 @@ var ShopAddressInput = function (_Component) {
                     _this.setState({ warning: null });
                 });
             }
-            console.log('shopAddressInput', _this.state);
         };
 
         _this.state = {
@@ -14286,21 +14289,6 @@ var ShopNameInput = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (ShopNameInput.__proto__ || Object.getPrototypeOf(ShopNameInput)).call(this, props));
 
-        _this.addShopName = function () {
-            var currentValue = _this.shopNameInput.value;
-
-            if (currentValue.length < 2) {
-                _this.setState({ warning: "название не может содержать менее 2х символов" });
-            } else if (currentValue.search(/\D/) === -1) {
-                _this.setState({ warning: "название не может содержать только цифры" });
-            } else {
-                console.log('addNameShop', currentValue);
-                _this.props.onAddShop(currentValue);
-
-                _this.setState({ warning: null });
-            }
-        };
-
         _this.handleInputShopName = function (event) {
             if (event.target.value.length < 3) {
                 _this.setState({
@@ -14319,7 +14307,6 @@ var ShopNameInput = function (_Component) {
                     warning: null
                 });
             }
-            console.log(_this.state.shopName);
         };
 
         _this.verification = function () {
@@ -14355,7 +14342,11 @@ var ShopNameInput = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'label', onBlur: this.verification },
-                '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430:',
+                _react2.default.createElement(
+                    'span',
+                    { className: 'nameShop' },
+                    '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430:'
+                ),
                 _react2.default.createElement('input', { type: 'text', name: 'shopName',
                     className: this.state.shopName.verificate === undefined ? 'input' : this.state.shopName.verificate ? 'input' : 'input redBorder',
                     onChange: this.handleInputShopName
@@ -14440,18 +14431,17 @@ var Total = function (_Component) {
     _createClass(Total, [{
         key: 'render',
         value: function render() {
-            console.log('totalForm', this.props.FormStore);
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(
+                this.props.FormStore.shop.verificate && this.props.FormStore.address.city.verificate && this.props.FormStore.address.district.verificate && this.props.FormStore.address.street.verificate && this.props.FormStore.address.building.verificate ? _react2.default.createElement(
                     'button',
                     {
                         className: 'submitButton',
                         onClick: this.submit
                     },
                     '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043C\u0430\u0433\u0430\u0437\u0438\u043D'
-                )
+                ) : null
             );
         }
     }]);

@@ -98,7 +98,6 @@ class ShopAddressInput extends Component{
                     }
                 )
         }
-        console.log('shopAddressInput',this.state);
     };
 
     render(){

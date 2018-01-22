@@ -1,17 +1,18 @@
 .footer{
+    display: flex;
     height: 38px;
-    text-align: center;
+    justify-content: center;
+    margin: auto;
     background-color: rebeccapurple;
     width: 100%;
-    min-width: 100px;
+    min-width: 300px;
 }
 .form{
-    transition: 1s;
     position: absolute;
     top:10%;
     left: 5%;
     width: 85%;
-    background-color: white;
+    background-color: #F2F2F2;
     border: 1px solid black;
     border-radius: 5px;
     z-index: 100;
@@ -20,8 +21,11 @@
     min-width: 300px;
 }
 .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: auto;
-    width: 150px;
+    width: 50%;
     height: 30px;
     background-color: white;
     border: 1px solid black;
@@ -42,27 +46,10 @@
 .input {
     width: 70%;
 }
-.checkbox{
-    display: inline-block;
-    width: 120px;
-}
-.formHeader{
-    text-align: center;
-}
-.validationImg {
-    width: 20px;
-    height: 20px;
-    margin-bottom: -6px;
-}
-.dayForm {
-    border: solid 1px black;
-    width : 14.28%;
-    text-align: center;
-}
 .addressInput {
     margin: 1%;
     display: inline-block;
 }
-.redBorder{
-    border: solid red 2px;
+.nameShop{
+    font-size: x-large;
 }

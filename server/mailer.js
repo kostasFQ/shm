@@ -18,7 +18,7 @@ exports.sendMessage = (opt) => {
         from: '"kst" <kostasfq@gmail.com',
         to: '"SHM" <sekondhandmap@gmail.com',
         subject: 'Добавлен магазин: ' + opt.shop,
-        text: 'Адрес: ' + opt.address.street + ', ' + opt.address.building,
+        text: `Адрес: ${opt.address.city}, ${opt.address.street} ${opt.address.building}`
     };
     transport.sendMail(options, (error, info) =>{
         if (error) return console.log(error);

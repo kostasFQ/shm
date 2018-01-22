@@ -15,23 +15,6 @@ class ShopNameInput extends Component {
         };
     }
 
-    addShopName = () => {
-        let currentValue = this.shopNameInput.value;
-
-        if (currentValue.length < 2) {
-            this.setState({warning : "название не может содержать менее 2х символов"});
-        }
-        else if(currentValue.search(/\D/) === -1) {
-            this.setState({warning : "название не может содержать только цифры"});
-        }
-        else {
-            console.log('addNameShop', currentValue);
-            this.props.onAddShop(currentValue);
-
-            this.setState({warning : null});
-        }
-    };
-
     handleInputShopName = (event) => {
         if(event.target.value.length < 3 ){
             this.setState({
@@ -50,7 +33,6 @@ class ShopNameInput extends Component {
                 warning: null
             });
         }
-        console.log(this.state.shopName)
     };
     verification = () =>{
         if(this.state.shopName.value.length === 0) {
@@ -74,7 +56,7 @@ class ShopNameInput extends Component {
     render() {
         return (
             <div className="label" onBlur={this.verification}>
-                Название магазина:
+                <span className='nameShop'>Название магазина:</span>
                 <input type="text" name="shopName"
                        className={this.state.shopName.verificate === undefined ?  'input'  : this.state.shopName.verificate ? 'input' :'input redBorder'}
                        onChange={this.handleInputShopName}
