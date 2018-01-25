@@ -96,15 +96,15 @@ function shopListStore(state = initialStore, action) {
 
 const store = createStore(shopListStore);*/
 
-let store = createStore(reducer);
-console.log(' formjs ' ,store.getState());
+/*let store = createStore(reducer);
+console.log(' formjs ' ,store.getState());*/
 
 export default class Form extends Component {
 
     render() {
         /*store.dispatch({type : 'CLEAR'});*/ //todo mark
         return (
-            <Provider store={store}>
+            //<Provider store={store}>
                 <div className="form">
                     <ShopNameInput/>
                     <ShopAddressInput/>
@@ -112,7 +112,7 @@ export default class Form extends Component {
                     <AdditionalOptions/>
                     <Total/>
                 </div>
-            </Provider>
+            //</Provider>
         )
     }
 }
