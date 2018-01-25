@@ -1,19 +1,6 @@
-import React, {Component} from 'react';
-import ShopNameInput from "./ShopNameInput";
-import ShopAddressInput  from './ShopAddressInput';
-import WorkTimeInput from './workTimeInput';
-import AdditionalOptions from './AdditionalOptions'
-import Total from "./TotalFrom";
+'use strict';
 
-import reducer from '../../reducers/index';
-
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-
-
-
-
-/*const initialStore = {
+const initialStore = {
     shop:{
         value: undefined,
         verificate: undefined
@@ -53,7 +40,7 @@ import { Provider } from 'react-redux';
     }
 };
 
-function shopListStore(state = initialStore, action) {
+export default function shopListStore(state = initialStore, action) {
     if(action.type === 'ADD_SHOP') {
         return {...state,
             shop:action.payload}
@@ -91,28 +78,4 @@ function shopListStore(state = initialStore, action) {
     }
 
     return state;
-}
-
-
-const store = createStore(shopListStore);*/
-
-let store = createStore(reducer);
-console.log(' formjs ' ,store.getState());
-
-export default class Form extends Component {
-
-    render() {
-        /*store.dispatch({type : 'CLEAR'});*/ //todo mark
-        return (
-            <Provider store={store}>
-                <div className="form">
-                    <ShopNameInput/>
-                    <ShopAddressInput/>
-                    <WorkTimeInput/>
-                    <AdditionalOptions/>
-                    <Total/>
-                </div>
-            </Provider>
-        )
-    }
 }

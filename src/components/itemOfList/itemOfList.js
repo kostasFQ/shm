@@ -11,6 +11,7 @@ export default class Item extends Component {
             <div className="listItem">
                 <div className="shopTitle">{this.props.shopName}</div>
                 <div>Адрес: {street}, {building}</div>
+                <div><button data-zoom>На карте</button></div>
                 <div>Часы работы:
                     <div>
                         Пн-Пт: {this.props.Mo_Fr.startTime} - {this.props.Mo_Fr.endTime}

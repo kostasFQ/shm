@@ -9,15 +9,17 @@ export default class MainFilter extends Component{
         this.state = {
             districtsFilter:'all'
         };
-
-        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(ev) {
+    handleChange = (ev)  => {
         this.setState({districtsFilter: ev.target.value});
-        ev.preventDefault()
-    }
 
+    };
+    handleClick = (event)=>{
+        if(!event.target.hasAttribute('data-zoom')) return;
+        console.info( 'div', event.target);
+
+    };
 
     render(){
         return(
@@ -39,7 +41,8 @@ export default class MainFilter extends Component{
                         <option value="Юго-запад">Юго-Запад</option>
                         <option value="Гобк">ГОБК</option>
                     </select>
-                    <div className="listField">
+
+                    <div className="listField" onClick={this.handleClick}>
                         {
                             this.props.shops
                                 .sort( (a, b) => {
@@ -75,6 +78,7 @@ export default class MainFilter extends Component{
                 <YandexMap
                     districtsFilter={this.state.districtsFilter}
                     shops={this.props.shops}
+                    zoom={this.state.text}
                 />
             </div>
 

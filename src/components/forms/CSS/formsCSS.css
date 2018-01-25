@@ -33,7 +33,7 @@ textarea {
 @import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
 .buttonText{
     position: relative;
-    font-size: 120%;
+    font-size: 20px;
     color: white;
     font-family: 'Yanone Kaffeesatz';
 }

@@ -7,12 +7,11 @@ export default class YandexMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            mapState:{}
+            mapState:{
+                center: [52.105783, 23.685234],
+                zoom: 10
+            }
         }
-    }
-
-    componentDidMount() {
-        this.setState({mapState: { center: [52.105783, 23.685234], zoom: 10} });
     }
 
     render() {
@@ -21,7 +20,7 @@ export default class YandexMap extends Component {
         return (
             <div  className="map">
                 <YMaps>
-                    <Map state={this.state.mapState} width={'100%'} height={'100%'}>
+                    <Map state={{center:[52.105783, 23.685234], zoom: 10}} width={'100%'} height={'100%'}>
                         {
                             shops.map( (shop)=> {
                                 if(this.props.districtsFilter === shop.address.district){

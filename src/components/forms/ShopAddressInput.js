@@ -109,6 +109,7 @@ class ShopAddressInput extends Component{
                         <div  className='addressInput' >
                             Город:
                             <input type="text" size="15" name="city"
+                                   defaultValue={this.props.localStore.address.city.value}
                                    className={this.state.city.verificate === undefined ?  null  : this.state.city.verificate ? null :'redBorder'}
                                    onChange={this.handleChange}
                             />
@@ -116,6 +117,7 @@ class ShopAddressInput extends Component{
                         <div  className='addressInput' >
                             Район:
                             <input type="text" size="15" name="district"
+                                   defaultValue={this.props.localStore.address.district.value}
                                    className={this.state.district.verificate === undefined ?  null  : this.state.district.verificate ? null :'redBorder'}
                                    onChange={this.handleChange}
                             />
@@ -130,6 +132,7 @@ class ShopAddressInput extends Component{
                         <div  className='addressInput'>
                             Дом:
                             <input type="text" size='5' name='building'
+                                   defaultValue={this.props.localStore.address.building.value}
                                    className={this.state.building.verificate === undefined ?  null  : this.state.building.verificate ? null :'redBorder'}
                                    onChange={this.handleChange}
                             />
@@ -153,7 +156,7 @@ class ShopAddressInput extends Component{
 
 export default connect(
     state => ({
-        localStore : state
+        localStore : state.shopListStore
     }),
     dispatch => ({
         onAddAddress: (address) => {

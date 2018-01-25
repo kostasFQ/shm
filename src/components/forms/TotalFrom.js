@@ -14,6 +14,7 @@ class Total extends Component {
 
 
     render() {
+        console.log(this.props.FormStore);
         return (
             <div>
                 {this.props.FormStore.shop.verificate &&
@@ -23,8 +24,9 @@ class Total extends Component {
                  this.props.FormStore.address.building.verificate ?
                     <button
                         className='submitButton'
-                        onClick={this.submit}
-                    >Добавить магазин</button> : null
+                        onClick={this.submit}>
+                        <span className='buttonText'>Добавить магазин</span>
+                    </button> : null
                 }
             </div>
         )
@@ -33,5 +35,5 @@ class Total extends Component {
 
 export default connect(
     globalStore => ({
-    FormStore : globalStore
+    FormStore : globalStore.shopListStore
 }) )(Total);

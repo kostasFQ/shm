@@ -58,6 +58,7 @@ class ShopNameInput extends Component {
             <div className="label" onBlur={this.verification}>
                 <span className='nameShop'>Название магазина:</span>
                 <input type="text" name="shopName"
+                       defaultValue={this.props.localStore.shop.value}
                        className={this.state.shopName.verificate === undefined ?  'input'  : this.state.shopName.verificate ? 'input' :'input redBorder'}
                        onChange={this.handleInputShopName}
                 />
@@ -71,7 +72,7 @@ class ShopNameInput extends Component {
 
 export default connect(
     state => ({
-        localStore: state
+        localStore: state.shopListStore
     }),
     dispatch => ({
         onAddShop: shopName => {
