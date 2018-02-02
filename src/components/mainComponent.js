@@ -10,7 +10,6 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 let store = createStore(reducer);
-console.log( 'main' ,store.getState());
 
 
 export default class MainComponent extends Component {

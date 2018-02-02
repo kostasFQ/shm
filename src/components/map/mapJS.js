@@ -1,18 +1,9 @@
 
 import React, {Component} from 'react';
 import {YMaps, Map, Placemark} from 'react-yandex-maps';
+import { connect } from 'react-redux';
 
-export default class YandexMap extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            mapState:{
-                center: [52.105783, 23.685234],
-                zoom: 10
-            }
-        }
-    }
+class YandexMap extends Component {
 
     render() {
 
@@ -20,7 +11,14 @@ export default class YandexMap extends Component {
         return (
             <div  className="map">
                 <YMaps>
-                    <Map state={{center:[52.105783, 23.685234], zoom: 10}} width={'100%'} height={'100%'}>
+                    <Map state={
+                        {
+                            center:[
+                                this.props.localStore.mapLatitude,
+                                this.props.localStore.mapLongitude],
+                            zoom: this.props.localStore.mapZoom
+                        }
+                    } width={'100%'} height={'100%'}>
                         {
                             shops.map( (shop)=> {
                                 if(this.props.districtsFilter === shop.address.district){
@@ -66,3 +64,9 @@ export default class YandexMap extends Component {
         )
     }
 }
+
+export default connect(
+    state => ({
+        localStore : state.uiStore
+    })
+)(YandexMap)

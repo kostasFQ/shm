@@ -17,7 +17,6 @@ export default class MainFilter extends Component{
     };
     handleClick = (event)=>{
         if(!event.target.hasAttribute('data-zoom')) return;
-        console.info( 'div', event.target);
 
     };
 

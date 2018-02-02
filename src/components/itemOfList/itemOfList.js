@@ -1,8 +1,13 @@
 import './itemOfList.css';
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { setMapCoords } from '../../actions/index';
 
 
-export default class Item extends Component {
+class Item extends Component {
+    setMapCoorsd = () => {
+        this.props.setMapCoords(this.props.address.latitude, this.props.address.longitude)
+    };
 
     render() {
         const street = this.props.address.street[0].toUpperCase() + this.props.address.street.slice(1);
@@ -11,7 +16,7 @@ export default class Item extends Component {
             <div className="listItem">
                 <div className="shopTitle">{this.props.shopName}</div>
                 <div>Адрес: {street}, {building}</div>
-                <div><button data-zoom>На карте</button></div>
+                <div><button onClick={this.setMapCoorsd}>На карте</button></div>
                 <div>Часы работы:
                     <div>
                         Пн-Пт: {this.props.Mo_Fr.startTime} - {this.props.Mo_Fr.endTime}
@@ -51,3 +56,14 @@ export default class Item extends Component {
         )
     }
 }
+
+export default connect(
+    state => ({
+        localStore : state
+    }),
+    dispatch => ({
+        setMapCoords : (latitude, longitude) => {
+            dispatch(setMapCoords(latitude, longitude))
+        }
+    })
+)(Item)

@@ -3,6 +3,8 @@ const ADD_ADDRESS = 'ADD_ADDRESS';
 const SELECT_DAY_TYPE = 'SELECT_DAY_TYPE';
 const ADD_OPTIONS = 'ADD_OPTIONS';
 
+const SET_COORDS = 'SET_COORDS';
+
 
 export function setShopName(shopName) {
     return {
@@ -45,3 +47,15 @@ export function addOptions(options) {
         payload : options
     }
 }
+
+export function setMapCoords(latitude, longitude) {
+    return {
+        type: SET_COORDS,
+        payload : {
+            latitude : latitude,
+            longitude : longitude
+        }
+    }
+}
+
+
