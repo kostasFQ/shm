@@ -174,7 +174,6 @@ ul{
 }
 .workDays{
     padding: 2px;
-    height: 200px;
     width: 33%;
     border: solid 1px lightgray;
     justify-content: flex-start;

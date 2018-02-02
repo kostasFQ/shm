@@ -21,7 +21,6 @@ export default class MainFilter extends Component{
     };
 
     render(){
-        console.log('main filter', this.props.shops);
         return(
             <div  className = 'contentStyle'>
                 <div className="leftBar">

@@ -13837,8 +13837,6 @@ var Day = function (_Component) {
                 endTime = _this.selectEnd.options[_this.selectEnd.selectedIndex].value;
             }
             _this.props.selectDay(day, status, startTime, endTime);
-
-            console.log(day + ' ' + status + 'start - ' + startTime + ' - ' + endTime);
         };
 
         _this.state = {
@@ -13993,92 +13991,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-/*const initialStore = {
-    shop:{
-        value: undefined,
-        verificate: undefined
-    },
-    address:{
-        city: {
-            value: undefined,
-            verificate: undefined
-        },
-        district: {
-            value: undefined,
-            verificate: undefined
-        },
-        street: {
-            value: undefined,
-            verificate: undefined
-        },
-        building: {
-            value: undefined,
-            verificate: undefined
-        }
-    },
-    Mo_Fr : {
-        status : 'work',
-        startTime : '10:00',
-        endTime : '17:00'
-    },
-    saturday: {
-        status : 'work',
-        startTime : '10:00',
-        endTime : '17:00'
-    },
-    sunday: {
-        status : 'work',
-        startTime : '10:00',
-        endTime : '17:00'
-    }
-};
-
-function shopListStore(state = initialStore, action) {
-    if(action.type === 'ADD_SHOP') {
-        return {...state,
-            shop:action.payload}
-    }
-    if(action.type === 'ADD_ADDRESS') {
-        return {...state,
-            address: {
-                city: action.payload.city,
-                district:action.payload.district,
-                street:action.payload.street,
-                building:action.payload.building,
-                latitude:action.payload.latitude,
-                longitude:action.payload.longitude
-            }
-        }
-    }
-    if(action.type === 'SELECT_DAY_TYPE') {
-        return {
-            ...state,
-            [action.payload.day]: {
-                status : action.payload.status,
-                startTime : action.payload.startTime,
-                endTime : action.payload.endTime
-            }
-        };
-    }
-    if(action.type === 'ADD_OPTIONS') {
-        return {
-            ...state,
-            additionalOptions: action.payload
-        }
-    }
-    if(action.type === 'CLEAR') {
-        return {};
-    }
-
-    return state;
-}
-
-
-const store = createStore(shopListStore);*/
-
-/*let store = createStore(reducer);
-console.log(' formjs ' ,store.getState());*/
-
 var Form = function (_Component) {
     _inherits(Form, _Component);
 
@@ -14091,21 +14003,17 @@ var Form = function (_Component) {
     _createClass(Form, [{
         key: 'render',
         value: function render() {
-            /*store.dispatch({type : 'CLEAR'});*/ //todo mark
-            return (
-                //<Provider store={store}>
-                _react2.default.createElement(
-                    'div',
-                    { className: 'form' },
-                    _react2.default.createElement(_ShopNameInput2.default, null),
-                    _react2.default.createElement(_ShopAddressInput2.default, null),
-                    _react2.default.createElement(_workTimeInput2.default, null),
-                    _react2.default.createElement(_AdditionalOptions2.default, null),
-                    _react2.default.createElement(_TotalFrom2.default, null)
-                )
-                //</Provider>
-
-            );
+            return _react2.default.createElement(
+                'div',
+                { className: 'form' },
+                _react2.default.createElement(_ShopNameInput2.default, null),
+                _react2.default.createElement(_ShopAddressInput2.default, null),
+                _react2.default.createElement(_workTimeInput2.default, null),
+                _react2.default.createElement(_AdditionalOptions2.default, null),
+                _react2.default.createElement(_TotalFrom2.default, null)
+            )
+            //</Provider>
+            ;
         }
     }]);
 
@@ -14241,6 +14149,7 @@ var ShopAddressInput = function (_Component) {
     _createClass(ShopAddressInput, [{
         key: 'render',
         value: function render() {
+            //todo uncomment city
             return _react2.default.createElement(
                 'div',
                 { className: 'label' },
@@ -14261,7 +14170,6 @@ var ShopAddressInput = function (_Component) {
                             { className: 'addressInput' },
                             '\u0420\u0430\u0439\u043E\u043D:',
                             _react2.default.createElement('input', { type: 'text', size: '15', name: 'district',
-                                defaultValue: this.props.localStore.address.district.value,
                                 className: this.state.district.verificate === undefined ? null : this.state.district.verificate ? null : 'redBorder',
                                 onChange: this.handleChange
                             })
@@ -14280,7 +14188,6 @@ var ShopAddressInput = function (_Component) {
                             { className: 'addressInput' },
                             '\u0414\u043E\u043C:',
                             _react2.default.createElement('input', { type: 'text', size: '5', name: 'building',
-                                defaultValue: this.props.localStore.address.building.value,
                                 className: this.state.building.verificate === undefined ? null : this.state.building.verificate ? null : 'redBorder',
                                 onChange: this.handleChange
                             })
@@ -14492,7 +14399,6 @@ var Total = function (_Component) {
     _createClass(Total, [{
         key: 'render',
         value: function render() {
-            console.log(this.props.FormStore);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -14853,7 +14759,6 @@ var MainFilter = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            console.log('main filter', this.props.shops);
             return _react2.default.createElement(
                 "div",
                 { className: "contentStyle" },

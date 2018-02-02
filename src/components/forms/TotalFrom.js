@@ -14,7 +14,6 @@ class Total extends Component {
 
 
     render() {
-        console.log(this.props.FormStore);
         return (
             <div>
                 {this.props.FormStore.shop.verificate &&

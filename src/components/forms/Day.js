@@ -32,9 +32,6 @@ class Day extends Component {
 
         }
         this.props.selectDay(day, status, startTime, endTime);
-
-
-        console.log(day + ' ' + status + 'start - ' + startTime + ' - ' + endTime);
     };
 
     render(){

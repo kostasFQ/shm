@@ -101,16 +101,15 @@ class ShopAddressInput extends Component{
     };
 
     render(){
+        //todo uncomment city
         return(
             <div className='label'>
                 <fieldset>
                     <legend>Адрес:</legend>
                     <div onBlur={this.verification}>
                         <div  className='addressInput' >
-                            {/*Город: todo return this later
+                            {/*Город:
                             <input type="text" size="15" name="city"
-                                   todo uncomment
-                                   defaultValue={this.props.localStore.address.city.value}
                                    className={this.state.city.verificate === undefined ?  null  : this.state.city.verificate ? null :'redBorder'}
                                    onChange={this.handleChange}
                             />*/}
@@ -118,7 +117,6 @@ class ShopAddressInput extends Component{
                         <div  className='addressInput' >
                             Район:
                             <input type="text" size="15" name="district"
-                                   defaultValue={this.props.localStore.address.district.value}
                                    className={this.state.district.verificate === undefined ?  null  : this.state.district.verificate ? null :'redBorder'}
                                    onChange={this.handleChange}
                             />
@@ -133,7 +131,6 @@ class ShopAddressInput extends Component{
                         <div  className='addressInput'>
                             Дом:
                             <input type="text" size='5' name='building'
-                                   defaultValue={this.props.localStore.address.building.value}
                                    className={this.state.building.verificate === undefined ?  null  : this.state.building.verificate ? null :'redBorder'}
                                    onChange={this.handleChange}
                             />
