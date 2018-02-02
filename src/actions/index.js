@@ -10,7 +10,7 @@ export function setShopName(shopName) {
     return {
         type: ADD_SHOP,
         payload: {
-            value: shopName.value,
+            value: shopName.value[0].toUpperCase()+shopName.value.slice(1).toLowerCase(),
             verificate: shopName.verificate
         }
     }

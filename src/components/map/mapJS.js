@@ -47,7 +47,8 @@ class YandexMap extends Component {
                                         }}
                                         properties={{
                                             iconContent: shop.shop,
-                                            balloonContent: 'Адрес: '+shop.address.street+', '+shop.address.building,
+                                            balloonContent:
+                                            `Адрес: ${shop.address.street}, ${shop.address.building}`,
                                         }}
                                         options={{
                                             preset: 'islands#blackStretchyIcon',

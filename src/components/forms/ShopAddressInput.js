@@ -9,8 +9,8 @@ class ShopAddressInput extends Component{
         this.state = {
             warning: null,
             city: {
-                value: '',
-                verificate: undefined
+                value: 'Брест',
+                verificate: true
             },
             district: {
                 value: '',
@@ -107,12 +107,13 @@ class ShopAddressInput extends Component{
                     <legend>Адрес:</legend>
                     <div onBlur={this.verification}>
                         <div  className='addressInput' >
-                            Город:
+                            {/*Город: todo return this later
                             <input type="text" size="15" name="city"
+                                   todo uncomment
                                    defaultValue={this.props.localStore.address.city.value}
                                    className={this.state.city.verificate === undefined ?  null  : this.state.city.verificate ? null :'redBorder'}
                                    onChange={this.handleChange}
-                            />
+                            />*/}
                         </div>
                         <div  className='addressInput' >
                             Район:

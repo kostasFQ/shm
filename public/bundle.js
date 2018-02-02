@@ -3970,7 +3970,7 @@ function setShopName(shopName) {
     return {
         type: ADD_SHOP,
         payload: {
-            value: shopName.value,
+            value: shopName.value[0].toUpperCase() + shopName.value.slice(1).toLowerCase(),
             verificate: shopName.verificate
         }
     };
@@ -14217,8 +14217,8 @@ var ShopAddressInput = function (_Component) {
         _this.state = {
             warning: null,
             city: {
-                value: '',
-                verificate: undefined
+                value: 'Брест',
+                verificate: true
             },
             district: {
                 value: '',
@@ -14255,16 +14255,7 @@ var ShopAddressInput = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         { onBlur: this.verification },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'addressInput' },
-                            '\u0413\u043E\u0440\u043E\u0434:',
-                            _react2.default.createElement('input', { type: 'text', size: '15', name: 'city',
-                                defaultValue: this.props.localStore.address.city.value,
-                                className: this.state.city.verificate === undefined ? null : this.state.city.verificate ? null : 'redBorder',
-                                onChange: this.handleChange
-                            })
-                        ),
+                        _react2.default.createElement('div', { className: 'addressInput' }),
                         _react2.default.createElement(
                             'div',
                             { className: 'addressInput' },
@@ -14862,6 +14853,7 @@ var MainFilter = function (_Component) {
         value: function render() {
             var _this2 = this;
 
+            console.log('main filter', this.props.shops);
             return _react2.default.createElement(
                 "div",
                 { className: "contentStyle" },
@@ -15064,7 +15056,7 @@ var YandexMap = function (_Component) {
                                     },
                                     properties: {
                                         iconContent: shop.shop,
-                                        balloonContent: 'Адрес: ' + shop.address.street + ', ' + shop.address.building
+                                        balloonContent: '\u0410\u0434\u0440\u0435\u0441: ' + shop.address.street + ', ' + shop.address.building
                                     },
                                     options: {
                                         preset: 'islands#blackStretchyIcon'
