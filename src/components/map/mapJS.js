@@ -6,8 +6,14 @@ import { connect } from 'react-redux';
 class YandexMap extends Component {
 
     render() {
-
         const shops = this.props.shops;
+
+        const date = new Date();
+        let balloon = 'islands#blackStretchyIcon';
+        console.log(date.toString(), shops);
+
+
+
         return (
             <div  className="map">
                 <YMaps>
@@ -32,7 +38,7 @@ class YandexMap extends Component {
                                             balloonContent: 'Адрес: '+shop.address.street+', '+shop.address.building,
                                         }}
                                         options={{
-                                            preset: 'islands#blackStretchyIcon',
+                                            preset: balloon,
                                         }}
                                     />
                                 }
@@ -51,7 +57,7 @@ class YandexMap extends Component {
                                             `Адрес: ${shop.address.street}, ${shop.address.building}`,
                                         }}
                                         options={{
-                                            preset: 'islands#blackStretchyIcon',
+                                            preset: balloon,
                                         }}
                                     />
 

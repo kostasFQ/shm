@@ -14931,6 +14931,11 @@ var YandexMap = function (_Component) {
             var _this2 = this;
 
             var shops = this.props.shops;
+
+            var date = new Date();
+            var balloon = 'islands#blackStretchyIcon';
+            console.log(date.toString(), shops);
+
             return _react2.default.createElement(
                 'div',
                 { className: 'map' },
@@ -14955,7 +14960,7 @@ var YandexMap = function (_Component) {
                                         balloonContent: 'Адрес: ' + shop.address.street + ', ' + shop.address.building
                                     },
                                     options: {
-                                        preset: 'islands#blackStretchyIcon'
+                                        preset: balloon
                                     }
                                 });
                             }
@@ -14972,7 +14977,7 @@ var YandexMap = function (_Component) {
                                         balloonContent: '\u0410\u0434\u0440\u0435\u0441: ' + shop.address.street + ', ' + shop.address.building
                                     },
                                     options: {
-                                        preset: 'islands#blackStretchyIcon'
+                                        preset: balloon
                                     }
                                 });
                             }

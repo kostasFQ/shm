@@ -220,6 +220,10 @@ textarea {
     border-radius: 5px;
     cursor: pointer;
 }
+.positionButton:hover {
+    box-shadow: red 0px 0px 20px;
+    transition: 0.5s;
+}
 .positionButtonImg {
     width: 100%;
 }
