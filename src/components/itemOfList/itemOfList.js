@@ -14,9 +14,19 @@ class Item extends Component {
         const building = this.props.address.building;
         return(
             <div className="listItem">
-                <div className="shopTitle">{this.props.shopName}</div>
-                <div>Адрес: {street}, {building}</div>
-                <div><button onClick={this.setMapCoorsd}>На карте</button></div>
+                <div className='itemHeader'>
+                    <div>
+                        <div className="shopTitle">{this.props.shopName}</div>
+                        <div>Адрес: {street}, {building}</div>
+                    </div>
+                    <div>
+                        <button onClick={this.setMapCoorsd} className='positionButton'>
+
+                            <img src="./img/target.png" alt="На карте" className='positionButtonImg'/>
+                        </button>
+                    </div>
+                </div>
+
                 <div>Часы работы:
                     <div>
                         Пн-Пт: {this.props.Mo_Fr.startTime} - {this.props.Mo_Fr.endTime}

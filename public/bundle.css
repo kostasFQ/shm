@@ -209,3 +209,21 @@ textarea {
     color: white;
     font-family: 'Yanone Kaffeesatz';
 }
+
+.positionButton {
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: 1px solid white;
+    box-shadow: black 0px 0px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.positionButtonImg {
+    width: 100%;
+}
+.itemHeader {
+    display: flex;
+    justify-content: space-between;
+}
