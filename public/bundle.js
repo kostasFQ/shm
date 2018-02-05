@@ -14919,22 +14919,30 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var YandexMap = function (_Component) {
     _inherits(YandexMap, _Component);
 
-    function YandexMap() {
+    function YandexMap(props) {
         _classCallCheck(this, YandexMap);
 
-        return _possibleConstructorReturn(this, (YandexMap.__proto__ || Object.getPrototypeOf(YandexMap)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (YandexMap.__proto__ || Object.getPrototypeOf(YandexMap)).call(this, props));
+
+        _this.state = {
+            nowTime: null
+        };
+        return _this;
     }
 
     _createClass(YandexMap, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var date = new Date();
+            this.setState({ nowTime: date.getHours() + ':' + date.getMinutes().toString() });
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
 
+            console.log('date ---> ', this.state.nowTime);
             var shops = this.props.shops;
-
-            var date = new Date();
-            var balloon = 'islands#blackStretchyIcon';
-            console.log(date.toString(), shops);
 
             return _react2.default.createElement(
                 'div',
@@ -14949,7 +14957,7 @@ var YandexMap = function (_Component) {
                                 zoom: this.props.localStore.mapZoom
                             }, width: '100%', height: '100%' },
                         shops.map(function (shop) {
-                            if (_this2.props.districtsFilter === shop.address.district) {
+                            if (_this2.props.districtsFilter.toLowerCase() === shop.address.district.toLowerCase()) {
                                 return _react2.default.createElement(_reactYandexMaps.Placemark, {
                                     key: 'placemark_' + shop._id,
                                     geometry: {
@@ -14960,7 +14968,7 @@ var YandexMap = function (_Component) {
                                         balloonContent: 'Адрес: ' + shop.address.street + ', ' + shop.address.building
                                     },
                                     options: {
-                                        preset: balloon
+                                        preset: 'islands#redStretchyIcon'
                                     }
                                 });
                             }
@@ -14973,11 +14981,11 @@ var YandexMap = function (_Component) {
                                         coordinates: [shop.address.latitude, shop.address.longitude]
                                     },
                                     properties: {
-                                        iconContent: shop.shop,
+                                        iconContent: '' + shop.shop,
                                         balloonContent: '\u0410\u0434\u0440\u0435\u0441: ' + shop.address.street + ', ' + shop.address.building
                                     },
                                     options: {
-                                        preset: balloon
+                                        preset: 'islands#blackStretchyIcon'
                                     }
                                 });
                             }

@@ -5,14 +5,20 @@ import { connect } from 'react-redux';
 
 class YandexMap extends Component {
 
-    render() {
-        const shops = this.props.shops;
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            nowTime : null
+        }
+    }
+    componentDidMount() {
         const date = new Date();
-        let balloon = 'islands#blackStretchyIcon';
-        console.log(date.toString(), shops);
+        this.setState({nowTime: date.getHours()+':'+date.getMinutes().toString()})
+    }
 
-
+    render() {
+        console.log('date ---> ', this.state.nowTime);
+        const shops = this.props.shops;
 
         return (
             <div  className="map">
@@ -27,7 +33,7 @@ class YandexMap extends Component {
                     } width={'100%'} height={'100%'}>
                         {
                             shops.map( (shop)=> {
-                                if(this.props.districtsFilter === shop.address.district){
+                                if(this.props.districtsFilter.toLowerCase() === shop.address.district.toLowerCase()){
                                     return <Placemark
                                         key={'placemark_' + shop._id}
                                         geometry={{
@@ -38,7 +44,7 @@ class YandexMap extends Component {
                                             balloonContent: 'Адрес: '+shop.address.street+', '+shop.address.building,
                                         }}
                                         options={{
-                                            preset: balloon,
+                                            preset: 'islands#redStretchyIcon',
                                         }}
                                     />
                                 }
@@ -52,12 +58,12 @@ class YandexMap extends Component {
                                             coordinates: [shop.address.latitude, shop.address.longitude]
                                         }}
                                         properties={{
-                                            iconContent: shop.shop,
+                                            iconContent: `${shop.shop}`,
                                             balloonContent:
                                             `Адрес: ${shop.address.street}, ${shop.address.building}`,
                                         }}
                                         options={{
-                                            preset: balloon,
+                                            preset:'islands#blackStretchyIcon',
                                         }}
                                     />
 
