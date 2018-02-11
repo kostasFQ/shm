@@ -16,7 +16,6 @@ class YandexMap extends Component {
         const date = new Date();
         const shops = this.props.shops;
         const fullDate = `${date.getHours()}:${date.getMinutes()}`;
-        console.log('fullDate',fullDate);
 
         return (
             <div  className="map">
@@ -28,6 +27,7 @@ class YandexMap extends Component {
                                 this.props.localStore.mapLongitude],
                             zoom: this.props.localStore.mapZoom,
                             controls : ['trafficControl', 'geolocationControl', 'routeEditor', 'typeSelector', 'rulerControl'],
+                            //behaviors: [/*"drag",*/ "dblClickZoom", "rightMouseButtonMagnifier", "multiTouch"]
                         }
                     } width={'100%'} height={'100%'}>
                         {

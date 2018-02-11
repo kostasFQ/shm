@@ -14938,7 +14938,6 @@ var YandexMap = function (_Component) {
             var date = new Date();
             var shops = this.props.shops;
             var fullDate = date.getHours() + ':' + date.getMinutes();
-            console.log('fullDate', fullDate);
 
             return _react2.default.createElement(
                 'div',
@@ -14952,6 +14951,7 @@ var YandexMap = function (_Component) {
                                 center: [this.props.localStore.mapLatitude, this.props.localStore.mapLongitude],
                                 zoom: this.props.localStore.mapZoom,
                                 controls: ['trafficControl', 'geolocationControl', 'routeEditor', 'typeSelector', 'rulerControl']
+                                //behaviors: [/*"drag",*/ "dblClickZoom", "rightMouseButtonMagnifier", "multiTouch"]
                             }, width: '100%', height: '100%' },
                         shops.map(function (shop) {
                             if (_this2.props.districtsFilter.toLowerCase() === shop.address.district.toLowerCase()) {
