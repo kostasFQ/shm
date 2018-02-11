@@ -14752,12 +14752,9 @@ var MainFilter = function (_Component) {
             _this.setState({ districtsFilter: ev.target.value });
         };
 
-        _this.handleClick = function (event) {
-            if (!event.target.hasAttribute('data-zoom')) return;
-        };
-
         _this.state = {
-            districtsFilter: 'all'
+            districtsFilter: 'all',
+            day: new Date().getDay()
         };
         return _this;
     }
@@ -14766,6 +14763,8 @@ var MainFilter = function (_Component) {
         key: "render",
         value: function render() {
             var _this2 = this;
+
+            if (this.state.day === 0) {}
 
             return _react2.default.createElement(
                 "div",
@@ -14844,7 +14843,7 @@ var MainFilter = function (_Component) {
                     ),
                     _react2.default.createElement(
                         "div",
-                        { className: "listField", onClick: this.handleClick },
+                        { className: "listField" },
                         this.props.shops.sort(function (a, b) {
                             if (a.shop === b.shop) return 0;
                             return a.shop < b.shop ? -1 : 1;
@@ -14874,6 +14873,7 @@ var MainFilter = function (_Component) {
                     )
                 ),
                 _react2.default.createElement(_mapJS2.default, {
+                    day: this.state.day,
                     districtsFilter: this.state.districtsFilter,
                     shops: this.props.shops,
                     zoom: this.state.text
@@ -14925,24 +14925,20 @@ var YandexMap = function (_Component) {
         var _this = _possibleConstructorReturn(this, (YandexMap.__proto__ || Object.getPrototypeOf(YandexMap)).call(this, props));
 
         _this.state = {
-            nowTime: null
+            balloon: 'islands#redStretchyIcon'
         };
         return _this;
     }
 
     _createClass(YandexMap, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            var date = new Date();
-            this.setState({ nowTime: date.getHours() + ':' + date.getMinutes().toString() });
-        }
-    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
 
-            console.log('date ---> ', this.state.nowTime);
+            var date = new Date();
             var shops = this.props.shops;
+            var fullDate = date.getHours() + ':' + date.getMinutes();
+            console.log('fullDate', fullDate);
 
             return _react2.default.createElement(
                 'div',
@@ -14954,7 +14950,8 @@ var YandexMap = function (_Component) {
                         _reactYandexMaps.Map,
                         { state: {
                                 center: [this.props.localStore.mapLatitude, this.props.localStore.mapLongitude],
-                                zoom: this.props.localStore.mapZoom
+                                zoom: this.props.localStore.mapZoom,
+                                controls: ['trafficControl', 'geolocationControl', 'routeEditor', 'typeSelector', 'rulerControl']
                             }, width: '100%', height: '100%' },
                         shops.map(function (shop) {
                             if (_this2.props.districtsFilter.toLowerCase() === shop.address.district.toLowerCase()) {
@@ -14968,11 +14965,11 @@ var YandexMap = function (_Component) {
                                         balloonContent: 'Адрес: ' + shop.address.street + ', ' + shop.address.building
                                     },
                                     options: {
-                                        preset: 'islands#redStretchyIcon'
+                                        preset: date.getDay() === 0 ? fullDate < shop.sunday.startTime || fullDate > shop.sunday.endTime ? 'islands#redStretchyIcon' : 'islands#greenStretchyIcon' : date.getDay() === 6 ? fullDate < shop.saturday.startTime || fullDate > shop.saturday.endTime ? 'islands#redStretchyIcon' : 'islands#greenStretchyIcon' : fullDate < shop.Mo_Fr.startTime || fullDate > shop.Mo_Fr.endTime ? 'islands#redStretchyIcon' : 'islands#greenStretchyIcon'
+
                                     }
                                 });
                             }
-
                             if (_this2.props.districtsFilter === 'all') {
 
                                 return _react2.default.createElement(_reactYandexMaps.Placemark, {
@@ -14985,7 +14982,8 @@ var YandexMap = function (_Component) {
                                         balloonContent: '\u0410\u0434\u0440\u0435\u0441: ' + shop.address.street + ', ' + shop.address.building
                                     },
                                     options: {
-                                        preset: 'islands#blackStretchyIcon'
+                                        preset: date.getDay() === 0 ? fullDate < shop.sunday.startTime || fullDate > shop.sunday.endTime ? 'islands#redStretchyIcon' : 'islands#greenStretchyIcon' : date.getDay() === 6 ? fullDate < shop.saturday.startTime || fullDate > shop.saturday.endTime ? 'islands#redStretchyIcon' : 'islands#greenStretchyIcon' : fullDate < shop.Mo_Fr.startTime || fullDate > shop.Mo_Fr.endTime ? 'islands#redStretchyIcon' : 'islands#greenStretchyIcon'
+
                                     }
                                 });
                             }

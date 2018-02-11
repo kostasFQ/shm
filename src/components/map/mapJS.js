@@ -8,17 +8,15 @@ class YandexMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nowTime : null
+            balloon : 'islands#redStretchyIcon'
         }
-    }
-    componentDidMount() {
-        const date = new Date();
-        this.setState({nowTime: date.getHours()+':'+date.getMinutes().toString()})
     }
 
     render() {
-        console.log('date ---> ', this.state.nowTime);
+        const date = new Date();
         const shops = this.props.shops;
+        const fullDate = `${date.getHours()}:${date.getMinutes()}`;
+        console.log('fullDate',fullDate);
 
         return (
             <div  className="map">
@@ -28,7 +26,8 @@ class YandexMap extends Component {
                             center:[
                                 this.props.localStore.mapLatitude,
                                 this.props.localStore.mapLongitude],
-                            zoom: this.props.localStore.mapZoom
+                            zoom: this.props.localStore.mapZoom,
+                            controls : ['trafficControl', 'geolocationControl', 'routeEditor', 'typeSelector', 'rulerControl'],
                         }
                     } width={'100%'} height={'100%'}>
                         {
@@ -44,12 +43,24 @@ class YandexMap extends Component {
                                             balloonContent: 'Адрес: '+shop.address.street+', '+shop.address.building,
                                         }}
                                         options={{
-                                            preset: 'islands#redStretchyIcon',
+                                            preset:
+                                                date.getDay() === 0 ?
+                                                    fullDate < shop.sunday.startTime || fullDate > shop.sunday.endTime ?
+                                                        'islands#redStretchyIcon'
+                                                        : 'islands#greenStretchyIcon'
+                                                    :
+                                                    date.getDay() === 6 ?
+                                                        fullDate < shop.saturday.startTime || fullDate > shop.saturday.endTime ?
+                                                            'islands#redStretchyIcon'
+                                                            : 'islands#greenStretchyIcon'
+                                                        :
+                                                        fullDate < shop.Mo_Fr.startTime || fullDate > shop.Mo_Fr.endTime ?
+                                                            'islands#redStretchyIcon'
+                                                            : 'islands#greenStretchyIcon'
+
                                         }}
                                     />
                                 }
-
-
                                 if(this.props.districtsFilter === 'all') {
 
                                     return <Placemark
@@ -63,7 +74,21 @@ class YandexMap extends Component {
                                             `Адрес: ${shop.address.street}, ${shop.address.building}`,
                                         }}
                                         options={{
-                                            preset:'islands#blackStretchyIcon',
+                                            preset:
+                                            date.getDay() === 0 ?
+                                                 fullDate < shop.sunday.startTime || fullDate > shop.sunday.endTime ?
+                                                     'islands#redStretchyIcon'
+                                                 : 'islands#greenStretchyIcon'
+                                                :
+                                                date.getDay() === 6 ?
+                                                    fullDate < shop.saturday.startTime || fullDate > shop.saturday.endTime ?
+                                                        'islands#redStretchyIcon'
+                                                        : 'islands#greenStretchyIcon'
+                                                    :
+                                                    fullDate < shop.Mo_Fr.startTime || fullDate > shop.Mo_Fr.endTime ?
+                                                        'islands#redStretchyIcon'
+                                                        : 'islands#greenStretchyIcon'
+
                                         }}
                                     />
 

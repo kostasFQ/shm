@@ -7,20 +7,20 @@ export default class MainFilter extends Component{
     constructor(props){
         super(props);
         this.state = {
-            districtsFilter:'all'
+            districtsFilter:'all',
+            day : (new Date).getDay()
         };
     }
 
     handleChange = (ev)  => {
         this.setState({districtsFilter: ev.target.value});
-
-    };
-    handleClick = (event)=>{
-        if(!event.target.hasAttribute('data-zoom')) return;
-
     };
 
     render(){
+        if(this.state.day === 0) {
+
+        }
+
         return(
             <div  className = 'contentStyle'>
                 <div className="leftBar">
@@ -41,7 +41,7 @@ export default class MainFilter extends Component{
                         <option value="Гобк">ГОБК</option>
                     </select>
 
-                    <div className="listField" onClick={this.handleClick}>
+                    <div className="listField">
                         {
                             this.props.shops
                                 .sort( (a, b) => {
@@ -75,6 +75,7 @@ export default class MainFilter extends Component{
                     </div>
                 </div>
                 <YandexMap
+                    day = {this.state.day}
                     districtsFilter={this.state.districtsFilter}
                     shops={this.props.shops}
                     zoom={this.state.text}
