@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const https = require('https');
 const fs = require('fs');
+const cors = require('cors');
 
 require('./models/indexModels.js');
 
@@ -12,6 +13,8 @@ const app = express();
 app.use(express.static('public'));
 
 app.use(bodyParser.json());
+
+app.use(cors());
 
 app.get('/shops', shopsController.getAllShops);
 app.post('/shops', shopsController.postNewShop);
