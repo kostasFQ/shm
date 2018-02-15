@@ -8,9 +8,12 @@ class YandexMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            balloon : 'islands#redStretchyIcon'
+            message : 'zxc cds eeee'
         }
     }
+    tmp = ()=> {
+        console.log(this.state.message)
+    };
 
     render() {
         const date = new Date();
@@ -26,8 +29,6 @@ class YandexMap extends Component {
                                 this.props.localStore.mapLatitude,
                                 this.props.localStore.mapLongitude],
                             zoom: this.props.localStore.mapZoom,
-                            controls : ['trafficControl', 'geolocationControl', 'routeEditor', 'typeSelector', 'rulerControl'],
-                            //behaviors: [/*"drag",*/ "dblClickZoom", "rightMouseButtonMagnifier", "multiTouch"]
                         }
                     } width={'100%'} height={'100%'}>
                         {
@@ -40,23 +41,23 @@ class YandexMap extends Component {
                                         }}
                                         properties={{
                                             iconContent: shop.shop,
-                                            balloonContent: 'Адрес: '+shop.address.street+', '+shop.address.building,
+                                            balloonContent: `Адрес: ${shop.address.street},${shop.address.building}`,
                                         }}
                                         options={{
                                             preset:
                                                 date.getDay() === 0 ?
-                                                    fullDate < shop.sunday.startTime || fullDate > shop.sunday.endTime ?
+                                                    fullDate <= shop.sunday.startTime || fullDate >= shop.sunday.endTime ?
                                                         'islands#redStretchyIcon'
-                                                        : 'islands#greenStretchyIcon'
+                                                        : 'islands#darkGreenStretchyIcon'
                                                     :
                                                     date.getDay() === 6 ?
-                                                        fullDate < shop.saturday.startTime || fullDate > shop.saturday.endTime ?
+                                                        fullDate <= shop.saturday.startTime || fullDate >= shop.saturday.endTime ?
                                                             'islands#redStretchyIcon'
-                                                            : 'islands#greenStretchyIcon'
+                                                            : 'islands#darkGreenStretchyIcon'
                                                         :
-                                                        fullDate < shop.Mo_Fr.startTime || fullDate > shop.Mo_Fr.endTime ?
+                                                        fullDate <= shop.Mo_Fr.startTime || fullDate >= shop.Mo_Fr.endTime ?
                                                             'islands#redStretchyIcon'
-                                                            : 'islands#greenStretchyIcon'
+                                                            : 'islands#darkGreenStretchyIcon'
 
                                         }}
                                     />
@@ -69,25 +70,24 @@ class YandexMap extends Component {
                                             coordinates: [shop.address.latitude, shop.address.longitude]
                                         }}
                                         properties={{
-                                            iconContent: `${shop.shop}`,
-                                            balloonContent:
-                                            `Адрес: ${shop.address.street}, ${shop.address.building}`,
+                                            iconContent: shop.shop,
+                                            balloonContent: `<div><h3>Адрес: ${shop.address.street},${shop.address.building}</h3></div>`,
                                         }}
                                         options={{
                                             preset:
                                             date.getDay() === 0 ?
-                                                 fullDate < shop.sunday.startTime || fullDate > shop.sunday.endTime ?
+                                                 fullDate <= shop.sunday.startTime || fullDate >= shop.sunday.endTime ?
                                                      'islands#redStretchyIcon'
-                                                 : 'islands#greenStretchyIcon'
+                                                 : 'islands#darkGreenStretchyIcon'
                                                 :
                                                 date.getDay() === 6 ?
-                                                    fullDate < shop.saturday.startTime || fullDate > shop.saturday.endTime ?
+                                                    fullDate <= shop.saturday.startTime || fullDate >= shop.saturday.endTime ?
                                                         'islands#redStretchyIcon'
-                                                        : 'islands#greenStretchyIcon'
+                                                        : 'islands#darkGreenStretchyIcon'
                                                     :
-                                                    fullDate < shop.Mo_Fr.startTime || fullDate > shop.Mo_Fr.endTime ?
+                                                    fullDate <= shop.Mo_Fr.startTime || fullDate >= shop.Mo_Fr.endTime ?
                                                         'islands#redStretchyIcon'
-                                                        : 'islands#greenStretchyIcon'
+                                                        : 'islands#darkGreenStretchyIcon'
 
                                         }}
                                     />

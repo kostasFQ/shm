@@ -54,7 +54,3 @@ textarea {
 .positionButtonImg {
     width: 100%;
 }
-.itemHeader {
-    display: flex;
-    justify-content: space-between;
-}

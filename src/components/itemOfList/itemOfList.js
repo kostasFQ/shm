@@ -21,7 +21,6 @@ class Item extends Component {
                     </div>
                     <div>
                         <button onClick={this.setMapCoorsd} className='positionButton'>
-
                             <img src="./img/target.png" alt="На карте" className='positionButtonImg'/>
                         </button>
                     </div>

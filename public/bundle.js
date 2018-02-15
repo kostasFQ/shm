@@ -14924,8 +14924,12 @@ var YandexMap = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (YandexMap.__proto__ || Object.getPrototypeOf(YandexMap)).call(this, props));
 
+        _this.tmp = function () {
+            console.log(_this.state.message);
+        };
+
         _this.state = {
-            balloon: 'islands#redStretchyIcon'
+            message: 'zxc cds eeee'
         };
         return _this;
     }
@@ -14949,9 +14953,7 @@ var YandexMap = function (_Component) {
                         _reactYandexMaps.Map,
                         { state: {
                                 center: [this.props.localStore.mapLatitude, this.props.localStore.mapLongitude],
-                                zoom: this.props.localStore.mapZoom,
-                                controls: ['trafficControl', 'geolocationControl', 'routeEditor', 'typeSelector', 'rulerControl']
-                                //behaviors: [/*"drag",*/ "dblClickZoom", "rightMouseButtonMagnifier", "multiTouch"]
+                                zoom: this.props.localStore.mapZoom
                             }, width: '100%', height: '100%' },
                         shops.map(function (shop) {
                             if (_this2.props.districtsFilter.toLowerCase() === shop.address.district.toLowerCase()) {
@@ -14962,10 +14964,10 @@ var YandexMap = function (_Component) {
                                     },
                                     properties: {
                                         iconContent: shop.shop,
-                                        balloonContent: 'Адрес: ' + shop.address.street + ', ' + shop.address.building
+                                        balloonContent: '\u0410\u0434\u0440\u0435\u0441: ' + shop.address.street + ',' + shop.address.building
                                     },
                                     options: {
-                                        preset: date.getDay() === 0 ? fullDate < shop.sunday.startTime || fullDate > shop.sunday.endTime ? 'islands#redStretchyIcon' : 'islands#greenStretchyIcon' : date.getDay() === 6 ? fullDate < shop.saturday.startTime || fullDate > shop.saturday.endTime ? 'islands#redStretchyIcon' : 'islands#greenStretchyIcon' : fullDate < shop.Mo_Fr.startTime || fullDate > shop.Mo_Fr.endTime ? 'islands#redStretchyIcon' : 'islands#greenStretchyIcon'
+                                        preset: date.getDay() === 0 ? fullDate <= shop.sunday.startTime || fullDate >= shop.sunday.endTime ? 'islands#redStretchyIcon' : 'islands#darkGreenStretchyIcon' : date.getDay() === 6 ? fullDate <= shop.saturday.startTime || fullDate >= shop.saturday.endTime ? 'islands#redStretchyIcon' : 'islands#darkGreenStretchyIcon' : fullDate <= shop.Mo_Fr.startTime || fullDate >= shop.Mo_Fr.endTime ? 'islands#redStretchyIcon' : 'islands#darkGreenStretchyIcon'
 
                                     }
                                 });
@@ -14978,11 +14980,11 @@ var YandexMap = function (_Component) {
                                         coordinates: [shop.address.latitude, shop.address.longitude]
                                     },
                                     properties: {
-                                        iconContent: '' + shop.shop,
-                                        balloonContent: '\u0410\u0434\u0440\u0435\u0441: ' + shop.address.street + ', ' + shop.address.building
+                                        iconContent: shop.shop,
+                                        balloonContent: '<div><h3>\u0410\u0434\u0440\u0435\u0441: ' + shop.address.street + ',' + shop.address.building + '</h3></div>'
                                     },
                                     options: {
-                                        preset: date.getDay() === 0 ? fullDate < shop.sunday.startTime || fullDate > shop.sunday.endTime ? 'islands#redStretchyIcon' : 'islands#greenStretchyIcon' : date.getDay() === 6 ? fullDate < shop.saturday.startTime || fullDate > shop.saturday.endTime ? 'islands#redStretchyIcon' : 'islands#greenStretchyIcon' : fullDate < shop.Mo_Fr.startTime || fullDate > shop.Mo_Fr.endTime ? 'islands#redStretchyIcon' : 'islands#greenStretchyIcon'
+                                        preset: date.getDay() === 0 ? fullDate <= shop.sunday.startTime || fullDate >= shop.sunday.endTime ? 'islands#redStretchyIcon' : 'islands#darkGreenStretchyIcon' : date.getDay() === 6 ? fullDate <= shop.saturday.startTime || fullDate >= shop.saturday.endTime ? 'islands#redStretchyIcon' : 'islands#darkGreenStretchyIcon' : fullDate <= shop.Mo_Fr.startTime || fullDate >= shop.Mo_Fr.endTime ? 'islands#redStretchyIcon' : 'islands#darkGreenStretchyIcon'
 
                                     }
                                 });
