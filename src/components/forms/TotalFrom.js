@@ -10,7 +10,10 @@ class Total extends Component {
     submit = () => {
         const data = this.props.FormStore;
         axios.post(`${baseUrl}/shops`, data)
-        .then(location.reload());
+        .then(
+            console.log('total form - post', baseUrl)
+            //location.reload()
+        );
     };
 
 
