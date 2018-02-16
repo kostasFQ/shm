@@ -7640,15 +7640,14 @@ module.exports = function bind(fn, thisArg) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
+
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var baseUrl = process.env.baseURL; // || "https://secondhandsmap.herokuapp.com"; //todo localhost - "http://localhost:8080"
+var baseUrl = /*process.env.baseURL || */"https://secondhandsmap.herokuapp.com"; //todo localhost - "http://localhost:8080"
 
 exports.default = baseUrl;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 70 */
