@@ -15,7 +15,6 @@ export default class Content extends Component {
     componentDidMount(){
         axios.get(`${baseUrl}/shops`)
             .then((response) => {
-            console.log(baseUrl);
                 this.setState({shops:response.data});
             })
             .catch(function (error) {

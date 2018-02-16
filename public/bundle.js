@@ -13605,7 +13605,6 @@ var Content = function (_Component) {
             var _this2 = this;
 
             _axios2.default.get(_utils2.default + '/shops').then(function (response) {
-                console.log(_utils2.default);
                 _this2.setState({ shops: response.data });
             }).catch(function (error) {
                 console.log(error);
@@ -14416,9 +14415,7 @@ var Total = function (_Component) {
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Total.__proto__ || Object.getPrototypeOf(Total)).call.apply(_ref, [this].concat(args))), _this), _this.submit = function () {
             var data = _this.props.FormStore;
-            _axios2.default.post(_utils2.default + '/shops', data).then(console.log('total form - post', _utils2.default)
-            //location.reload()
-            );
+            _axios2.default.post(_utils2.default + '/shops', data).then(location.reload());
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
