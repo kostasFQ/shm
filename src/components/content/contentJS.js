@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import React, {Component} from 'react';
 import MainFilter from "../mainFilter/mainFilterJS";
-import { baseUrl } from '../../../server/utils';
+import  baseUrl  from '../../../server/utils';
 
 export default class Content extends Component {
 
