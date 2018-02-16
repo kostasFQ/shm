@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { baseUrl } from '../../../server/utils';
 
 import './CSS/formsCSS.css';
 
@@ -8,7 +9,7 @@ class Total extends Component {
 
     submit = () => {
         const data = this.props.FormStore;
-        axios.post('http://localhost:8080/shops', data)
+        axios.post(`${baseUrl}/shops`, data)
         .then(location.reload());
     };
 

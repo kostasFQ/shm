@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import React, {Component} from 'react';
 import MainFilter from "../mainFilter/mainFilterJS";
+import { baseUrl } from '../../../server/utils';
 
 export default class Content extends Component {
 
@@ -12,7 +13,7 @@ export default class Content extends Component {
     }
 
     componentDidMount(){
-        axios.get('http://localhost:8080/shops')
+        axios.get(`${baseUrl}/shops`)
             .then((response) => {
                 this.setState({shops:response.data});
             })
