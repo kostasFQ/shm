@@ -14421,6 +14421,10 @@ var Total = function (_Component) {
     _createClass(Total, [{
         key: 'render',
         value: function render() {
+            console.log('total form, shop-->', this.props.FormStore.shop.value);
+            console.log('total form, address.district-->', this.props.FormStore.address.district.value);
+            console.log('total form, address.street-->', this.props.FormStore.address.street.value);
+            console.log('total form, address.building-->', this.props.FormStore.address.building.value);
             return _react2.default.createElement(
                 'div',
                 null,
@@ -14438,7 +14442,7 @@ var Total = function (_Component) {
                     'button',
                     {
                         className: 'submitButton',
-                        onClick: this.submit, disabled: true, style: { background: 'lightgray', cursor: 'default' } },
+                        onClick: this.submit, disabled: true, style: { background: 'lightgray', cursor: 'default', border: '1px solid lightgray' } },
                     _react2.default.createElement(
                         'span',
                         { className: 'buttonText' },
