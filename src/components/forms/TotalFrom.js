@@ -17,10 +17,10 @@ class Total extends Component {
 
 
     render() {
-        console.log('total form, shop-->', this.props.FormStore.shop.value);
-        console.log('total form, address.district-->', this.props.FormStore.address.district.value);
-        console.log('total form, address.street-->', this.props.FormStore.address.street.value);
-        console.log('total form, address.building-->', this.props.FormStore.address.building.value);
+        alert(this.props.FormStore.shop.value);
+        alert(this.props.FormStore.address.district.value);
+        alert(this.props.FormStore.address.street.value);
+        alert(this.props.FormStore.address.building.value);
         return (
             <div>
                 {this.props.FormStore.shop.verificate &&
