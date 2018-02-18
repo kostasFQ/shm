@@ -14421,10 +14421,10 @@ var Total = function (_Component) {
     _createClass(Total, [{
         key: 'render',
         value: function render() {
-            alert(this.props.FormStore.shop.value);
-            alert(this.props.FormStore.address.district.value);
-            alert(this.props.FormStore.address.street.value);
-            alert(this.props.FormStore.address.building.value);
+            console.log('total form, shop-->', this.props.FormStore.shop.value);
+            console.log('total form, address.district-->', this.props.FormStore.address.district.value);
+            console.log('total form, address.street-->', this.props.FormStore.address.street.value);
+            console.log('total form, address.building-->', this.props.FormStore.address.building.value);
             return _react2.default.createElement(
                 'div',
                 null,
