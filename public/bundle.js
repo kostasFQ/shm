@@ -13842,6 +13842,7 @@ var Day = function (_Component) {
         };
 
         _this.accept = function () {
+            console.log('day render ---> accept');
             var status = _this.selectValue.options[_this.selectValue.selectedIndex].value;
             var day = _this.props.dayNameEng;
             var startTime = void 0;
@@ -13873,7 +13874,7 @@ var Day = function (_Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'workDays', style: { 'border': "1px solid black" }, onBlur: this.accept },
+                { className: 'workDays', style: { 'border': "1px solid black" }, onChange: this.accept },
                 this.props.dayNameRus,
                 _react2.default.createElement(
                     'div',
@@ -14421,10 +14422,6 @@ var Total = function (_Component) {
     _createClass(Total, [{
         key: 'render',
         value: function render() {
-            console.log('total form, shop-->', this.props.FormStore.shop.value);
-            console.log('total form, address.district-->', this.props.FormStore.address.district.value);
-            console.log('total form, address.street-->', this.props.FormStore.address.street.value);
-            console.log('total form, address.building-->', this.props.FormStore.address.building.value);
             return _react2.default.createElement(
                 'div',
                 null,

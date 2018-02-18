@@ -18,6 +18,7 @@ class Day extends Component {
     };
 
     accept = () => {
+        console.log('day render ---> accept');
         const status = this.selectValue.options[this.selectValue.selectedIndex].value;
         const day = this.props.dayNameEng;
         let startTime;
@@ -36,12 +37,13 @@ class Day extends Component {
 
     render(){
 
+
         let startWorkTime = ['09:00', '10:00', '11:00', '12:00'];
         let endWorkTime = ['17:00','18:00','19:00','20:00'];
         
 
         return(
-            <div className='workDays' style={{'border':"1px solid black"}} onBlur={this.accept}>
+            <div className='workDays' style={{'border':"1px solid black"}} onChange={this.accept}>
                 {this.props.dayNameRus}
                 <div>
                     <select name="work" ref={(sel) => {this.selectValue = sel}} onChange={this.toggleVisible}>
