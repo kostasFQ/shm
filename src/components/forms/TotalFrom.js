@@ -28,7 +28,11 @@ class Total extends Component {
                         className='submitButton'
                         onClick={this.submit}>
                         <span className='buttonText'>Добавить магазин</span>
-                    </button> : null
+                    </button> : <button
+                        className='submitButton'
+                        onClick={this.submit} disabled={true} style={{background: 'lightgray', cursor : 'default'}}>
+                        <span className='buttonText'>Добавить магазин</span>
+                    </button>
                 }
             </div>
         )

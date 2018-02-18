@@ -14434,7 +14434,17 @@ var Total = function (_Component) {
                         { className: 'buttonText' },
                         '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043C\u0430\u0433\u0430\u0437\u0438\u043D'
                     )
-                ) : null
+                ) : _react2.default.createElement(
+                    'button',
+                    {
+                        className: 'submitButton',
+                        onClick: this.submit, disabled: true, style: { background: 'lightgray', cursor: 'default' } },
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'buttonText' },
+                        '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043C\u0430\u0433\u0430\u0437\u0438\u043D'
+                    )
+                )
             );
         }
     }]);
