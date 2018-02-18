@@ -43,20 +43,22 @@
 @media (max-width: 500px){
     .contentStyle {
         width: 100%;
-        height: 560px;
+        height: 610px;
         flex-flow: row wrap;
         justify-content: space-between;
         align-items: stretch;
     }
     .leftBar {
-        height: 50%;
+        height: 300px;
         width: 105%;
         margin-right: 10%;
+        padding-bottom: 5px;
     }
     .map {
+        box-sizing: border-box;
         margin-left: 4px;
         position: relative;
-        height: 50%;
+        height: 300px;
         width: 88%;
         min-width: 245px;
     }
