@@ -30,7 +30,7 @@ class Total extends Component {
                         <span className='buttonText'>Добавить магазин</span>
                     </button> : <button
                         className='submitButton'
-                        onClick={this.submit} disabled={true} style={{background: 'lightgray', cursor : 'default', border : '1px solid lightgray'}}>
+                        onClick={this.submit} disabled={true} style={{cursor : 'default', background: 'gray'}}>
                         <span className='buttonText'>Добавить магазин</span>
                     </button>
                 }

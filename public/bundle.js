@@ -13809,6 +13809,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(4);
@@ -13822,6 +13824,8 @@ var _index = __webpack_require__(25);
 __webpack_require__(31);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -13837,29 +13841,37 @@ var Day = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (Day.__proto__ || Object.getPrototypeOf(Day)).call(this, props));
 
-        _this.toggleVisible = function () {
-            _this.setState({ dayOff: !_this.state.dayOff });
+        _this.accept = function (event) {
+            _this.setState({
+                work: !_this.state.work,
+                status: event.target.value
+            });
+            if (_this.state.work) {
+                _this.setState({
+                    startTime: '',
+                    endTime: ''
+                });
+            } else {
+                _this.setState({
+                    startTime: '09:00',
+                    endTime: '17:00'
+                });
+            }
+
+            _this.props.selectDay(_this.state.day, _this.state.status, _this.state.startTime, _this.state.endTime);
         };
 
-        _this.accept = function () {
-            console.log('day render ---> accept');
-            var status = _this.selectValue.options[_this.selectValue.selectedIndex].value;
-            var day = _this.props.dayNameEng;
-            var startTime = void 0;
-            var endTime = void 0;
-
-            if (status === 'dayOff') {
-                startTime = ' ';
-                endTime = ' ';
-            } else {
-                startTime = _this.selectStart.options[_this.selectStart.selectedIndex].value;
-                endTime = _this.selectEnd.options[_this.selectEnd.selectedIndex].value;
-            }
-            _this.props.selectDay(day, status, startTime, endTime);
+        _this.setTime = function (event) {
+            _this.setState(_extends({}, _this.state, _defineProperty({}, event.target.name, event.target.value)));
+            _this.props.selectDay(_this.state.day, _this.state.status, _this.state.startTime, _this.state.endTime);
         };
 
         _this.state = {
-            dayOff: true
+            work: true,
+            status: 'work',
+            day: _this.props.dayNameEng,
+            startTime: '09:00 ',
+            endTime: '17:00 '
         };
         return _this;
     }
@@ -13867,23 +13879,19 @@ var Day = function (_Component) {
     _createClass(Day, [{
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
             var startWorkTime = ['09:00', '10:00', '11:00', '12:00'];
             var endWorkTime = ['17:00', '18:00', '19:00', '20:00'];
 
             return _react2.default.createElement(
                 'div',
-                { className: 'workDays', style: { 'border': "1px solid black" }, onChange: this.accept },
+                { className: 'workDays', style: { 'border': "1px solid black" } },
                 this.props.dayNameRus,
                 _react2.default.createElement(
                     'div',
                     null,
                     _react2.default.createElement(
                         'select',
-                        { name: 'work', ref: function ref(sel) {
-                                _this2.selectValue = sel;
-                            }, onChange: this.toggleVisible },
+                        { name: 'work', onChange: this.accept },
                         _react2.default.createElement(
                             'option',
                             { value: 'work' },
@@ -13895,7 +13903,7 @@ var Day = function (_Component) {
                             '\u0412\u044B\u0445\u043E\u0434\u043D\u043E\u0439'
                         )
                     ),
-                    this.state.dayOff ? _react2.default.createElement(
+                    this.state.work ? _react2.default.createElement(
                         'div',
                         null,
                         _react2.default.createElement(
@@ -13905,9 +13913,7 @@ var Day = function (_Component) {
                             _react2.default.createElement('br', null),
                             _react2.default.createElement(
                                 'select',
-                                { ref: function ref(start) {
-                                        _this2.selectStart = start;
-                                    }, defaultValue: '10:00' },
+                                { name: 'startTime', onChange: this.setTime },
                                 startWorkTime.map(function (value, i) {
                                     return _react2.default.createElement(
                                         'option',
@@ -13924,9 +13930,7 @@ var Day = function (_Component) {
                             _react2.default.createElement('br', null),
                             _react2.default.createElement(
                                 'select',
-                                { ref: function ref(end) {
-                                        _this2.selectEnd = end;
-                                    } },
+                                { name: 'endTime', onChange: this.setTime },
                                 endWorkTime.map(function (value, i) {
                                     return _react2.default.createElement(
                                         'option',
@@ -14439,7 +14443,7 @@ var Total = function (_Component) {
                     'button',
                     {
                         className: 'submitButton',
-                        onClick: this.submit, disabled: true, style: { background: 'lightgray', cursor: 'default', border: '1px solid lightgray' } },
+                        onClick: this.submit, disabled: true, style: { cursor: 'default', background: 'gray' } },
                     _react2.default.createElement(
                         'span',
                         { className: 'buttonText' },
