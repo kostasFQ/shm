@@ -9,71 +9,62 @@ class Day extends Component {
         super(props);
 
         this.state = {
-            work : true,
-            status : 'work',
-            day : this.props.dayNameEng,
-            startTime : '09:00 ',
-            endTime : '17:00 '
+            dayOff : true
         };
     }
 
-    accept = (event) => {
-        this.setState({
-            work: !this.state.work,
-            status: event.target.value
-        });
-        if(this.state.work) {
-            this.setState({
-                startTime: '',
-                endTime: ''
-            });
-        } else {
-            this.setState({
-                startTime: '09:00',
-                endTime: '17:00'
-            });
-        }
-
-        this.props.selectDay(this.state.day, this.state.status, this.state.startTime, this.state.endTime);
+    toggleVisible = () => {
+        this.setState({dayOff: !this.state.dayOff});
     };
 
-    setTime = (event) => {
-        this.setState({
-            ...this.state,
-            [event.target.name]: event.target.value
-        });
-        this.props.selectDay(this.state.day, this.state.status, this.state.startTime, this.state.endTime);
+    accept = () => {
+        const status = this.selectValue.options[this.selectValue.selectedIndex].value;
+        const day = this.props.dayNameEng;
+        let startTime;
+        let endTime;
+
+        if(status === 'dayOff') {
+            startTime = ' ';
+            endTime = ' ';
+        } else {
+            startTime = this.selectStart.options[this.selectStart.selectedIndex].value;
+            endTime = this.selectEnd.options[this.selectEnd.selectedIndex].value;
+
+        }
+        this.props.selectDay(day, status, startTime, endTime);
     };
 
     render(){
+
         let startWorkTime = ['09:00', '10:00', '11:00', '12:00'];
         let endWorkTime = ['17:00','18:00','19:00','20:00'];
 
+
         return(
-            <div className='workDays' style={{'border':"1px solid black"}}>
+            <div className='workDays' style={{'border':"1px solid black"}} onBlur={this.accept}>
                 {this.props.dayNameRus}
                 <div>
-                    <select name="work" onChange={this.accept}>
+                    <select name="work" ref={(sel) => {this.selectValue = sel}} onChange={this.toggleVisible}>
                         <option value='work'>Рабочий</option>
                         <option value='dayOff'>Выходной</option>
                     </select>
                     {
-                        this.state.work ?
+                        this.state.dayOff ?
                             <div>
                                 <div>
                                     Начало: <br/>
-                                    <select name='startTime' onChange={this.setTime}>
+                                    <select ref={(start) => {this.selectStart = start}} defaultValue="10:00">
                                         {
                                             startWorkTime.map( (value, i) =>
-                                            <option value={value} key={i} >
-                                                {value}
-                                            </option>)
+                                                <option value={value} key={i}>
+                                                    {value}
+                                                </option>)
                                         }
                                     </select>
                                 </div>
                                 <div>
                                     Окончание: <br/>
-                                    <select name='endTime' onChange={this.setTime}>
+                                    <select ref={(end) => {this.selectEnd = end}}>
                                         {endWorkTime.map( (value, i) =>
                                             <option value={value} key={i}>
                                                 {value}
