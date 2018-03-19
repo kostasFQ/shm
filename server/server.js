@@ -1,7 +1,5 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const https = require('https');
-const fs = require('fs');
 const cors = require('cors');
 
 require('./models/indexModels.js');
@@ -28,12 +26,5 @@ app.use(function (err, req, res, next) {
 const server = app.listen(process.env.PORT || 8080, () => {
     console.log('Server running on port ',process.env.PORT || 8080 )
 });
-
-/*https.createServer({
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('cert.pem')
-}, app).listen(process.env.PORT || 8080, () => {
-    console.log('Secure server running on port 8080.')
-});*/
 
 

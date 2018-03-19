@@ -14796,8 +14796,6 @@ var MainFilter = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            if (this.state.day === 0) {}
-
             return _react2.default.createElement(
                 "div",
                 { className: "contentStyle" },

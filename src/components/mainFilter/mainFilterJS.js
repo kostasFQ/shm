@@ -17,9 +17,6 @@ export default class MainFilter extends Component{
     };
 
     render(){
-        if(this.state.day === 0) {
-
-        }
 
         return(
             <div  className = 'contentStyle'>
