@@ -1,11 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Oxygen);@import url(https://fonts.googleapis.com/css?family=Philosopher);@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);body{
-    margin: 0;
-    padding: 0;
-    background-color: lightgray;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-}.headerStyle {
+@import url(https://fonts.googleapis.com/css?family=Oxygen);@import url(https://fonts.googleapis.com/css?family=Philosopher);@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);.headerStyle {
     box-sizing: border-box;
     color: #706075;
     font-size: 2em;
@@ -67,7 +60,15 @@
 }
 .nameShop{
     font-size: x-large;
-}.contentStyle {
+}body{
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.contentStyle {
     padding: 0;
     display: flex;
     flex-direction: row;

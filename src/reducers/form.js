@@ -1,4 +1,5 @@
 'use strict';
+import { ADD_OPTIONS, ADD_ADDRESS, ADD_SHOP, SELECT_DAY_TYPE, CLEAR } from "../actions/index";
 
 const initialStore = {
     shop:{
@@ -41,11 +42,11 @@ const initialStore = {
 };
 
 export default function shopListStore(state = initialStore, action) {
-    if(action.type === 'ADD_SHOP') {
+    if(action.type === ADD_SHOP) {
         return {...state,
             shop:action.payload}
     }
-    if(action.type === 'ADD_ADDRESS') {
+    if(action.type === ADD_ADDRESS) {
         return {...state,
             address: {
                 city: action.payload.city,
@@ -57,7 +58,7 @@ export default function shopListStore(state = initialStore, action) {
             }
         }
     }
-    if(action.type === 'SELECT_DAY_TYPE') {
+    if(action.type === SELECT_DAY_TYPE) {
         return {
             ...state,
             [action.payload.day]: {
@@ -67,13 +68,13 @@ export default function shopListStore(state = initialStore, action) {
             }
         };
     }
-    if(action.type === 'ADD_OPTIONS') {
+    if(action.type === ADD_OPTIONS) {
         return {
             ...state,
             additionalOptions: action.payload
         }
     }
-    if(action.type === 'CLEAR') {
+    if(action.type === CLEAR) {
         return {};
     }
 

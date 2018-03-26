@@ -3334,9 +3334,16 @@ var ADD_SHOP = 'ADD_SHOP';
 var ADD_ADDRESS = 'ADD_ADDRESS';
 var SELECT_DAY_TYPE = 'SELECT_DAY_TYPE';
 var ADD_OPTIONS = 'ADD_OPTIONS';
+var CLEAR = 'CLEAR';
 
 var SET_COORDS = 'SET_COORDS';
 
+exports.ADD_SHOP = ADD_SHOP;
+exports.ADD_ADDRESS = ADD_ADDRESS;
+exports.ADD_OPTIONS = ADD_OPTIONS;
+exports.SELECT_DAY_TYPE = SELECT_DAY_TYPE;
+exports.SET_COORDS = SET_COORDS;
+exports.CLEAR = CLEAR;
 function setShopName(shopName) {
     return {
         type: ADD_SHOP,
@@ -7643,20 +7650,6 @@ module.exports = function bind(fn, thisArg) {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var baseUrl = /*process.env.baseURL || */"https://secondhandsmap.herokuapp.com"; //todo localhost - "http://localhost:8080"
-
-exports.default = baseUrl;
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
@@ -7676,6 +7669,19 @@ exports.default = (0, _redux.combineReducers)({
     shopListStore: _form2.default,
     uiStore: _ui2.default
 });
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var site = "http://localhost:8080" || 'https://secondhandsmap.herokuapp.com';
+exports.site = site;
 
 /***/ }),
 /* 71 */
@@ -12606,8 +12612,6 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(151);
-
 var _headerJS = __webpack_require__(144);
 
 var _headerJS2 = _interopRequireDefault(_headerJS);
@@ -12620,7 +12624,7 @@ var _footerJS = __webpack_require__(136);
 
 var _footerJS2 = _interopRequireDefault(_footerJS);
 
-var _index = __webpack_require__(70);
+var _index = __webpack_require__(69);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -13574,9 +13578,7 @@ var _mainFilterJS = __webpack_require__(146);
 
 var _mainFilterJS2 = _interopRequireDefault(_mainFilterJS);
 
-var _utils = __webpack_require__(69);
-
-var _utils2 = _interopRequireDefault(_utils);
+var _utils = __webpack_require__(70);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -13603,7 +13605,7 @@ var Content = function (_Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            _axios2.default.get(_utils2.default + '/shops').then(function (response) {
+            _axios2.default.get(_utils.site + '/shops').then(function (response) {
                 _this2.setState({ shops: response.data });
             }).catch(function (error) {
                 console.log(error);
@@ -13993,7 +13995,7 @@ var _TotalFrom = __webpack_require__(142);
 
 var _TotalFrom2 = _interopRequireDefault(_TotalFrom);
 
-var _index = __webpack_require__(70);
+var _index = __webpack_require__(69);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -14384,9 +14386,7 @@ var _axios = __webpack_require__(42);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _utils = __webpack_require__(69);
-
-var _utils2 = _interopRequireDefault(_utils);
+var _utils = __webpack_require__(70);
 
 __webpack_require__(31);
 
@@ -14414,7 +14414,7 @@ var Total = function (_Component) {
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Total.__proto__ || Object.getPrototypeOf(Total)).call.apply(_ref, [this].concat(args))), _this), _this.submit = function () {
             var data = _this.props.FormStore;
-            _axios2.default.post(_utils2.default + '/shops', data).then(location.reload());
+            _axios2.default.post(_utils.site + '/shops', data).then(location.reload());
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
@@ -14786,7 +14786,8 @@ var MainFilter = function (_Component) {
 
         _this.state = {
             districtsFilter: 'all',
-            day: new Date().getDay()
+            day: new Date().getDay(),
+            districts: ["Вулька", "Восток", "Киевка", "Южный", "Центр", "Ковалево", "Речица", "Дубровка", "Граевка", "Березовка", "Юго-Запад", "ГОБК"]
         };
         return _this;
     }
@@ -14810,66 +14811,13 @@ var MainFilter = function (_Component) {
                             { value: "all" },
                             "\u0412\u0441\u0435 \u0440\u0430\u0439\u043E\u043D\u044B"
                         ),
-                        _react2.default.createElement(
-                            "option",
-                            { value: "\u0412\u0443\u043B\u044C\u043A\u0430" },
-                            "\u0412\u0443\u043B\u044C\u043A\u0430"
-                        ),
-                        _react2.default.createElement(
-                            "option",
-                            { value: "\u0412\u043E\u0441\u0442\u043E\u043A" },
-                            "\u0412\u043E\u0441\u0442\u043E\u043A"
-                        ),
-                        _react2.default.createElement(
-                            "option",
-                            { value: "\u041A\u0438\u0435\u0432\u043A\u0430" },
-                            "\u041A\u0438\u0435\u0432\u043A\u0430"
-                        ),
-                        _react2.default.createElement(
-                            "option",
-                            { value: "\u042E\u0436\u043D\u044B\u0439" },
-                            "\u042E\u0436\u043D\u044B\u0439"
-                        ),
-                        _react2.default.createElement(
-                            "option",
-                            { value: "\u0426\u0435\u043D\u0442\u0440" },
-                            "\u0426\u0435\u043D\u0442\u0440"
-                        ),
-                        _react2.default.createElement(
-                            "option",
-                            { value: "\u041A\u043E\u0432\u0430\u043B\u0435\u0432\u043E" },
-                            "\u041A\u043E\u0432\u0430\u043B\u0435\u0432\u043E"
-                        ),
-                        _react2.default.createElement(
-                            "option",
-                            { value: "\u0420\u0435\u0447\u0438\u0446\u0430" },
-                            "\u0420\u0435\u0447\u0438\u0446\u0430"
-                        ),
-                        _react2.default.createElement(
-                            "option",
-                            { value: "\u0414\u0443\u0431\u0440\u043E\u0432\u043A\u0430" },
-                            "\u0414\u0443\u0431\u0440\u043E\u0432\u043A\u0430"
-                        ),
-                        _react2.default.createElement(
-                            "option",
-                            { value: "\u0413\u0440\u0430\u0435\u0432\u043A\u0430" },
-                            "\u0413\u0440\u0430\u0435\u0432\u043A\u0430"
-                        ),
-                        _react2.default.createElement(
-                            "option",
-                            { value: "\u0411\u0435\u0440\u0435\u0437\u043E\u0432\u043A\u0430" },
-                            "\u0411\u0435\u0440\u0435\u0437\u043E\u0432\u043A\u0430"
-                        ),
-                        _react2.default.createElement(
-                            "option",
-                            { value: "\u042E\u0433\u043E-\u0437\u0430\u043F\u0430\u0434" },
-                            "\u042E\u0433\u043E-\u0417\u0430\u043F\u0430\u0434"
-                        ),
-                        _react2.default.createElement(
-                            "option",
-                            { value: "\u0413\u043E\u0431\u043A" },
-                            "\u0413\u041E\u0411\u041A"
-                        )
+                        this.state.districts.sort().map(function (item) {
+                            return _react2.default.createElement(
+                                "option",
+                                { value: item, key: item },
+                                item
+                            );
+                        })
                     ),
                     _react2.default.createElement(
                         "div",
@@ -15050,6 +14998,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.default = shopListStore;
 
+var _index = __webpack_require__(25);
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var initialStore = {
@@ -15096,11 +15046,11 @@ function shopListStore() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialStore;
     var action = arguments[1];
 
-    if (action.type === 'ADD_SHOP') {
+    if (action.type === _index.ADD_SHOP) {
         return _extends({}, state, {
             shop: action.payload });
     }
-    if (action.type === 'ADD_ADDRESS') {
+    if (action.type === _index.ADD_ADDRESS) {
         return _extends({}, state, {
             address: {
                 city: action.payload.city,
@@ -15112,19 +15062,19 @@ function shopListStore() {
             }
         });
     }
-    if (action.type === 'SELECT_DAY_TYPE') {
+    if (action.type === _index.SELECT_DAY_TYPE) {
         return _extends({}, state, _defineProperty({}, action.payload.day, {
             status: action.payload.status,
             startTime: action.payload.startTime,
             endTime: action.payload.endTime
         }));
     }
-    if (action.type === 'ADD_OPTIONS') {
+    if (action.type === _index.ADD_OPTIONS) {
         return _extends({}, state, {
             additionalOptions: action.payload
         });
     }
-    if (action.type === 'CLEAR') {
+    if (action.type === _index.CLEAR) {
         return {};
     }
 
@@ -15142,6 +15092,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = uiStore;
+
+var _index = __webpack_require__(25);
+
 var uiInitialStore = {
     mapLatitude: 52.105783,
     mapLongitude: 23.685234,
@@ -15153,7 +15106,7 @@ function uiStore() {
     var action = arguments[1];
 
 
-    if (action.type === 'SET_COORDS') {
+    if (action.type === _index.SET_COORDS) {
         return {
             mapLatitude: action.payload.latitude,
             mapLongitude: action.payload.longitude,
@@ -16042,12 +15995,7 @@ module.exports = factory;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 151 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
+/* 151 */,
 /* 152 */
 /***/ (function(module, exports) {
 

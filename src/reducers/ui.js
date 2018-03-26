@@ -1,5 +1,7 @@
 'use strict';
 
+import { SET_COORDS } from '../actions/index';
+
 const uiInitialStore = {
     mapLatitude: 52.105783,
     mapLongitude: 23.685234,
@@ -8,7 +10,7 @@ const uiInitialStore = {
 
 export default function uiStore(state = uiInitialStore, action) {
 
-    if( action.type === 'SET_COORDS' ) {
+    if( action.type === SET_COORDS ) {
         return {
             mapLatitude: action.payload.latitude,
             mapLongitude: action.payload.longitude,

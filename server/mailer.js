@@ -1,13 +1,15 @@
 const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 exports.sendMessage = (opt) => {
+
     let transport = nodemailer.createTransport({
         service: 'gmail',
         secure: false,
         port:25,
         auth: {
-            user: 'sekondhandmap@gmail.com',
-            pass: '1758236z',
+            user: process.env.MAILER_USER,
+            pass: process.env.MAILER_PASS,
         },
         tls: {
             rejectUnauthorized: false
@@ -22,7 +24,7 @@ exports.sendMessage = (opt) => {
     };
     transport.sendMail(options, (error, info) =>{
         if (error) return console.log(error);
-        console.log(info)
+        console.log(info);
     } );
     return console.log('success!');
 };

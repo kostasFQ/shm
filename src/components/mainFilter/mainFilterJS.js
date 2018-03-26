@@ -8,7 +8,11 @@ export default class MainFilter extends Component{
         super(props);
         this.state = {
             districtsFilter:'all',
-            day : (new Date).getDay()
+            day : (new Date).getDay(),
+            districts : [
+                "Вулька", "Восток", "Киевка", "Южный", "Центр", "Ковалево", "Речица", "Дубровка", "Граевка",
+                "Березовка", "Юго-Запад", "ГОБК"
+            ]
         };
     }
 
@@ -17,25 +21,15 @@ export default class MainFilter extends Component{
     };
 
     render(){
-
         return(
             <div  className = 'contentStyle'>
                 <div className="leftBar">
                     <select onChange={this.handleChange} className="select">
                         <option value="all">Все районы</option>
+                        {this.state.districts.sort().map( (item) =>
+                            <option value={item} key={item}>{item}</option>
+                        )}
 
-                        <option value="Вулька">Вулька</option>
-                        <option value="Восток">Восток</option>
-                        <option value="Киевка">Киевка</option>
-                        <option value="Южный">Южный</option>
-                        <option value="Центр">Центр</option>
-                        <option value="Ковалево">Ковалево</option>
-                        <option value="Речица">Речица</option>
-                        <option value="Дубровка">Дубровка</option>
-                        <option value="Граевка">Граевка</option>
-                        <option value="Березовка">Березовка</option>
-                        <option value="Юго-запад">Юго-Запад</option>
-                        <option value="Гобк">ГОБК</option>
                     </select>
 
                     <div className="listField">

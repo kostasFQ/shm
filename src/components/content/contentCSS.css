@@ -1,4 +1,13 @@
 @import "../footer/footerCSS.css";
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
 .contentStyle {
     padding: 0;
     display: flex;

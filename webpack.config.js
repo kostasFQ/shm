@@ -8,6 +8,10 @@ module.exports = {
         filename: './public/bundle.js',
     },
 
+    devServer: {
+        contentBase: './public'
+    },
+
     module: {
         loaders: [{
             test: /\.js$/,
