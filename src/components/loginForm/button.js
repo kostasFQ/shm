@@ -6,14 +6,17 @@ import './loginForm.css';
 
 class Button extends Component {
 
-    showForm = (event) =>{
-        this.props.onShowForm(event.target.name, this.props.localStore.loginFormShow);
+    showForm = () =>{
+        this.props.onShowForm('loginFormShow', this.props.localStore.loginFormShow);
     };
 
     render(){
         return(
             <div className='loginButtonField'>
-                <button onClick={this.showForm} name='loginFormShow' className='loginFool'>{this.props.name}</button>
+                {this.props.localStore.loginFormShow ?
+                    <button onClick={this.showForm} className='loginFool red'>Закрыть</button> :
+                    <button onClick={this.showForm} className='loginFool green'>Вход</button>
+                }
             </div>
         )
     }

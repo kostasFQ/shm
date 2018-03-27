@@ -14672,7 +14672,7 @@ var Header = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'hTitle' },
-                    _react2.default.createElement(_button2.default, { name: '\u0412\u043E\u0439\u0442\u0438' })
+                    _react2.default.createElement(_button2.default, null)
                 ),
                 this.props.localStore.loginFormShow ? _react2.default.createElement(_loginFormField2.default, null) : null
             );
@@ -14881,8 +14881,8 @@ var Button = function (_Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Button.__proto__ || Object.getPrototypeOf(Button)).call.apply(_ref, [this].concat(args))), _this), _this.showForm = function (event) {
-            _this.props.onShowForm(event.target.name, _this.props.localStore.loginFormShow);
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Button.__proto__ || Object.getPrototypeOf(Button)).call.apply(_ref, [this].concat(args))), _this), _this.showForm = function () {
+            _this.props.onShowForm('loginFormShow', _this.props.localStore.loginFormShow);
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
@@ -14892,10 +14892,14 @@ var Button = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'loginButtonField' },
-                _react2.default.createElement(
+                this.props.localStore.loginFormShow ? _react2.default.createElement(
                     'button',
-                    { onClick: this.showForm, name: 'loginFormShow', className: 'loginFool' },
-                    this.props.name
+                    { onClick: this.showForm, className: 'loginFool red' },
+                    '\u0417\u0430\u043A\u0440\u044B\u0442\u044C'
+                ) : _react2.default.createElement(
+                    'button',
+                    { onClick: this.showForm, className: 'loginFool green' },
+                    '\u0412\u0445\u043E\u0434'
                 )
             );
         }
@@ -14933,6 +14937,14 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _enterField = __webpack_require__(306);
+
+var _enterField2 = _interopRequireDefault(_enterField);
+
+var _singUpField = __webpack_require__(308);
+
+var _singUpField2 = _interopRequireDefault(_singUpField);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -14956,102 +14968,8 @@ var LoginField = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'loginForm' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'hTitle' },
-                    '\u0412\u0445\u043E\u0434'
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'loginInputField' },
-                    _react2.default.createElement(
-                        'span',
-                        { className: 'inputLabel' },
-                        '\u041B\u043E\u0433\u0438\u043D: '
-                    ),
-                    _react2.default.createElement('input', { type: 'text' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'loginInputField' },
-                    _react2.default.createElement(
-                        'span',
-                        { className: 'inputLabel' },
-                        '\u041F\u0430\u0440\u043E\u043B\u044C: '
-                    ),
-                    ' ',
-                    _react2.default.createElement('input', { type: 'text' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'loginInputField' },
-                    _react2.default.createElement(
-                        'button',
-                        { className: 'btn' },
-                        ' ',
-                        _react2.default.createElement(
-                            'span',
-                            { style: { 'color': 'black' } },
-                            '\u0412\u0445\u043E\u0434'
-                        ),
-                        ' '
-                    )
-                ),
-                _react2.default.createElement('hr', { style: { 'width': '99.3%' } }),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'hTitle' },
-                    '\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F'
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'loginInputField' },
-                    _react2.default.createElement(
-                        'span',
-                        { className: 'inputLabel' },
-                        '\u041B\u043E\u0433\u0438\u043D: '
-                    ),
-                    ' ',
-                    _react2.default.createElement('input', { type: 'text' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'loginInputField' },
-                    _react2.default.createElement(
-                        'span',
-                        { className: 'inputLabel' },
-                        'Email: '
-                    ),
-                    ' ',
-                    _react2.default.createElement('input', { type: 'text' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'loginInputField' },
-                    _react2.default.createElement(
-                        'span',
-                        { className: 'inputLabel' },
-                        '\u041F\u0430\u0440\u043E\u043B\u044C: '
-                    ),
-                    ' ',
-                    _react2.default.createElement('input', { type: 'text' })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'loginInputField' },
-                    _react2.default.createElement(
-                        'button',
-                        { className: 'btn' },
-                        ' ',
-                        _react2.default.createElement(
-                            'span',
-                            { style: { 'color': 'black' } },
-                            '\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F'
-                        ),
-                        ' '
-                    )
-                ),
-                _react2.default.createElement('hr', { style: { 'width': '99.3%' } })
+                _react2.default.createElement(_enterField2.default, null),
+                _react2.default.createElement(_singUpField2.default, null)
             );
         }
     }]);
@@ -15494,7 +15412,7 @@ var uiInitialStore = {
         zoom: 10
     },
     inputsFormShow: false,
-    loginFormShow: false
+    loginFormShow: true
 };
 
 function uiStore() {
@@ -29658,6 +29576,239 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EnterField = function (_Component) {
+    _inherits(EnterField, _Component);
+
+    function EnterField() {
+        _classCallCheck(this, EnterField);
+
+        return _possibleConstructorReturn(this, (EnterField.__proto__ || Object.getPrototypeOf(EnterField)).apply(this, arguments));
+    }
+
+    _createClass(EnterField, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'div',
+                    { className: 'hTitle' },
+                    '\u0412\u0445\u043E\u0434'
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'loginInputField' },
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'inputLabel' },
+                        '\u041B\u043E\u0433\u0438\u043D: '
+                    ),
+                    _react2.default.createElement('input', { type: 'text' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'loginInputField' },
+                    _react2.default.createElement(
+                        'span',
+                        { className: 'inputLabel' },
+                        '\u041F\u0430\u0440\u043E\u043B\u044C: '
+                    ),
+                    ' ',
+                    _react2.default.createElement('input', { type: 'text' })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'loginInputField' },
+                    _react2.default.createElement(
+                        'button',
+                        { className: 'btn' },
+                        ' ',
+                        _react2.default.createElement(
+                            'span',
+                            { style: { 'color': 'black' } },
+                            '\u0412\u0445\u043E\u0434'
+                        ),
+                        ' '
+                    )
+                ),
+                _react2.default.createElement('hr', { style: { 'width': '99.3%' } })
+            );
+        }
+    }]);
+
+    return EnterField;
+}(_react.Component);
+
+exports.default = EnterField;
+
+/***/ }),
+/* 307 */,
+/* 308 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _utils = __webpack_require__(71);
+
+var _axios = __webpack_require__(42);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SingUpField = function (_Component) {
+    _inherits(SingUpField, _Component);
+
+    function SingUpField(props) {
+        _classCallCheck(this, SingUpField);
+
+        var _this = _possibleConstructorReturn(this, (SingUpField.__proto__ || Object.getPrototypeOf(SingUpField)).call(this, props));
+
+        _this.valueToState = function (event) {
+            _this.setState(_defineProperty({}, event.target.name, event.target.value));
+            _axios2.default.post(_utils.site + '/user', _this.state);
+        };
+
+        _this.sendData = function () {
+            console.log('sing state send-->>>', _this.state);
+            _axios2.default.post(_utils.site + '/user', _this.state);
+        };
+
+        _this.state = {
+            login: '',
+            email: '',
+            password: ''
+        };
+        return _this;
+    }
+
+    _createClass(SingUpField, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'div',
+                    { onChange: this.valueToState },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'hTitle' },
+                        '\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F'
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'loginInputField' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'inputLabel' },
+                            '\u041B\u043E\u0433\u0438\u043D: '
+                        ),
+                        _react2.default.createElement('input', { type: 'text', name: 'login' })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'loginInputField' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'inputLabel' },
+                            'Email: '
+                        ),
+                        _react2.default.createElement('input', { type: 'text', name: 'email' })
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'loginInputField' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'inputLabel' },
+                            '\u041F\u0430\u0440\u043E\u043B\u044C: '
+                        ),
+                        _react2.default.createElement('input', { type: 'text', name: 'password' })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'loginInputField' },
+                    _react2.default.createElement(
+                        'button',
+                        { className: 'btn', onClick: this.sendData },
+                        _react2.default.createElement(
+                            'span',
+                            { style: { 'color': 'black' } },
+                            '\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F'
+                        )
+                    )
+                ),
+                _react2.default.createElement('hr', { style: { 'width': '99.3%' } })
+            );
+        }
+    }]);
+
+    return SingUpField;
+}(_react.Component);
+
+exports.default = SingUpField;
 
 /***/ })
 /******/ ]);

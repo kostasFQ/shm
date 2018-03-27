@@ -25,9 +25,9 @@
     position: absolute;
     height: 400px;
     width: 300px;
-    background: white;
-    right: 10%;
-    top: 7%;
+    background: #F2F2F2;
+    right: 2%;
+    top: 7.5%;
     border-radius: 5px;
     border: solid 1px black;
 }
@@ -39,9 +39,11 @@
     justify-content: center;
     border: 1px solid black;
     border-radius: 5px;
-    color: black;
     background: white;
     cursor: pointer;
+    color: white;
+    font-family: 'Yanone Kaffeesatz';
+    font-size: large;
 }
 .loginInputField{
     font-family: 'Oxygen', sans-serif;

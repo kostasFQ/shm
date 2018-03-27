@@ -15,9 +15,8 @@ class Header extends Component {
                     <div>Second hands map</div>
                 </div>
                 <div className="hTitle">
-                    <Button name='Войти'/>
+                    <Button/>
                 </div>
-
                 {
                     this.props.localStore.loginFormShow ? <LoginField/> : null
                 }
