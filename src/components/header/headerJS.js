@@ -1,17 +1,32 @@
 import './headerCSS.css';
 
 import React, {Component} from 'react';
+import Button from "../loginForm/button";
+import LoginField from '../loginForm/loginFormField';
+import { connect } from 'react-redux';
 
-export default class Header extends Component {
-
-
+class Header extends Component {
 
     render() {
         return (
             <div className="headerStyle">
-                <img src="./img/map.png"/>
-                <div>Second hands map</div>
+                <div className="hTitle">
+                    <img src="./img/map.png"/>
+                    <div>Second hands map</div>
+                </div>
+                <div className="hTitle">
+                    <Button name='Войти'/>
+                </div>
+
+                {
+                    this.props.localStore.loginFormShow ? <LoginField/> : null
+                }
             </div>
         )
     }
 }
+export default connect(
+    globalStore => ({
+        localStore: globalStore.uiStore
+    })
+)(Header)

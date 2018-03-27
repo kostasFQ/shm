@@ -38,10 +38,12 @@ class Total extends Component {
                  this.props.FormStore.address.street.verificate &&
                  this.props.FormStore.address.building.verificate ?
                     <button
+                        name='inputsFormShow'
                         className='submitButton'
                         onClick={this.submit}>
                         <span className='buttonText'>Добавить магазин</span>
                     </button> : <button
+                        name='inputsFormShow'
                         className='submitButton'
                         onClick={this.submit} disabled={true} style={{cursor : 'default', background: 'gray'}}>
                         <span className='buttonText'>Добавить магазин</span>

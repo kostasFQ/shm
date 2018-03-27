@@ -8,12 +8,15 @@ export function setMapCoords(latitude, longitude) {
             latitude : latitude,
             longitude : longitude
         }
-    }
+    };
 }
 
-export function showFormA(bool) {
+export function showFormA(name, bool) {
     return {
         type: SHOW_FORM,
-        payload : bool
-    }
+        payload : {
+            name: name,
+            bool: bool
+        }
+    };
 }

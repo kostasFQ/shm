@@ -8,7 +8,8 @@ const uiInitialStore = {
         longitude: 23.685234,
         zoom : 10,
     },
-    inputsFormShow : false
+    inputsFormShow : false,
+    loginFormShow: true
 };
 
 export default function uiStore(state = uiInitialStore, action) {
@@ -20,13 +21,13 @@ export default function uiStore(state = uiInitialStore, action) {
                 longitude: action.payload.longitude,
                 zoom: 16
             }
-        }
+        };
     }
 
     if( action.type === SHOW_FORM ) {
         return {...state,
-            inputsFormShow : !action.payload
-        }
+            [action.payload.name] : !action.payload.bool
+        };
     }
 
     return state;

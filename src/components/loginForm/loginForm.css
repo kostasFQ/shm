@@ -1,0 +1,42 @@
+.loginButtonField{
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+}
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    z-index: 101;
+    position: absolute;
+    height: 400px;
+    width: 300px;
+    background: white;
+    right: 10%;
+    top: 7%;
+    border-radius: 5px;
+    border: solid 1px black;
+}
+.loginFool {
+    display: flex;
+    width: 70%;
+    height: 30px;
+    margin: auto;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    background: white;
+    cursor: pointer;
+}
+.loginInputField{
+    font-family: 'Oxygen', sans-serif;
+    font-size: large;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}
+.inputLabel {
+    display: flex;
+    justify-content: flex-start;
+    width: 80px;
+}

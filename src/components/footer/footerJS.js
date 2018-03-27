@@ -7,16 +7,16 @@ import {showFormA} from "../../actions/uiActions";
 
 class Footer extends Component{
 
-    showForm = () =>{
-        this.props.onShowForm(this.props.localStore.inputsFormShow);
+    showForm = (event) =>{
+        this.props.onShowForm(event.target.name, this.props.localStore.inputsFormShow);
     };
 
     render(){
         return(
             <div className="footer">
-                <div className={this.props.localStore.inputsFormShow ? 'btn red': 'btn green'} onClick={this.showForm}>
+                <button className={this.props.localStore.inputsFormShow ? 'btn red': 'btn green'} onClick={this.showForm} name='inputsFormShow'>
                     <span className='buttonText'>{this.props.localStore.inputsFormShow? 'Закрыть': 'Добавить магазин'}</span>
-                </div>
+                </button>
                 {
                     this.props.localStore.inputsFormShow ? <Form/> : null
                 
@@ -31,8 +31,8 @@ export default connect(
         localStore : globalStore.uiStore
     }),
     dispatch => ({
-        onShowForm : (bool)=> {
-            dispatch(showFormA(bool))
+        onShowForm : (name, bool)=> {
+            dispatch(showFormA(name, bool))
         }
     })
 )(Footer)

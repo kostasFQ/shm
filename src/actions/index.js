@@ -14,7 +14,7 @@ export function setShopName(shopName) {
             value: shopName.value[0].toUpperCase()+shopName.value.slice(1).toLowerCase(),
             verificate: shopName.verificate
         }
-    }
+    };
 }
 
 export function setShopAddressValue(address) {
@@ -28,7 +28,7 @@ export function setShopAddressValue(address) {
             latitude: address.latitude,
             longitude: address.longitude
         }
-    }
+    };
 }
 
 export function selectDayType (day, status, startTime, endTime) {
@@ -40,12 +40,12 @@ export function selectDayType (day, status, startTime, endTime) {
             startTime : startTime,
             endTime : endTime
         }
-    }
+    };
 }
 export function addOptions(options) {
     return {
         type: ADD_OPTIONS,
         payload : options
-    }
+    };
 }
 

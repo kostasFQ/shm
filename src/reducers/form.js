@@ -1,5 +1,5 @@
 'use strict';
-import { ADD_OPTIONS, ADD_ADDRESS, ADD_SHOP, SELECT_DAY_TYPE, CLEAR } from "../actions/index";
+import { ADD_OPTIONS, ADD_ADDRESS, ADD_SHOP, SELECT_DAY_TYPE, CLEAR } from '../actions/index';
 
 const initialStore = {
     shop:{
@@ -44,7 +44,7 @@ const initialStore = {
 export default function shopListStore(state = initialStore, action) {
     if(action.type === ADD_SHOP) {
         return {...state,
-            shop:action.payload}
+            shop:action.payload};
     }
     if(action.type === ADD_ADDRESS) {
         return {...state,
@@ -56,7 +56,7 @@ export default function shopListStore(state = initialStore, action) {
                 latitude:action.payload.latitude,
                 longitude:action.payload.longitude
             }
-        }
+        };
     }
     if(action.type === SELECT_DAY_TYPE) {
         return {
@@ -72,7 +72,7 @@ export default function shopListStore(state = initialStore, action) {
         return {
             ...state,
             additionalOptions: action.payload
-        }
+        };
     }
     if(action.type === CLEAR) {
         return {};
