@@ -138,13 +138,8 @@ class ShopAddressInput extends Component{
                         <div style={{color:'red'}}>
                             {this.state.warning}
                         </div>
-
-
-
                     </div>
                 </fieldset>
-
-
             </div>
 
 
@@ -160,6 +155,5 @@ export default connect(
         onAddAddress: (address) => {
             dispatch(setShopAddressValue(address));
         }
-
     })
 )(ShopAddressInput)

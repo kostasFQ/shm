@@ -2,17 +2,30 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import  { site }  from '../../../utils';
+import { getAllShops } from "../../actions/shopsStoreActions";
+import {showFormA} from "../../actions/uiActions";
 
 import './CSS/formsCSS.css';
 
 class Total extends Component {
 
+    getShops = (shops)=> {
+        this.props.onGetShops(shops);
+        this.props.onShowForm(this.props.uiStore.inputsFormShow)
+    };
+
     submit = () => {
-        const data = this.props.FormStore;
-        axios.post(`${site}/shops`, data)
+        axios.post(`${site}/shops`, this.props.FormStore)
         .then(
-            location.reload()
+            axios.get(`${site}/shops`)
+                .then((response) => {
+                    this.getShops(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
         );
+
     };
 
 
@@ -41,5 +54,16 @@ class Total extends Component {
 
 export default connect(
     globalStore => ({
-    FormStore : globalStore.shopListStore
-}) )(Total);
+        FormStore : globalStore.shopListStore,
+        uiStore:globalStore.uiStore
+}),
+    dispatch => ({
+        onGetShops : (shops) => {
+            dispatch(getAllShops(shops))
+        },
+        onShowForm : (bool)=> {
+            dispatch(showFormA(bool))
+        }
+    })
+
+)(Total);

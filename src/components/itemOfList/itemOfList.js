@@ -1,11 +1,11 @@
 import './itemOfList.css';
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { setMapCoords } from '../../actions/index';
+import { setMapCoords } from '../../actions/uiActions';
 
 
 class Item extends Component {
-    setMapCoorsd = () => {
+    setMapCoords = () => {
         this.props.setMapCoords(this.props.address.latitude, this.props.address.longitude)
     };
 
@@ -20,7 +20,7 @@ class Item extends Component {
                         <div>Адрес: {street}, {building}</div>
                     </div>
                     <div>
-                        <button onClick={this.setMapCoorsd} className='positionButton'>
+                        <button onClick={this.setMapCoords} className='positionButton'>
                             <img src="./img/target.png" alt="На карте" className='positionButtonImg'/>
                         </button>
                     </div>

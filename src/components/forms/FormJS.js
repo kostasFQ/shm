@@ -5,11 +5,6 @@ import WorkTimeInput from './workTimeInput';
 import AdditionalOptions from './AdditionalOptions'
 import Total from "./TotalFrom";
 
-import reducer from '../../reducers/index';
-
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-
 export default class Form extends Component {
 
     render() {
@@ -21,7 +16,6 @@ export default class Form extends Component {
                     <AdditionalOptions/>
                     <Total/>
                 </div>
-            //</Provider>
         )
     }
 }

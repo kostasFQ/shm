@@ -4,9 +4,7 @@ const SELECT_DAY_TYPE = 'SELECT_DAY_TYPE';
 const ADD_OPTIONS = 'ADD_OPTIONS';
 const CLEAR = 'CLEAR';
 
-const SET_COORDS = 'SET_COORDS';
-
-export { ADD_SHOP, ADD_ADDRESS, ADD_OPTIONS, SELECT_DAY_TYPE, SET_COORDS, CLEAR };
+export { ADD_SHOP, ADD_ADDRESS, ADD_OPTIONS, SELECT_DAY_TYPE, CLEAR };
 
 
 export function setShopName(shopName) {
@@ -50,15 +48,4 @@ export function addOptions(options) {
         payload : options
     }
 }
-
-export function setMapCoords(latitude, longitude) {
-    return {
-        type: SET_COORDS,
-        payload : {
-            latitude : latitude,
-            longitude : longitude
-        }
-    }
-}
-
 

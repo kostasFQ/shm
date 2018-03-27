@@ -1,31 +1,38 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+
 import Form from '../forms/FormJS';
 import './footerCSS.css';
+import {showFormA} from "../../actions/uiActions";
 
-export default class Footer extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            openForm: false //todo false!!!
-        };
-    }
+class Footer extends Component{
 
     showForm = () =>{
-        const cState = this.state.openForm;
-        this.setState({openForm: !cState});
+        this.props.onShowForm(this.props.localStore.inputsFormShow);
     };
 
     render(){
         return(
             <div className="footer">
-                <div className={this.state.openForm ? 'btn red': 'btn green'} onClick={this.showForm}>
-                    <span className='buttonText'>{this.state.openForm? 'Закрыть': 'Добавить магазин'}</span>
+                <div className={this.props.localStore.inputsFormShow ? 'btn red': 'btn green'} onClick={this.showForm}>
+                    <span className='buttonText'>{this.props.localStore.inputsFormShow? 'Закрыть': 'Добавить магазин'}</span>
                 </div>
                 {
-                    this.state.openForm ? <Form/> : null
+                    this.props.localStore.inputsFormShow ? <Form/> : null
                 
                 }
             </div>
         )
     }
 }
+
+export default connect(
+    globalStore => ({
+        localStore : globalStore.uiStore
+    }),
+    dispatch => ({
+        onShowForm : (bool)=> {
+            dispatch(showFormA(bool))
+        }
+    })
+)(Footer)

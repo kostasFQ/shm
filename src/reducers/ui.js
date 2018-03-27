@@ -1,21 +1,33 @@
 'use strict';
 
-import { SET_COORDS } from '../actions/index';
+import {SET_COORDS, SHOW_FORM} from '../actions/uiActions';
 
 const uiInitialStore = {
-    mapLatitude: 52.105783,
-    mapLongitude: 23.685234,
-    mapZoom : 10
+    map : {
+        latitude: 52.105783,
+        longitude: 23.685234,
+        zoom : 10,
+    },
+    inputsFormShow : false
 };
 
 export default function uiStore(state = uiInitialStore, action) {
 
     if( action.type === SET_COORDS ) {
-        return {
-            mapLatitude: action.payload.latitude,
-            mapLongitude: action.payload.longitude,
-            mapZoom: 16
+        return {...state,
+            map : {
+                latitude: action.payload.latitude,
+                longitude: action.payload.longitude,
+                zoom: 16
+            }
         }
     }
+
+    if( action.type === SHOW_FORM ) {
+        return {...state,
+            inputsFormShow : !action.payload
+        }
+    }
+
     return state;
 }

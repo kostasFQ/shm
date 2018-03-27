@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import Item from "../itemOfList/itemOfList";
 import YandexMap from "../map/mapJS";
+import { connect } from 'react-redux';
 
-export default class MainFilter extends Component{
+class MainFilter extends Component{
 
     constructor(props){
         super(props);
@@ -21,7 +22,8 @@ export default class MainFilter extends Component{
     };
 
     render(){
-        return(
+
+        return( this.props.localStore.shops ? (
             <div  className = 'contentStyle'>
                 <div className="leftBar">
                     <select onChange={this.handleChange} className="select">
@@ -34,7 +36,7 @@ export default class MainFilter extends Component{
 
                     <div className="listField">
                         {
-                            this.props.shops
+                            this.props.localStore.shops
                                 .sort( (a, b) => {
                                     if(a.shop === b.shop) return 0;
                                     return a.shop < b.shop ? -1 : 1;
@@ -68,11 +70,17 @@ export default class MainFilter extends Component{
                 <YandexMap
                     day = {this.state.day}
                     districtsFilter={this.state.districtsFilter}
-                    shops={this.props.shops}
+                    shops={this.props.localStore.shops}
                     zoom={this.state.text}
                 />
             </div>
-
+            ) : (null)
         )
     }
 }
+
+export default connect(
+    globalStore => ({
+        localStore : globalStore.shopsStore
+    })
+)(MainFilter)

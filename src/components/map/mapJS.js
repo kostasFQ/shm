@@ -5,16 +5,6 @@ import { connect } from 'react-redux';
 
 class YandexMap extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            message : 'zxc cds eeee'
-        }
-    }
-    tmp = ()=> {
-        console.log(this.state.message)
-    };
-
     render() {
         const date = new Date();
         const shops = this.props.shops;
@@ -26,9 +16,9 @@ class YandexMap extends Component {
                     <Map state={
                         {
                             center:[
-                                this.props.localStore.mapLatitude,
-                                this.props.localStore.mapLongitude],
-                            zoom: this.props.localStore.mapZoom,
+                                this.props.localStore.map.latitude,
+                                this.props.localStore.map.longitude],
+                            zoom: this.props.localStore.map.zoom,
                         }
                     } width={'100%'} height={'100%'}>
                         {
