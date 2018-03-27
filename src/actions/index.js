@@ -48,4 +48,9 @@ export function addOptions(options) {
         payload : options
     };
 }
+export function clear() {
+    return {
+        type:CLEAR
+    }
+}
 

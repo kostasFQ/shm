@@ -75,7 +75,13 @@ export default function shopListStore(state = initialStore, action) {
         };
     }
     if(action.type === CLEAR) {
-        return {};
+        return {
+            ...state,
+            shop: {
+                verificate:false
+            }
+
+        };
     }
 
     return state;

@@ -4,6 +4,7 @@ import axios from 'axios';
 import  { site }  from '../../../utils';
 import { getAllShops } from "../../actions/shopsStoreActions";
 import {showFormA} from "../../actions/uiActions";
+import { clear } from '../../actions/index';
 
 import './CSS/formsCSS.css';
 
@@ -11,7 +12,9 @@ class Total extends Component {
 
     getShops = (shops)=> {
         this.props.onGetShops(shops);
-        this.props.onShowForm(this.props.uiStore.inputsFormShow)
+        this.props.onShowForm('inputsFormShow', this.props.uiStore.inputsFormShow);
+
+
     };
 
     submit = () => {
@@ -27,6 +30,9 @@ class Total extends Component {
         );
 
     };
+    componentWillUnmount(){
+        this.props.onClearForm();
+    }
 
 
     render() {
@@ -63,8 +69,12 @@ export default connect(
         onGetShops : (shops) => {
             dispatch(getAllShops(shops))
         },
-        onShowForm : (bool)=> {
-            dispatch(showFormA(bool))
+        onShowForm : (name, bool)=> {
+            dispatch(showFormA(name, bool))
+        },
+        onClearForm : () => {
+            console.log('onClearForm' );
+            dispatch(clear())
         }
     })
 
