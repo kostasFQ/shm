@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import './CSS/formsCSS.css';
+import './CSS/forms.css';
 import {addOptions} from "../../actions/index";
 
 class AdditionalOptions extends Component{

@@ -1,4 +1,4 @@
-import './headerCSS.css';
+import './header.css';
 
 import React, {Component} from 'react';
 import Button from "../loginForm/button";
@@ -14,8 +14,11 @@ class Header extends Component {
                     <img src="./img/map.png"/>
                     <div>Second hands map</div>
                 </div>
-                <div className="hTitle">
-                    <Button/>
+                <div>
+                    Welcome {'<User>'}
+                    <div className="hTitle">
+                        <Button/>
+                    </div>
                 </div>
                 {
                     this.props.localStore.loginFormShow ? <LoginField/> : null

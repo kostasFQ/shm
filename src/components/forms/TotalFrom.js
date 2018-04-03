@@ -6,7 +6,7 @@ import { getAllShops } from "../../actions/shopsStoreActions";
 import {showFormA} from "../../actions/uiActions";
 import { clear } from '../../actions/index';
 
-import './CSS/formsCSS.css';
+import './CSS/forms.css';
 
 class Total extends Component {
 
@@ -73,7 +73,6 @@ export default connect(
             dispatch(showFormA(name, bool))
         },
         onClearForm : () => {
-            console.log('onClearForm' );
             dispatch(clear())
         }
     })

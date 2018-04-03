@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 
-import Header from '../components/header/headerJS';
-import Content from "../components/content/contentJS";
-import Footer from '../components/footer/footerJS';
+import Header from './header/header';
+import Content from "./content/content";
+import Footer from './footer/footer';
 
 import reducer from '../reducers/index';
 import { createStore } from 'redux';

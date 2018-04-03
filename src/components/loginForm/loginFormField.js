@@ -6,10 +6,10 @@ export default class LoginField extends Component {
 
     render(){
         return(
-            <div className='loginForm'>
+            <section className='loginForm'>
                 <EnterField/>
                 <SingUpField/>
-            </div>
+            </section>
         )
     }
 }

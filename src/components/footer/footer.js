@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-import Form from '../forms/FormJS';
-import './footerCSS.css';
+import Form from '../forms/Form';
+import './footer.css';
 import {showFormA} from "../../actions/uiActions";
 
 class Footer extends Component{
@@ -14,12 +14,14 @@ class Footer extends Component{
     render(){
         return(
             <div className="footer">
-                <button className={this.props.localStore.inputsFormShow ? 'btn red': 'btn green'} onClick={this.showForm} name='inputsFormShow'>
-                    <span className='buttonText'>{this.props.localStore.inputsFormShow? 'Закрыть': 'Добавить магазин'}</span>
-                </button>
                 {
-                    this.props.localStore.inputsFormShow ? <Form/> : null
-                
+                    this.props.localStore.inputsFormShow ?
+                        <div style={{'width': '100%', 'display': 'flex', 'justify-content': 'center'}}>
+                            <button className='btn red buttonText' onClick={this.showForm} name='inputsFormShow'>Закрыть</button>
+                            <Form/>
+                        </div>
+                         :
+                        <button className='btn green buttonText' onClick={this.showForm} name='inputsFormShow'>Добавить магазин</button>
                 }
             </div>
         )

@@ -1,10 +1,10 @@
-import './contentCSS.css';
+import './content.css';
 import axios from 'axios';
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { getAllShops } from "../../actions/shopsStoreActions";
 
-import MainFilter from "../mainFilter/mainFilterJS";
+import MainFilter from "../mainFilter/mainFilter";
 import  { site }  from '../../../utils';
 
 class Content extends Component {

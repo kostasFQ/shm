@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {selectDayType} from "../../actions/index";
 
-import './CSS/formsCSS.css';
+import './CSS/forms.css';
 
 class Day extends Component {
     constructor(props){

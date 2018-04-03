@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './CSS/formsCSS.css';
+import './CSS/forms.css';
 import Day from "./Day";
 
 

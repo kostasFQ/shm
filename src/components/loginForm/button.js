@@ -13,7 +13,7 @@ class Button extends Component {
     render(){
         return(
             <div className='loginButtonField'>
-                {this.props.localStore.loginFormShow ?
+                { this.props.localStore.loginFormShow ?
                     <button onClick={this.showForm} className='loginFool red'>Закрыть</button> :
                     <button onClick={this.showForm} className='loginFool green'>Вход</button>
                 }
