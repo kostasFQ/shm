@@ -12,7 +12,9 @@ class Header extends Component {
             <div className="headerStyle">
                 <div className="hTitle">
                     <img src="./img/map.png"/>
-                    <div>Second hands map</div>
+                    <div>
+                        <a href="/">Second hands map</a>
+                    </div>
                 </div>
                 <div>
                     Welcome {'<User>'}

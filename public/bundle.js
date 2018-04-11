@@ -13733,7 +13733,7 @@ var Footer = function (_Component) {
                 { className: 'footer' },
                 this.props.localStore.inputsFormShow ? _react2.default.createElement(
                     'div',
-                    { style: { 'width': '100%', 'display': 'flex', 'justify-content': 'center' } },
+                    { style: { 'width': '100%', 'display': 'flex', 'justifyContent': 'center' } },
                     _react2.default.createElement(
                         'button',
                         { className: 'btn red buttonText', onClick: this.showForm, name: 'inputsFormShow' },
@@ -14675,7 +14675,11 @@ var Header = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         null,
-                        'Second hands map'
+                        _react2.default.createElement(
+                            'a',
+                            { href: '/' },
+                            'Second hands map'
+                        )
                     )
                 ),
                 _react2.default.createElement(
@@ -14984,7 +14988,7 @@ var EnterField = function (_Component) {
         _this.sendData = function (event) {
             event.preventDefault();
             console.log('enter send-->>>', _this.state);
-            _axios2.default.post(_utils.site + '/user', _this.state);
+            _axios2.default.post(_utils.site + '/enter', _this.state);
             event.target.reset();
         };
 
@@ -15003,46 +15007,31 @@ var EnterField = function (_Component) {
                 null,
                 _react2.default.createElement(
                     'form',
-                    { onSubmit: this.sendData, onChange: this.valueToState },
+                    { action: '/enter', method: 'post' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'hTitle' },
-                        '\u0412\u0445\u043E\u0434'
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'loginInputField' },
+                        null,
                         _react2.default.createElement(
-                            'span',
-                            { className: 'inputLabel' },
-                            '\u041B\u043E\u0433\u0438\u043D: '
+                            'label',
+                            null,
+                            'Username:'
                         ),
-                        _react2.default.createElement('input', { type: 'text', name: 'enterLogin' })
+                        _react2.default.createElement('input', { type: 'text', name: 'username' })
                     ),
                     _react2.default.createElement(
                         'div',
-                        { className: 'loginInputField' },
+                        null,
                         _react2.default.createElement(
-                            'span',
-                            { className: 'inputLabel' },
-                            '\u041F\u0430\u0440\u043E\u043B\u044C: '
+                            'label',
+                            null,
+                            'Password:'
                         ),
-                        _react2.default.createElement('input', { type: 'text', name: 'enterPassword' })
+                        _react2.default.createElement('input', { type: 'password', name: 'password' })
                     ),
                     _react2.default.createElement(
                         'div',
-                        { className: 'loginInputField' },
-                        _react2.default.createElement(
-                            'button',
-                            { className: 'btn' },
-                            ' ',
-                            _react2.default.createElement(
-                                'span',
-                                { style: { 'color': 'black' } },
-                                '\u0412\u0445\u043E\u0434'
-                            ),
-                            ' '
-                        )
+                        null,
+                        _react2.default.createElement('input', { type: 'submit', value: 'Log In' })
                     )
                 ),
                 _react2.default.createElement('hr', { style: { 'width': '99.3%' } })
@@ -15163,8 +15152,9 @@ var SingUpField = function (_Component) {
         };
 
         _this.sendData = function (event) {
+            console.log('send-->>>>', _this.state);
             event.preventDefault();
-            _axios2.default.post(_utils.site + '/user', _this.state);
+            _axios2.default.post(_utils.site + '/sign', _this.state);
             event.target.reset();
         };
 

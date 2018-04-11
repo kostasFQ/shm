@@ -22,7 +22,7 @@ export default class EnterField extends Component{
     sendData = (event) => {
         event.preventDefault();
         console.log('enter send-->>>', this.state);
-        axios.post(`${site}/user`, this.state);
+        axios.post(`${site}/enter`, this.state);
         event.target.reset();
 
     };
@@ -30,7 +30,7 @@ export default class EnterField extends Component{
     render(){
         return (
             <section>
-                <form onSubmit={this.sendData} onChange={this.valueToState}>
+                {/*<form onSubmit={this.sendData} onChange={this.valueToState}>
                     <div className='hTitle'>Вход</div>
 
                     <div className='loginInputField'>
@@ -44,6 +44,19 @@ export default class EnterField extends Component{
                     </div>
                     <div className='loginInputField'>
                         <button className='btn'> <span style={{'color':'black'}}>Вход</span> </button>
+                    </div>
+                </form>*/}
+                <form action="/enter" method="post">
+                    <div>
+                        <label>Username:</label>
+                        <input type="text" name="username"/>
+                    </div>
+                    <div>
+                        <label>Password:</label>
+                        <input type="password" name="password"/>
+                    </div>
+                    <div>
+                        <input type="submit" value="Log In"/>
                     </div>
                 </form>
 

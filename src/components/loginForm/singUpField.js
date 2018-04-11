@@ -23,8 +23,9 @@ export default class SingUpField extends Component{
     };
 
     sendData = (event) => {
+        console.log('send-->>>>', this.state);
         event.preventDefault();
-        axios.post(`${site}/user`, this.state);
+        axios.post(`${site}/sign`, this.state);
         event.target.reset();
 
     };

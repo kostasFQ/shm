@@ -16,7 +16,7 @@ class Footer extends Component{
             <div className="footer">
                 {
                     this.props.localStore.inputsFormShow ?
-                        <div style={{'width': '100%', 'display': 'flex', 'justify-content': 'center'}}>
+                        <div style={{'width': '100%', 'display': 'flex', 'justifyContent': 'center'}}>
                             <button className='btn red buttonText' onClick={this.showForm} name='inputsFormShow'>Закрыть</button>
                             <Form/>
                         </div>
