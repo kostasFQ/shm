@@ -15152,7 +15152,6 @@ var SingUpField = function (_Component) {
         };
 
         _this.sendData = function (event) {
-            console.log('send-->>>>', _this.state);
             event.preventDefault();
             _axios2.default.post(_utils.site + '/sign', _this.state);
             event.target.reset();

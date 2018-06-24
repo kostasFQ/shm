@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { site } from '../../../utils';
 import axios from 'axios';
 
-import './loginForm.css'
+import './loginForm.css';
 
 export default class SingUpField extends Component{
 
@@ -12,7 +12,7 @@ export default class SingUpField extends Component{
             login:'',
             email:'',
             password: ''
-        }
+        };
     }
 
     valueToState = (event) => {
@@ -23,7 +23,6 @@ export default class SingUpField extends Component{
     };
 
     sendData = (event) => {
-        console.log('send-->>>>', this.state);
         event.preventDefault();
         axios.post(`${site}/sign`, this.state);
         event.target.reset();
@@ -56,6 +55,6 @@ export default class SingUpField extends Component{
                 </form>
                 <hr style={{'width': '99.3%'}}/>
             </article>
-        )
+        );
     }
 }

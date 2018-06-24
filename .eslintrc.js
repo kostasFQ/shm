@@ -1,13 +1,14 @@
-module.exports = {
+module.exports = 
+{
     "env": {
         "browser": true,
-        "commonjs": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended", "plugin:react/recommended" ],
 
     "parserOptions": {
         "ecmaVersion": 6,
+        "sourceType": "module",
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
             "jsx": true
@@ -18,9 +19,8 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "linebreak-style": ["error","unix"],
-        "quotes": ["error","single"],
         "semi": ["error","always"],
-        "arrow-body-style": ["error", "always"]
+        "arrow-body-style": ["error", "always"],
+        "no-unused-vars": ["warning", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }]
     }
 };
