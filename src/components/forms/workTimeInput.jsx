@@ -17,7 +17,7 @@ export default class WorkTimeInput extends Component {
           <div>
             <div style={{ display: 'flex' }}>
               {
-                workSchedule.map((el) => { return <Day dayNameRus={el.rus} key={el} dayNameEng={el.eng} />; })
+                workSchedule.map((el) => { return <Day dayNameRus={el.rus} key={`3${el.eng}`} dayNameEng={el.eng} />; })
               }
             </div>
           </div>

@@ -4068,7 +4068,7 @@ function removeEvent(event, key, instance) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var site = "http://localhost:8080" || 'https://secondhandsmap.herokuapp.com';
+var site = 'http://localhost:8080' || 'https://secondhandsmap.herokuapp.com';
 exports.site = site;
 
 /***/ }),
@@ -13982,7 +13982,7 @@ var Day = function (_Component) {
                 startWorkTime.map(function (value) {
                   return _react2.default.createElement(
                     'option',
-                    { value: value, key: value },
+                    { value: value, key: '1' + value },
                     value
                   );
                 })
@@ -14001,7 +14001,7 @@ var Day = function (_Component) {
                 endWorkTime.map(function (value) {
                   return _react2.default.createElement(
                     'option',
-                    { value: value, key: value },
+                    { value: value, key: '2' + value },
                     value
                   );
                 })
@@ -14624,7 +14624,7 @@ var WorkTimeInput = function (_Component) {
               'div',
               { style: { display: 'flex' } },
               workSchedule.map(function (el) {
-                return _react2.default.createElement(_Day2.default, { dayNameRus: el.rus, key: el, dayNameEng: el.eng });
+                return _react2.default.createElement(_Day2.default, { dayNameRus: el.rus, key: '3' + el.eng, dayNameEng: el.eng });
               })
             )
           )

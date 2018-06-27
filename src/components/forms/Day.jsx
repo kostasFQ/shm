@@ -55,7 +55,7 @@ class Day extends Component {
                     {
                       startWorkTime.map((value) => {
                         return (
-                          <option value={value} key={value}>{value}</option>
+                          <option value={value} key={`1${value}`}>{value}</option>
                         );
                       })
                     }
@@ -67,7 +67,7 @@ class Day extends Component {
                     {
                       endWorkTime.map((value) => {
                         return (
-                          <option value={value} key={value}>{value}</option>
+                          <option value={value} key={`2${value}`}>{value}</option>
                         );
                       })
                     }
