@@ -1,25 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Oxygen);@import url(https://fonts.googleapis.com/css?family=Philosopher);@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);.headerStyle {
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
-    display: flex;
-}
-.hTitle {
-    color: #706075;
-    font-size: 1.5em;
-    font-weight: bolder;
-    font-family: 'Oxygen', sans-serif;
-    display: flex;
-    min-width:150px;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0;
-    margin: 0;
-}
-a {
-    text-decoration: none;
-    color: #706075;
-}.loginButtonField{
+@import url(https://fonts.googleapis.com/css?family=Philosopher);@import url(https://fonts.googleapis.com/css?family=Oxygen);@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);.loginButtonField{
     display: flex;
     width: 100%;
     align-items: flex-end;
@@ -62,7 +41,55 @@ a {
     display: flex;
     justify-content: flex-start;
     width: 80px;
-}.footer{
+}.headerStyle {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    display: flex;
+}
+.hTitle {
+    color: #706075;
+    font-size: 1.5em;
+    font-weight: bolder;
+    font-family: 'Oxygen', sans-serif;
+    display: flex;
+    min-width:150px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+}
+a {
+    text-decoration: none;
+    color: #706075;
+}.listItem {
+    width: 87%;
+    padding-left: 5px;
+    margin-left: 1%;
+    border : solid 1px black;
+    border-radius: 5px;
+    background-color: white;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.shopTitle{
+    max-width: 170px;
+    word-wrap: break-word;
+    font-size: x-large;
+    font-family: 'Philosopher';
+}
+.options {
+    padding: 0;
+}
+.itemHeader {
+    display: flex;
+    justify-content: space-between;
+}
+ul{
+    padding-left: 20px;
+    margin: 0;
+}
+.footer{
     display: flex;
     height: 38px;
     justify-content: center;
@@ -207,33 +234,6 @@ a {
         min-width: 300px;
     }
 
-}
-.listItem {
-    width: 87%;
-    padding-left: 5px;
-    margin-left: 1%;
-    border : solid 1px black;
-    border-radius: 5px;
-    background-color: white;
-    display: flex;
-    flex-flow: column nowrap;
-}
-.shopTitle{
-    max-width: 170px;
-    word-wrap: break-word;
-    font-size: x-large;
-    font-family: 'Philosopher';
-}
-.options {
-    padding: 0;
-}
-.itemHeader {
-    display: flex;
-    justify-content: space-between;
-}
-ul{
-    padding-left: 20px;
-    margin: 0;
 }
 .workDays{
     padding: 2px;

@@ -5,8 +5,8 @@ import uiStore from './ui';
 import shopsStore from './shopsStore';
 
 export default combineReducers({
-    shopListStore,
-    uiStore,
-    shopsStore
+  shopListStore,
+  uiStore,
+  shopsStore,
 });
 
