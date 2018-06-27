@@ -15014,6 +15014,10 @@ var EnterField = function (_Component) {
       console.log('enter send-->>>', _this.state);
       _axios2.default.post(_utils.site + '/enter', _this.state);
       event.target.reset();
+      _this.setState({
+        enterLogin: '',
+        enterPassword: ''
+      });
     };
 
     _this.state = {
@@ -15031,31 +15035,46 @@ var EnterField = function (_Component) {
         null,
         _react2.default.createElement(
           'form',
-          { action: '/enter', method: 'post' },
+          { onSubmit: this.sendData, onChange: this.valueToState },
           _react2.default.createElement(
             'div',
-            null,
-            _react2.default.createElement(
-              'label',
-              null,
-              'Username:'
-            ),
-            _react2.default.createElement('input', { type: 'text', name: 'username' })
+            { className: 'hTitle' },
+            '\u0412\u0445\u043E\u0434'
           ),
           _react2.default.createElement(
             'div',
-            null,
+            { className: 'loginInputField' },
             _react2.default.createElement(
               'label',
-              null,
-              'Password:'
+              { className: 'inputLabel', htmlFor: 'enterLogin' },
+              '\u041B\u043E\u0433\u0438\u043D: '
             ),
-            _react2.default.createElement('input', { type: 'password', name: 'password' })
+            _react2.default.createElement('input', { type: 'text', name: 'enterLogin', id: 'enterLogin' })
           ),
           _react2.default.createElement(
             'div',
-            null,
-            _react2.default.createElement('input', { type: 'submit', value: 'Log In' })
+            { className: 'loginInputField' },
+            _react2.default.createElement(
+              'label',
+              { className: 'inputLabel', htmlFor: 'enterPass' },
+              '\u041F\u0430\u0440\u043E\u043B\u044C: '
+            ),
+            _react2.default.createElement('input', { type: 'text', name: 'enterPassword', id: 'enterPass' })
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'loginInputField' },
+            _react2.default.createElement(
+              'button',
+              { className: 'btn' },
+              ' ',
+              _react2.default.createElement(
+                'span',
+                { style: { color: 'black' } },
+                '\u0412\u0445\u043E\u0434'
+              ),
+              ' '
+            )
           )
         ),
         _react2.default.createElement('hr', { style: { width: '99.3%' } })

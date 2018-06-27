@@ -24,28 +24,32 @@ export default class EnterField extends Component {
       console.log('enter send-->>>', this.state);
       axios.post(`${site}/enter`, this.state);
       event.target.reset();
+      this.setState({
+        enterLogin: '',
+        enterPassword: '',
+      });
     };
 
     render() {
       return (
         <section>
-          {/* <form onSubmit={this.sendData} onChange={this.valueToState}>
-                    <div className='hTitle'>Вход</div>
+          <form onSubmit={this.sendData} onChange={this.valueToState}>
+            <div className="hTitle">Вход</div>
 
-                    <div className='loginInputField'>
-                        <span className='inputLabel'>Логин: </span>
-                        <input type="text" name='enterLogin'/>
-                    </div>
+            <div className="loginInputField">
+              <label className="inputLabel" htmlFor="enterLogin">Логин: </label>
+              <input type="text" name="enterLogin" id="enterLogin" />
+            </div>
 
-                    <div className='loginInputField'>
-                        <span className='inputLabel'>Пароль: </span>
-                        <input type="text" name='enterPassword'/>
-                    </div>
-                    <div className='loginInputField'>
-                        <button className='btn'> <span style={{'color':'black'}}>Вход</span> </button>
-                    </div>
-                </form> */}
-          <form action="/enter" method="post">
+            <div className="loginInputField">
+              <label className="inputLabel" htmlFor="enterPass">Пароль: </label>
+              <input type="text" name="enterPassword" id="enterPass" />
+            </div>
+            <div className="loginInputField">
+              <button className="btn"> <span style={{ color: 'black' }}>Вход</span> </button>
+            </div>
+          </form>
+          {/* <form action="/enter" method="post">
             <div>
               <label>Username:</label>
               <input type="text" name="username" />
@@ -57,7 +61,7 @@ export default class EnterField extends Component {
             <div>
               <input type="submit" value="Log In" />
             </div>
-          </form>
+          </form> */}
 
           <hr style={{ width: '99.3%' }} />
         </section>

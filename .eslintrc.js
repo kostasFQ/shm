@@ -2,7 +2,8 @@ module.exports =
 {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "node": true,
     },
     "extends": ["airbnb" ],
     "parser": "babel-eslint",
@@ -29,5 +30,7 @@ module.exports =
         "no-nested-ternary": 0,
         "no-underscore-dangle": 0,
         "label-has-for": 0,
+        "jsx-a11y/label-has-for": [ 2, { "required": { "every": [ "id" ] } }],
+        "func-names": 0,
     }
 };
