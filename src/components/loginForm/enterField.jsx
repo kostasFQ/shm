@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import React, { Component } from 'react';
-import { site } from '../../../utils';
+import { site } from '../../../data/site';
 
 export default class EnterField extends Component {
   constructor(props) {

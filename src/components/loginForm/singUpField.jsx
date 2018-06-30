@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import { site } from '../../../utils';
+import { site } from '../../../data/site';
 import './loginForm.css';
 
 export default class SingUpField extends Component {

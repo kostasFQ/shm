@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-import { site } from '../../../utils';
+import { site } from '../../../data/site';
 import { getAllShops } from '../../actions/shopsStoreActions';
 import { showFormA } from '../../actions/uiActions';
 import { clear } from '../../actions/index';

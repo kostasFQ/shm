@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { getAllShops } from '../../actions/shopsStoreActions';
 import MainFilter from '../mainFilter/mainFilter';
-import { site } from '../../../utils';
+import site from '../../../data/site';
 
 import './content.css';
 

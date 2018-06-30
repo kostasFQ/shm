@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const cors = require('cors');
 
+
 require('./models/indexModels.js');
 
 const shopsController = require('./controlers/shopsController.js');
