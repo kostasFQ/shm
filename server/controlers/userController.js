@@ -1,56 +1,44 @@
-// const mongoose = require('mongoose');
-// const User = mongoose.model('User');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
-exports.getUsers = (req, res) => {
-  res.send('hello');
-  /* User.find({}, (err, data) => {
-      if(err) return console.log(err);
-      res.json(data);
-  }) */
-};
+exports.login = (req, res, next) => {
+	if (req.user) {
+    next();
+  } else {
+    return res.status(401).json({ message: 'Unauthorized user!' });
+  }
+}
 
-exports.addNewUser = (req) => {
-  console.log('add--->>>', req.body);
-  /* if (req.body.email &&
-      req.body.login &&
-      req.body.password) {
-
-      let userData = {
-          email: req.body.email,
-          login: req.body.login,
-          password: req.body.password
-      };
-
-      User.create(userData, function (error, user) {
-          if (error) {
-              return next(error);
-          } else {
-              req.session.userId = user._id;
-              return res.redirect('http://localhost:8080/reg');
-          }
-      });
+exports.sing_in = (req, res) => {
+	console.log('sing-->>', req.body)
+	User.findOne({
+    email: req.body.email
+  }, function(err, user) {
+    if (err) throw err;
+    if (!user) {
+      res.status(401).json({ message: 'Authentication failed. User not found.' });
+    } else if (user) {
+      if (!user.comparePassword(req.body.password)) {
+        res.status(401).json({ message: 'Authentication failed. Wrong password.' });
+      } else {
+        return res.json({token: jwt.sign({ email: user.email, name: user.name, _id: user._id}, 'RESTFULAPIs')});
+      }
+    }
+  });
 
 }
 
-/*if (req.body.enterLogin && req.body.enterPassword) {
-      User.authenticate(req.body.enterLogin, req.body.enterPassword, function (error, user) {
-          if (error || !user) {
-              let err = new Error('Wrong email or password.');
-              err.status = 401;
-              return next(err);
-          } else {
-              console.log('entered -->>> ', req.body);
-              req.session.userId = user._id;
-              console.log('_id-->>> ', user._id);
-              return res.redirect('/shops');
-          }
-      });
-}
-
-else {
-      let err = new Error('All fields required.');
-      err.status = 400;
-      console.log('null');
-      return next(err);
-} */
+exports.register = function(req, res) {
+	var newUser = new User(req.body);
+  newUser.save(function(err, user) {
+    if (err) {
+      req.flash('info', 'messss');
+      return res.status(400).json({ error: 'err' });
+    } else {
+			user.password = undefined;
+      return res.json(user);
+		}
+  });
 };

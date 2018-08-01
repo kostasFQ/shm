@@ -1,14 +1,14 @@
 import axios from 'axios';
 
 import React, { Component } from 'react';
-import { site } from '../../../data/site';
+import site from '../../../data/site';
 
 export default class EnterField extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      enterLogin: '',
-      enterPassword: '',
+      email: '',
+      password: '',
     };
   }
 
@@ -16,17 +16,17 @@ export default class EnterField extends Component {
       this.setState({
         [event.target.name]: event.target.value,
       });
-      // axios.post(`${site}/user`, this.state)
+      //axios.post(`${site}/user`, this.state)
     };
 
     sendData = (event) => {
       event.preventDefault();
       console.log('enter send-->>>', this.state);
-      axios.post(`${site}/enter`, this.state);
+      axios.post(`${site}/user/login`, this.state);
       event.target.reset();
       this.setState({
-        enterLogin: '',
-        enterPassword: '',
+        email: '',
+        password: '',
       });
     };
 
@@ -38,12 +38,12 @@ export default class EnterField extends Component {
 
             <div className="loginInputField">
               <label className="inputLabel" htmlFor="enterLogin">Логин: </label>
-              <input type="text" name="enterLogin" id="enterLogin" />
+              <input type="text" name="email" id="enterLogin" />
             </div>
 
             <div className="loginInputField">
               <label className="inputLabel" htmlFor="enterPass">Пароль: </label>
-              <input type="text" name="enterPassword" id="enterPass" />
+              <input type="text" name="password" id="enterPass" />
             </div>
             <div className="loginInputField">
               <button className="btn"> <span style={{ color: 'black' }}>Вход</span> </button>

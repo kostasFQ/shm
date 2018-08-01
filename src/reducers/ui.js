@@ -9,7 +9,7 @@ const uiInitialStore = {
     zoom: 10,
   },
   inputsFormShow: false,
-  loginFormShow: true,
+  loginFormShow: false,
 };
 
 export default function uiStore(state = uiInitialStore, action) {

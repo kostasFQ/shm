@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 export default class NavigationPanell extends Component {
   render() {
@@ -6,12 +7,12 @@ export default class NavigationPanell extends Component {
       <div className="headerStyle">
         <div className="hTitle">
           <img src="./img/map.png" alt="pic" />
-          <div>
-            <a href="/">Second hands map</a>
-          </div>
+          <span>
+            <Link to="/">Second hands map</Link>
+          </span>
         </div>
         <div>
-          <a href="/login">LOGIN</a>
+          <Link to="/login">Log in/Sing up</Link>
         </div>
       </div>
     );
